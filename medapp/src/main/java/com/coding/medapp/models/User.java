@@ -1,14 +1,20 @@
 package com.coding.medapp.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -59,6 +65,19 @@ public class User {
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    private List<Content> contents;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "healthInsurance_id")
+    private HealthInsurance insurance;
+
+    @OneToOne(mappedBy = "doctor", fetch = FetchType.LAZY)
+    private Doctor doctor2;
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    private List<MedicalAppointment> medicalAppointments; 
 
     //=========================================================
 
@@ -147,7 +166,41 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    
+
     //=========================================================
+
+    public List<Content> getContents() {
+        return contents;
+    }
+
+    public void setContents(List<Content> contents) {
+        this.contents = contents;
+    }
+
+    public HealthInsurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(HealthInsurance insurance) {
+        this.insurance = insurance;
+    }
+
+    public Doctor getDoctor2() {
+        return doctor2;
+    }
+
+    public void setDoctor2(Doctor doctor2) {
+        this.doctor2 = doctor2;
+    }
+
+    public List<MedicalAppointment> getMedicalAppointments() {
+        return medicalAppointments;
+    }
+
+    public void setMedicalAppointments(List<MedicalAppointment> medicalAppointments) {
+        this.medicalAppointments = medicalAppointments;
+    }
 
     @PrePersist
     protected void onCreate() {

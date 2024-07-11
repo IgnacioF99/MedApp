@@ -3,14 +3,19 @@ package com.coding.medapp.models;
 
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -19,7 +24,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="specialties")
-public class Specialtie {
+public class Specialty {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +40,18 @@ public class Specialtie {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+		name = "doctor_has_specialities",
+		joinColumns = @JoinColumn(name = "speciality_id"),
+		inverseJoinColumns = @JoinColumn(name = "doctor_id")
+	)
+	private List<Doctor> doctorSpecialities;
 	
 	//Constructor empty
 	
-	public Specialtie(){	
+	public Specialty(){	
 	}
 	
 	//Getters and Setters
@@ -75,6 +88,9 @@ public class Specialtie {
 		this.updatedAt = updatedAt;
 	}
 	
+
+	
+
 	//PrePersist
 	
 	@PrePersist //Before creating a user
@@ -86,6 +102,14 @@ public class Specialtie {
 	@PreUpdate //before update
 	protected void onUpdate() {
 		this.updatedAt = new Date(); //default current_timestamp on update current_timestamp
+	}
+
+	public List<Doctor> getDoctorSpecialities() {
+		return doctorSpecialities;
+	}
+
+	public void setDoctorSpecialities(List<Doctor> doctorSpecialities) {
+		this.doctorSpecialities = doctorSpecialities;
 	}
 
 	
