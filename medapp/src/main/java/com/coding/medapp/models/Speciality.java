@@ -24,7 +24,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="specialties")
-public class Specialty {
+public class Speciality {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +51,7 @@ public class Specialty {
 	
 	//Constructor empty
 	
-	public Specialty(){	
+	public Speciality(){	
 	}
 	
 	//Getters and Setters
