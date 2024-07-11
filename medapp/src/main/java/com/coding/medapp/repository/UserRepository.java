@@ -7,5 +7,5 @@ import com.coding.medapp.models.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User,Long>{
-
+    
 }
