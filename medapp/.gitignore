@@ -12,6 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.medapp/src/main/resources/application.properties
 
 ### IntelliJ IDEA ###
 .idea
