@@ -6,9 +6,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -39,7 +42,15 @@ public class MedicalAppointment {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "doctor_id")
+	private Doctor doctor;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User patient;
+
 	//-------Constructor Empty --------------
 	
 	public MedicalAppointment() {}
@@ -85,11 +96,29 @@ public class MedicalAppointment {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	
 	
 	//-------Constructor Empty 
 	
 	//PrePersist
 	
+		public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public User getPatient() {
+		return patient;
+	}
+
+	public void setPatient(User patient) {
+		this.patient = patient;
+	}
+
 		@PrePersist //Before creating a user
 		protected void onCreate() {
 			this.createdAt = new Date(); //Default current_timestamp
