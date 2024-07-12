@@ -49,7 +49,7 @@ public class Doctor {
 		joinColumns = @JoinColumn(name = "doctor_id"),
 		inverseJoinColumns = @JoinColumn(name = "speciality_id")
 	)
-	private List<Specialty> specialitiesDoctor;
+	private List<Speciality> specialitiesDoctor;
 
 	@OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
 	private List<MedicalAppointment> medicalAppointments;
@@ -111,11 +111,11 @@ public class Doctor {
 		this.doctor = doctor;
 	}
 
-	public List<Specialty> getSpecialitiesDoctor() {
+	public List<Speciality> getSpecialitiesDoctor() {
 		return specialitiesDoctor;
 	}
 
-	public void setSpecialitiesDoctor(List<Specialty> specialitiesDoctor) {
+	public void setSpecialitiesDoctor(List<Speciality> specialitiesDoctor) {
 		this.specialitiesDoctor = specialitiesDoctor;
 	}
 

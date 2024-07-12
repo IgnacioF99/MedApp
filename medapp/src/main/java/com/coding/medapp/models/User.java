@@ -42,10 +42,6 @@ public class User {
     @Size(min = 7, max = 8, message = "DNI invalid")
     private int dni;
 
-    @NotEmpty
-    @Size(min = 2, message = "location needs at least 2 chars")
-    private String location;
-
     @NotEmpty(message = "Email is required.")
     @Email(message = "Invalid email") //Validar que sea un correo electronico valido
     private String email;
@@ -116,14 +112,6 @@ public class User {
 
     public void setDni(int dni) {
         this.dni = dni;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getEmail() {

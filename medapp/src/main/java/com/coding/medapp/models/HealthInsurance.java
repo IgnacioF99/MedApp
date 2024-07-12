@@ -28,7 +28,7 @@ public class HealthInsurance {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="Insurance name is required.")
+	@NotEmpty(message="Insurance's name is required.")
 	private String name;
 	
 	@Column(updatable=false)
