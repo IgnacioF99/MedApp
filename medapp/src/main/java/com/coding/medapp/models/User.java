@@ -20,7 +20,10 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -38,8 +41,9 @@ public class User {
     @Size(min = 2, message = "Last name needs at least 2 chars")
     private String lastName;
 
-    @NotEmpty(message = "DNI is required.")
-    @Size(min = 7, max = 8, message = "DNI invalid")
+    @NotNull(message = "DNI is required.")
+    @Min(value = 999999, message = "DNI invalid")
+    @Max(value = 99999999, message = "DNI invalid")
     private int dni;
 
     @NotEmpty(message = "Email is required.")
