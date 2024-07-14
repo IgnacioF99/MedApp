@@ -1,5 +1,12 @@
+<!-- Importacion para hacer html con jsp en spring -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+<!-- Importacion para usar recursos logicos de java -->    
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- Me permite mostrar errores en las ediciones -->
+<%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,16 +33,16 @@ pageEncoding="ISO-8859-1"%>
         <div class="buttons">
           <button>
           <!-- agregar enrutamientos -->
-            <a href="#">Iniciar Sesion</a>
+            <a href="/login">Iniciar Sesion</a>
           </button>
           <button>
-            <a href="#">Registrarme</a>
+            <a href="/register">Registrarme</a>
           </button>
         </div>
       </header>
       <main>
         <section class="info">
-          <h1>¿Quienes somos?</h1>
+          <h1>ï¿½Quienes somos?</h1>
           <p>
           <!--texto que armo el coordinador-->
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
