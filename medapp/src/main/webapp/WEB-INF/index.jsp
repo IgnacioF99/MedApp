@@ -33,16 +33,13 @@
         <div class="buttons">
           <button>
           <!-- agregar enrutamientos -->
-            <a href="/login">Iniciar Sesion</a>
-          </button>
-          <button>
-            <a href="/register">Registrarme</a>
+            <a href="/login">Quiero agendar un turno</a>
           </button>
         </div>
       </header>
       <main>
         <section class="info">
-          <h1>�Quienes somos?</h1>
+          <h1>Quienes somos?</h1>
           <p>
           <!--texto que armo el coordinador-->
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem
