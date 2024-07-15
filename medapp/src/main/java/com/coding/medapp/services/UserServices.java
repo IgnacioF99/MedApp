@@ -43,6 +43,9 @@ public class UserServices {
             result.rejectValue("email", "Unique", "E-mail already exists");
         }
 
+        //Asignamos el rol
+        newUser.setRole(Rol.Roles[1]);
+
         // Si existe error, regreso null
         if (result.hasErrors()) {
             return null;
