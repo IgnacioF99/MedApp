@@ -49,17 +49,15 @@ public class UserController {
     // Logeamos el usuario
     @PostMapping("/login")
     public String login(@RequestParam("email") String email, @RequestParam("password") String password, RedirectAttributes redirectAttributes, HttpSession session) {
-        User userTryingLogin = userServices.findByEmail(email);
+        User userTryingLogin = userServices.login(email, password);
 
         if (userTryingLogin == null) {
+            // Tiene algo mal
             redirectAttributes.addFlashAttribute("errorLogin", "Wrong email/password");
-            return "redirect:/login";
-        } else if (userTryingLogin.getPassword().equals(password)) {
-            session.setAttribute("userInSession", userTryingLogin);
-            return "redirect:/inicio";
+            return "redirect:/";
         } else {
-            redirectAttributes.addFlashAttribute("errorLogin", "Wrong email/password");
-            return "redirect:/login";
+            session.setAttribute("userInSession", userTryingLogin); // Guardando en sesión el objeto de User
+            return "redirect:/inicio";
         }
     }
 
