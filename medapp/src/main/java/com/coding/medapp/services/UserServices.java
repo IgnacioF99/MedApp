@@ -85,9 +85,4 @@ public class UserServices {
     public String getUserRole(User user) {
         return user.getRole();
     }
-
-	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'findByEmail'");
-	}
 }
