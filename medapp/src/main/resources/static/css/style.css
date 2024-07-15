@@ -25,7 +25,8 @@ p {
 
 header {
     background-color: #e3ffff;
-    max-height: 25%;
+    max-height: 20%;
+    padding: 0px 15px 0px 15px;
 }
 
 .btn-custom {
