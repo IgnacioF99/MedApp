@@ -1,6 +1,5 @@
 package com.coding.medapp.controllers;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +34,6 @@ public class UserController {
         if (result.hasErrors()) {
             return "register.jsp";
         } else {
-            // Hashear contraseña
-            String passHash = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
-            newUser.setPassword(passHash);
             userServices.register(newUser, result);
             session.setAttribute("userInSession", newUser);
             return "redirect:/inicio";
@@ -58,7 +54,7 @@ public class UserController {
         if (userTryingLogin == null) {
             redirectAttributes.addFlashAttribute("errorLogin", "Wrong email/password");
             return "redirect:/login";
-        } else if (BCrypt.checkpw(password, userTryingLogin.getPassword())) {
+        } else if (userTryingLogin.getPassword().equals(password)) {
             session.setAttribute("userInSession", userTryingLogin);
             return "redirect:/inicio";
         } else {
