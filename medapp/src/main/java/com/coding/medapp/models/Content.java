@@ -30,7 +30,9 @@ public class Content {
 
     private String observations;
 
-    private String vaccines;
+    private String familyHistory;
+
+    private String allergies;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -93,17 +95,6 @@ public class Content {
         this.observations = observations;
     }
 
-
-    public String getVaccines() {
-        return vaccines;
-    }
-
-
-    public void setVaccines(String vaccines) {
-        this.vaccines = vaccines;
-    }
-
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -123,9 +114,25 @@ public class Content {
         this.updatedAt = updatedAt;
     }
 
-    
+    public String getFamilyHistory() {
+        return familyHistory;
+    }
+
+    public void setFamilyHistory(String familyHistory) {
+        this.familyHistory = familyHistory;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
 
     //=========================================================
+
+    
 
     public User getPatient() {
         return patient;
