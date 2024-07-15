@@ -1,119 +1,55 @@
-@charset "ISO-8859-1";
+@charset "UTF-8";
 
 * {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.container, main{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.container-fluid {
+    padding: 0;
 }
 
-header {
-	background-color: #e3ffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 30px;
-    height: 100px;
-}
-
-img {
-   	width: 150px;
-    height: 100px;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-}
-
-button {
-    background-color: #7ce0a0;
-    border-radius: 7px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 15px;
+h1, h2{
     color: #008f8d;
-    cursor: pointer;
-}
-
-button a {
-    color: #e3ffff;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #008f8d;
-    cursor: pointer;
-}
-
-.info {
-    padding: 10px 30px;
-    display: flex;
-    align-items: center;
-    height: 150px;
-}
-
-h1 {
-    color: #008f8d;
-    font-size: 30px;
-    padding: 0px 30px;
 }
 
 p {
-    color:#023536;
-    margin: auto;
-    padding: 0px 30px;
-    text-align: center;
-}
-
-.speciality {
-    background-color: #7ce0a0;
     color: #023536;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-h2 {
-    font-size: 25px;
-    margin: 0 auto;
-    padding-top: 15px;
+header {
+    background-color: #e3ffff;
+    max-height: 25%;
 }
 
-ul {
-    margin-top: 10px;
+.btn-custom {
+    background-color: #7ce0a0;
     color: #e3ffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    list-style-type: none;
-    font-size: 15px;
+}
+
+.btn-custom:hover {
+    color:#008f8d;
+    background-color: #7ce0a0;
+
+}
+
+.list-group-item:hover {
+    background-color: #B2FFEF;
+    color:#023536;
 }
 
 footer {
-    background-color: #023536;
-    height: 30px;
-    display: flex;
+    background-color:#008f8d;
+    padding: 3px;
 }
 
-.copyright {
-    color: #e3ffff;
-    font-size: 8px;
+.text-muted {
+    margin: 3px;
+    color: #B2FFEF !important;
 }
