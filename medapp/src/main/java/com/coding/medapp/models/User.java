@@ -59,6 +59,8 @@ public class User {
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String confirm;
 
+    private String role;
+
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
@@ -142,6 +144,14 @@ public class User {
         this.confirm = confirm;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -157,8 +167,6 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    
 
     //=========================================================
 
