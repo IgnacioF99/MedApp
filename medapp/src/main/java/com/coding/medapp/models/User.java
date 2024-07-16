@@ -37,14 +37,14 @@ public class User {
     @Size(min = 2, message = "First name needs at least 2 chars")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message = "Last name is required.")
     @Size(min = 2, message = "Last name needs at least 2 chars")
     private String lastName;
 
     @NotNull(message = "DNI is required.")
     @Min(value = 999999, message = "DNI invalid")
     @Max(value = 99999999, message = "DNI invalid")
-    private int dni;
+    private Integer dni;
 
     @NotEmpty(message = "Email is required.")
     @Email(message = "Invalid email") //Validar que sea un correo electronico valido
@@ -112,15 +112,17 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getDni() {
-        return dni;
-    }
+    
+    
+    public Integer getDni() {
+		return dni;
+	}
 
-    public void setDni(int dni) {
-        this.dni = dni;
-    }
+	public void setDni(Integer dni) {
+		this.dni = dni;
+	}
 
-    public String getEmail() {
+	public String getEmail() {
         return email;
     }
 
