@@ -54,7 +54,7 @@ public class UserController {
         if (userTryingLogin == null) {
             // Tiene algo mal
             redirectAttributes.addFlashAttribute("errorLogin", "Wrong email/password");
-            return "redirect:/";
+            return "redirect:/login";
         } else {
             session.setAttribute("userInSession", userTryingLogin); // Guardando en sesión el objeto de User
             return "redirect:/inicio";
