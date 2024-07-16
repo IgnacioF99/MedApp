@@ -44,7 +44,7 @@ public class User {
     @NotNull(message = "DNI is required.")
     @Min(value = 999999, message = "DNI invalid")
     @Max(value = 99999999, message = "DNI invalid")
-    private int dni;
+    private Integer dni;
 
     @NotEmpty(message = "Email is required.")
     @Email(message = "Invalid email") //Validar que sea un correo electronico valido
