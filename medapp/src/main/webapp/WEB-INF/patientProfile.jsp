@@ -38,8 +38,8 @@
                         <a href="#" class="btn btn-custom">Mis Turnos</a>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="#" class="btn btn-custom">Editar</a>
-                        <a href="#" class="p-2">Volver</a>
+                        <a href="/profile/${userInSession.id}/edit" class="btn btn-custom">Editar</a>
+                        <a href="/paciente" class="p-2">Volver</a>
                     </div>
                 </div>
             </div>
