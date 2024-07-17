@@ -42,7 +42,12 @@ public class UserController {
 
     // Entramos a Login
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpSession session) {
+        // =====REVISAMOS SESION=========
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+		if(userTemp != null) {
+			return "redirect:/";
+		}
         return "login.jsp";
     }
 
@@ -67,6 +72,57 @@ public class UserController {
         session.removeAttribute("userInSession");
         return "redirect:/";
     }
+
+
+    //Inicio de paciente
+    @GetMapping("/paciente")
+    public String welcomePatient(HttpSession session, Model model){
+        // =====REVISAMOS SESION=========
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+		if(userTemp == null) {
+			return "redirect:/login";
+		}
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+            return "welcomePatient.jsp";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    //Inicio de Doctor
+    @GetMapping("/doctor")
+    public String welcomeDoctor(HttpSession session, Model model){
+        // =====REVISAMOS SESION=========
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+		if(userTemp == null) {
+			return "redirect:/login";
+		}
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[2])) {
+            return "welcomeDoctor.jsp";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    //Inicio de Admin
+    @GetMapping("/admin")
+    public String welcomeAdmin(HttpSession session, Model model){
+        // =====REVISAMOS SESION=========
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+		if(userTemp == null) {
+			return "redirect:/login";
+		}
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[0])) {
+            return "welcomeAdmin.jsp";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+
 
     // Asignar rol a un usuario
     @PostMapping("/assign_role")
