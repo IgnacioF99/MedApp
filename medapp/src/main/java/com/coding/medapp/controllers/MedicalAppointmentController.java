@@ -55,4 +55,29 @@ public class MedicalAppointmentController {
         redirectAttributes.addFlashAttribute("successMessage", "Appointment created successfully!");
         return "redirect:/appointments";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editAppointment(@PathVariable("id") Long id, Model model) {
+        MedicalAppointment appointment = appointmentService.getAppointmentById(id);
+        model.addAttribute("appointment", appointment);
+        return "editAppointment.jsp";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateAppointment(@PathVariable("id") Long id, @Valid @ModelAttribute("appointment") MedicalAppointment appointment, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            return "editAppointment.jsp";
+        }
+        appointmentService.updateAppointment(appointment);
+        redirectAttributes.addFlashAttribute("successMessage", "Appointment updated successfully!");
+        return "redirect:/appointments";
+    }
+
+    @GetMapping("/cancel/{id}")
+    public String cancelAppointment(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        MedicalAppointment appointment = appointmentService.getAppointmentById(id);
+        appointmentService.cancelAppointment(appointment);
+        redirectAttributes.addFlashAttribute("successMessage", "Appointment cancelled successfully!");
+        return "redirect:/appointments";
+    }
 }
