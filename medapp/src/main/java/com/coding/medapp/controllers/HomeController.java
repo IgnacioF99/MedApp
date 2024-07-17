@@ -28,6 +28,8 @@ public class HomeController {
 
         //Revisar si es admin o doctor!
 
-        return "inicio.jsp";
+        return "welcomePatient.jsp";
     }
+    
+    
 }
