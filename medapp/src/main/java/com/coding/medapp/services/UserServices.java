@@ -42,6 +42,14 @@ public class UserServices {
             // El correo ya está registrado
             result.rejectValue("email", "Unique", "E-mail already exists");
         }
+        
+        // Revisar que el DNI no este registrado
+        Integer dni = newUser.getDni();
+        User userExistDni = userRepository.findByDni(dni); 
+        if (userExistDni != null) {
+        	//el dni ya esta registrado
+        	result.rejectValue("dni", "Unique", "DNI already exists");
+        }
 
         //Asignamos el rol
         newUser.setRole(Rol.Roles[1]);
