@@ -25,7 +25,11 @@ header {
     background-color: #e3ffff;
     max-height: 20% !important;
 }
-
+.logo {
+    padding: 0;
+    height: 100px;
+    width: auto;
+}
 .btn-custom {
     background-color: #7ce0a0;
     color: #e3ffff;
