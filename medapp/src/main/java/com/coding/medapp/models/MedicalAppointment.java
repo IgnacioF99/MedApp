@@ -22,113 +22,117 @@ import jakarta.validation.constraints.NotNull;
 @Table(name="medicalAppointments")
 public class MedicalAppointment {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Future
-	@NotNull(message="Appointment Time is required")
-	@DateTimeFormat(pattern = "HH:mm")
-	private Date appointmentTime;
-	
-	@Future
-	@NotNull(message="Appointment Date is required")
-	@DateTimeFormat(pattern = "dd/MM")
-	private Date appointmentDate;
-	
-	@Column(updatable=false)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date createdAt;
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date updatedAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Future
+    @NotNull(message="Appointment Time is required")
+    @DateTimeFormat(pattern = "HH:mm")
+    private Date appointmentTime;
+    
+    @Future
+    @NotNull(message="Appointment Date is required")
+    @DateTimeFormat(pattern = "dd/MM")
+    private Date appointmentDate;
+    
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "doctor_id")
-	private Doctor doctor;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User patient;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User patient;
 
-	//-------Constructor Empty --------------
-	
-	public MedicalAppointment() {}
-	
-	//----------------------------------
+    // Propiedad para el estado de la cita
+    private String status;
 
-	public Long getId() {
-		return id;
-	}
+    //-------Constructor Empty --------------
+    
+    public MedicalAppointment() {}
+    
+    //----------------------------------
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public Date getAppointmentTime() {
-		return appointmentTime;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setAppointmentTime(Date appointmentTime) {
-		this.appointmentTime = appointmentTime;
-	}
+    public Date getAppointmentTime() {
+        return appointmentTime;
+    }
 
-	public Date getAppointmentDate() {
-		return appointmentDate;
-	}
+    public void setAppointmentTime(Date appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
 
-	public void setAppointmentDate(Date appointmentDate) {
-		this.appointmentDate = appointmentDate;
-	}
+    public Date getAppointmentDate() {
+        return appointmentDate;
+    }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public void setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
 
-	
-	
-	//-------Constructor Empty 
-	
-	//PrePersist
-	
-		public Doctor getDoctor() {
-		return doctor;
-	}
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
+    public Doctor getDoctor() {
+        return doctor;
+    }
 
-	public User getPatient() {
-		return patient;
-	}
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 
-	public void setPatient(User patient) {
-		this.patient = patient;
-	}
+    public User getPatient() {
+        return patient;
+    }
 
-		@PrePersist //Before creating a user
-		protected void onCreate() {
-			this.createdAt = new Date(); //Default current_timestamp
-		}
-		
-		
-		@PreUpdate //before update
-		protected void onUpdate() {
-			this.updatedAt = new Date(); //default current_timestamp on update current_timestamp
-		}
-	
+    public void setPatient(User patient) {
+        this.patient = patient;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @PrePersist 
+    protected void onCreate() {
+        this.createdAt = new Date(); //Default current_timestamp
+        this.status = "Scheduled"; // Se establece el estado inicial a "Scheduled"
+		// Alterna entre "Scheduled", "Rescheduled" y "Cancelled"
+    }
+    
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date(); //default current_timestamp on update current_timestamp
+    }
 }
-

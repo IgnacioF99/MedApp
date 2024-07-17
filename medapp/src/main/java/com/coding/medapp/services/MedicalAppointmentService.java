@@ -33,4 +33,13 @@ public class MedicalAppointmentService {
     public void deleteAppointment(MedicalAppointment appointment) {
         appointmentRepository.delete(appointment);
     }
+
+    public void updateAppointment(MedicalAppointment appointment) {
+        appointmentRepository.save(appointment);
+    }
+
+    public void cancelAppointment(MedicalAppointment appointment) {
+        appointment.setStatus("Cancelled");
+        appointmentRepository.save(appointment);
+    }
 }
