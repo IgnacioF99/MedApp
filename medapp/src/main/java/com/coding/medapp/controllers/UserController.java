@@ -31,10 +31,12 @@ public class UserController {
     // Guardamos un Usuario nuevo
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, HttpSession session) {
+    	userServices.register(newUser, result);
+    	
         if (result.hasErrors()) {
             return "register.jsp";
         } else {
-            userServices.register(newUser, result);
+            
             session.setAttribute("userInSession", newUser);
             return "redirect:/inicio";
         }
