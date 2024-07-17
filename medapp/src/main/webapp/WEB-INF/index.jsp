@@ -25,7 +25,7 @@ pageEncoding="ISO-8859-1"%>
 	<body>
 	  <div class="container-fluid">
 	    <header class="d-flex justify-content-between align-items-center">
-	      <img src="/img/logoprincipal.png" alt="logoprincipal" class="img-fluid w-25 p-4" />
+	      <img src="/img/logoprincipal.png" alt="logoprincipal" class="logo p-2" />
 	      <button class="me-4">
 	        <a href="/login" class="btn btn-custom">Quiero agendar un turno</a>
 	      </button>
