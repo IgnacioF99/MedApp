@@ -42,7 +42,7 @@
 							</div>
 							<div class="mb-3">
 								<form:label class="inputLabel" path="dni">DNI:</form:label>
-								<form:input path="dni" class="form-control" />
+								<form:input path="dni" type="text" maxlength="8" class="form-control" />
 								<form:errors path="dni" class="text-danger" />
 							</div>
 							<div class="mb-3">
