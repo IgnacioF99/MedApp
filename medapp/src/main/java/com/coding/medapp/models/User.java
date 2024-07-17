@@ -44,7 +44,6 @@ public class User {
     @NotNull(message = "DNI is required.")
     @Min(value = 999999, message = "DNI invalid")
     @Max(value = 99999999, message = "DNI invalid")
-    @Size(max = 9, message= "DNI needs at least 9 chars")
     private Integer dni;
 
     @NotEmpty(message = "Email is required.")
