@@ -27,7 +27,7 @@ pageEncoding="ISO-8859-1"%>
 	    <header class="d-flex justify-content-between align-items-center">
 	      <img src="/img/logoprincipal.png" alt="logoprincipal" class="logo p-2" />
 	      <button class="me-4">
-	        <a href="/login" class="btn btn-custom">Quiero agendar un turno</a>
+	        <a href="/inicio" class="btn btn-custom">Quiero agendar un turno</a>
 	      </button>
 	    </header>
 	    <main class="p-4">
