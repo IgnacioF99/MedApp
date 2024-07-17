@@ -30,11 +30,11 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="pb-3">Mi Perfil</h1>
-                        <p class="card-text"><span>Nombre:</span> ${user.firstName}</p>
-                        <p class="card-text"><span>Apellido:</span> ${user.lastName}</p>
-                        <p class="card-text"><span>DNI:</span> ${user.dni}</p>
-                        <p class="card-text"><span>E-mail:</span> ${user.email}</p>
-                        <p class="card-text"><span>Obra Social:</span> ${user.healthInsurance}</p>
+                        <p class="card-text"><span>Nombre:</span> ${userInSession.firstName}</p>
+                        <p class="card-text"><span>Apellido:</span> ${userInSession.lastName}</p>
+                        <p class="card-text"><span>DNI:</span> ${userInSession.dni}</p>
+                        <p class="card-text"><span>E-mail:</span> ${userInSession.email}</p>
+                        <p class="card-text"><span>Obra Social:</span></p>
                         <a href="#" class="btn btn-custom">Mis Turnos</a>
                     </div>
                     <div class="card-footer text-center">

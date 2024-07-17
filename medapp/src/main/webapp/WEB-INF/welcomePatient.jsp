@@ -30,7 +30,7 @@
             <span>Bienvenidx ${userInSession.firstName}!</span>
             <div>
                 <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
-                <a href="#" class="p-4"><img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50"/></a>
+                <a href="/profile/${userInSession.id}" class="p-4"><img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50"/></a>
             </div>
 
         </header>

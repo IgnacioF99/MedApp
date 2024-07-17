@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -90,6 +91,26 @@ public class UserController {
         } else {
             return "redirect:/";
         }
+    }
+    
+    @GetMapping("/profile/{id}")
+    public String profile(@PathVariable("id") Long id,
+    					  HttpSession session, 
+    					  Model model) {
+    	// =====REVISAMOS SESION=========
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+		if(userTemp == null) {
+			return "redirect:/login";
+		}
+		// =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+        	//Obtenemos el usuario al que entramos
+        	User myPatient = userServices.getUser(id);
+            return "patientProfile.jsp";
+        } else {
+        	return "redirect:/";
+        }
+
     }
 
     //Inicio de Doctor
