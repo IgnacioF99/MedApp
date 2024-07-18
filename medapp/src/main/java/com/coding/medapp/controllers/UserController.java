@@ -119,7 +119,7 @@ public class UserController {
         if (userTemp.getRole().equals(Rol.Roles[1])) {
             User user = userServices.getUser(id); // Obtener el usuario para editar
             model.addAttribute("user", user); // Añadir el usuario al modelo
-            return "editPatientProfile.jsp";
+            return "patientProfileEdit.jsp";
         } else {
             return "redirect:/";
         }
@@ -132,7 +132,7 @@ public class UserController {
             return "redirect:/login";
         }
         if (result.hasErrors()) {
-            return "editPatientProfile.jsp";
+            return "patientProfileEdit.jsp";
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) { 	   
         	String hashedPassword = BCrypt.hashpw(userUpdated.getPassword(), BCrypt.gensalt());

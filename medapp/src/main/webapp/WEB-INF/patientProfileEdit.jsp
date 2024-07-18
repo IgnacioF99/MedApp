@@ -53,9 +53,25 @@
                                 <form:errors path="email" class="text-danger" />
                             </div>
                             <div>
-                                <label>Obra social</label>
-                                <!-- dropdown de obra social -->
+                            	<form:label class="inputLabel" path="insurance">Obra Social</form:label>
+                               	<form:select path="insurance">
+                               		<c:forEach items="${HealtInsurances}" var="insurance">
+                               			<form:option value="${HealthInsurance.name}">${HealthInsurance.name}</form:option>
+                               		</c:forEach>
+                               	</form:select>        
+                                
                             </div>
+                            <div class="mb-3">
+								<form:label class="inputLabel" path="password">Contraseña:</form:label>
+								<form:password path="password" class="form-control" />
+								<form:errors path="password" class="text-danger" />
+							</div>
+							<div class="mb-3">
+								<form:label class="inputLabel" path="confirm">Confirmar Contraseña:</form:label>
+								<form:password path="confirm" class="form-control" />
+								<form:errors path="confirm" class="text-danger" />
+							</div>
+                            
                             <input type="submit" value="Guardar" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
