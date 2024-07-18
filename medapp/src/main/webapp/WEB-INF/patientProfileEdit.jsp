@@ -62,6 +62,9 @@
                 </div>
             </div>
         </div>
+         <footer class="text-center">
+            <p class="text-muted">&copy; 2024</p>
+        </footer>
 
 </body>
 
