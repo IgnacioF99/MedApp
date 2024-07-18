@@ -18,40 +18,35 @@
         rel="stylesheet" />
 </head>
 
+</head>
 <body>
-    <div class="container-fluid">
-        <header class="d-flex justify-content-between align-items-center">
-            <img src="img/logo2.png" alt="logo2" class="img-fluid w-25 p-4" />
-            <h1 class="mb-4 me-3">GESTIÓN DE USUARIOS</h1>
-        </header>
-        <main class="p-4">
-            <section class="mb-5">
-                <h2 class="mb-4">BIENVENIDO ADMINISTRADOR: </h2>
-            </section>
-            <section class="mb-5">
-                <div class="row justify-content-center">
-                    <div class="col-md-4 mb-3 d-flex justify-content-center">
-                        <a href="/pacientes" class="btn btn-custom btn-lg w-100 text-center p-4">Pacientes</a>
-                    </div>
-                    <div class="col-md-4 mb-3 d-flex justify-content-center">
-                        <a href="/doctores" class="btn btn-custom btn-lg w-100 text-center p-4">Doctores</a>
-                    </div>
-                    <div class="col-md-4 mb-3 d-flex justify-content-center">
-                        <a href="/administradores" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
-                    </div>
-                </div>
-            </section>
-            <section class="mb-5">
-                <div class="d-flex justify-content-end">
-                    <a class="btn btn-custom btn-lg p-3" href="/logout">Cerrar Sesión</a>
-                </div>
-            </section>
-        </main>
-        <footer class="text-center">
-            <p class="text-muted">&copy; 2024</p>
-        </footer>
-    </div>
-    
-</body>
+<div class="container-custom d-flex flex-column">
+    <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
+        <img src="img/logo2.png" alt="logoPrincipal" class="logo p-2" />
+        <span>Bienvenidx Admin ${userInSession.firstName}!</span>
+        <div>
+            <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+            <a href="#" class="p-4"><img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50"></a>
+        </div>
+    </header>
+    <main class="p-4 flex-grow-1 d-flex justify-content-center align-items-center flex-column main-custom">
+        <h1 class="text-center mt-3">Gestion De Usuarios</h1>
 
+        <div class="row justify-content-center w-100 mt-5">
+            <div class="col-md-4 mb-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-custom btn-lg w-100 text-center p-4">Pacientes</a>
+            </div>
+            <div class="col-md-4 mb-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-custom btn-lg w-100 text-center p-4">Doctores</a>
+            </div>
+            <div class="col-md-4 mb-3 d-flex justify-content-center">
+                <a href="#" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-auto">
+        <p class="text-muted">&copy; 2024</p>
+    </footer>
+</div>
+</body>
 </html>
