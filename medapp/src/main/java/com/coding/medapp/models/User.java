@@ -55,7 +55,8 @@ public class User {
     @NotEmpty(message = "Password is required.")
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String password;
-   
+  
+    
     @NotEmpty(message = "Password is required.")
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String confirm;

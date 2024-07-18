@@ -22,14 +22,13 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/appointments")
 public class MedicalAppointmentController {
     @Autowired
     private MedicalAppointmentService appointmentService;
     @Autowired
     private UserServices userService;
 
-    @GetMapping
+    @GetMapping("/appointment")
     public String showAppointments(HttpSession session, Model model) {
         User userInSession = (User) session.getAttribute("userInSession");
         List<MedicalAppointment> appointments = appointmentService.getAppointmentsByPatient(userInSession);
@@ -37,14 +36,14 @@ public class MedicalAppointmentController {
         return "appointments.jsp";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/newAppointment")
     public String newAppointment(@ModelAttribute("appointment") MedicalAppointment appointment, Model model, HttpSession session) {
         User userInSession = (User) session.getAttribute("userInSession");
         model.addAttribute("doctors", userService.findAllUsers());
         return "newAppointment.jsp";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createAppointment")
     public String createAppointment(@Valid @ModelAttribute("appointment") MedicalAppointment appointment, BindingResult result, HttpSession session, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "newAppointment.jsp";
@@ -56,14 +55,14 @@ public class MedicalAppointmentController {
         return "redirect:/appointments";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/appointment/edit/{id}")
     public String editAppointment(@PathVariable("id") Long id, Model model) {
         MedicalAppointment appointment = appointmentService.getAppointmentById(id);
         model.addAttribute("appointment", appointment);
         return "editAppointment.jsp";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/appointment/update/{id}")
     public String updateAppointment(@PathVariable("id") Long id, @Valid @ModelAttribute("appointment") MedicalAppointment appointment, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "editAppointment.jsp";
@@ -73,7 +72,7 @@ public class MedicalAppointmentController {
         return "redirect:/appointments";
     }
 
-    @GetMapping("/cancel/{id}")
+    @GetMapping("/appointment/cancel/{id}")
     public String cancelAppointment(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         MedicalAppointment appointment = appointmentService.getAppointmentById(id);
         appointmentService.cancelAppointment(appointment);

@@ -33,7 +33,7 @@
                         <form:form action="/patient/update/${user.id}" method="post" modelAttribute="user">
                             <input type="hidden" name="_method" value="put">
                             <input type="hidden" name="password" value="${user.password}"> <!-- Campo oculto para contraseña -->
-    						<input type="hidden" name="confirm" value="${user.confirm}"> <!-- Campo oculto para confirmación -->
+                            <input type="hidden" name="confirm" value="${user.confirm}">		
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
                                 <form:input path="firstName" class="form-control" />

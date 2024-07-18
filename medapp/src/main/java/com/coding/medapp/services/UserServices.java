@@ -66,7 +66,8 @@ public class UserServices {
             // Hashear contraseña
             String passHash = BCrypt.hashpw(password, BCrypt.gensalt());
             newUser.setPassword(passHash); // Establecemos el password hasheado
-
+            String confirmHash = BCrypt.hashpw(confirm, BCrypt.gensalt());
+            newUser.setConfirm(confirmHash);
             // Asignar rol por defecto
             newUser.setRole(Rol.Roles[1]); // Asignar rol "USER" por defecto
 
