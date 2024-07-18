@@ -23,6 +23,10 @@ public class UserServices {
     public User getUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+    
+    public User saveUser(User newUser) {
+    	return userRepository.save(newUser);
+    }
 
     /*Método que registre a un nuevo usuario*/
     public User register(User newUser, BindingResult result) {

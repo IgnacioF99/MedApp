@@ -32,6 +32,8 @@
                         <h1 class="pb-3">Editar mi perfil</h1>
                         <form:form action="/patient/update/${user.id}" method="post" modelAttribute="user">
                             <input type="hidden" name="_method" value="put">
+                            <input type="hidden" name="password" value="${user.password}"> <!-- Campo oculto para contraseña -->
+    						<input type="hidden" name="confirm" value="${user.confirm}"> <!-- Campo oculto para confirmación -->
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
                                 <form:input path="firstName" class="form-control" />
@@ -53,18 +55,21 @@
                                 <form:errors path="email" class="text-danger" />
                             </div>
                             <div>
-                                <label>Obra social</label>
-                                <!-- dropdown de obra social -->
-                            </div>
+                            	<form:label class="inputLabel" path="insurance">Obra Social</form:label>
+                               	<form:select path="insurance">
+                               		<c:forEach items="${healthInsurances}" var="insurance">
+                               			<form:option value="${insurance.id}">${insurance.name}</form:option>
+                               		</c:forEach>
+                              	</form:select>        
+                            </div> 
+                                
                             <input type="submit" value="Guardar" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
-         <footer class="text-center">
-            <p class="text-muted">&copy; 2024</p>
-        </footer>
+       
 
 </body>
 

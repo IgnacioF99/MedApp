@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -53,8 +55,7 @@ public class User {
     @NotEmpty(message = "Password is required.")
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String password;
-
-    @Transient //No se guarde el dato en la base de datos
+   
     @NotEmpty(message = "Password is required.")
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String confirm;
