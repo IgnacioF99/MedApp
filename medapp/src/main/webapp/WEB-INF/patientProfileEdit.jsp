@@ -32,6 +32,8 @@
                         <h1 class="pb-3">Editar mi perfil</h1>
                         <form:form action="/patient/update/${user.id}" method="post" modelAttribute="user">
                             <input type="hidden" name="_method" value="put">
+                            <input type="hidden" name="password" value="${user.password}"> <!-- Campo oculto para contraseña -->
+    						<input type="hidden" name="confirm" value="${user.confirm}"> <!-- Campo oculto para confirmación -->
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
                                 <form:input path="firstName" class="form-control" />
@@ -55,32 +57,19 @@
                             <div>
                             	<form:label class="inputLabel" path="insurance">Obra Social</form:label>
                                	<form:select path="insurance">
-                               		<c:forEach items="${HealtInsurances}" var="insurance">
-                               			<form:option value="${HealthInsurance.name}">${HealthInsurance.name}</form:option>
+                               		<c:forEach items="${healthInsurances}" var="insurance">
+                               			<form:option value="${insurance.id}">${insurance.name}</form:option>
                                		</c:forEach>
-                               	</form:select>        
+                              	</form:select>        
+                            </div> 
                                 
-                            </div>
-                            <div class="mb-3">
-								<form:label class="inputLabel" path="password">Contraseña:</form:label>
-								<form:password path="password" class="form-control" />
-								<form:errors path="password" class="text-danger" />
-							</div>
-							<div class="mb-3">
-								<form:label class="inputLabel" path="confirm">Confirmar Contraseña:</form:label>
-								<form:password path="confirm" class="form-control" />
-								<form:errors path="confirm" class="text-danger" />
-							</div>
-                            
                             <input type="submit" value="Guardar" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
-         <footer class="text-center">
-            <p class="text-muted">&copy; 2024</p>
-        </footer>
+       
 
 </body>
 

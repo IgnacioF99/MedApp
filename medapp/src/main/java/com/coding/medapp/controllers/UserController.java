@@ -1,5 +1,7 @@
 package com.coding.medapp.controllers;
 
+import java.util.List;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +15,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.coding.medapp.models.HealthInsurance;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
+import com.coding.medapp.repository.HealthInsuranceRepository;
+import com.coding.medapp.services.HealthInsuranceServices;
 import com.coding.medapp.services.UserServices;
 
 import jakarta.servlet.http.HttpSession;
@@ -24,6 +29,9 @@ import jakarta.validation.Valid;
 public class UserController {
     @Autowired
     private UserServices userServices;
+    
+    @Autowired
+    private HealthInsuranceServices insuranceServices;
 
     // Entramos a Register
     @GetMapping("/register")
@@ -80,7 +88,7 @@ public class UserController {
 
 
     //Inicio de paciente
-    @GetMapping("/paciente")
+    @GetMapping("/patient")
     public String welcomePatient(HttpSession session, Model model){
         // =====REVISAMOS SESION=========
         User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
@@ -118,6 +126,9 @@ public class UserController {
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) {
             User user = userServices.getUser(id); // Obtener el usuario para editar
+            //Muestra todas las obras sociales y las manda al jsp
+            List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances(); 
+            model.addAttribute("healthInsurances", healthInsurances);
             model.addAttribute("user", user); // Añadir el usuario al modelo
             return "patientProfileEdit.jsp";
         } else {
@@ -126,20 +137,18 @@ public class UserController {
     }
 
     @PutMapping("/patient/update/{id}")
-    public String updateProfile(@Valid @ModelAttribute("user") User userUpdated, BindingResult result, HttpSession session) {
+    public String updateProfile(@Valid @ModelAttribute("user") User userUpdated, BindingResult result, HttpSession session,Model model) {
         User userTemp = (User) session.getAttribute("userInSession");
         if (userTemp == null) {
             return "redirect:/login";
         }
         if (result.hasErrors()) {
+        	List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances();
+        	model.addAttribute("healthInsurances", healthInsurances);
             return "patientProfileEdit.jsp";
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) { 	   
-        	String hashedPassword = BCrypt.hashpw(userUpdated.getPassword(), BCrypt.gensalt());
-        	String hashedConfirm = BCrypt.hashpw(userUpdated.getConfirm(), BCrypt.gensalt());
-        	userUpdated.setPassword(hashedPassword);
-        	userUpdated.setConfirm(hashedConfirm);
-        	userUpdated.setRole(Rol.Roles[1]);
+            userUpdated.setRole(Rol.Roles[1]);
             userServices.saveUser(userUpdated);
             return "redirect:/patient/" + userUpdated.getId();
             

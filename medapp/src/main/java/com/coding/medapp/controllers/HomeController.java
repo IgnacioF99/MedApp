@@ -28,7 +28,7 @@ public class HomeController {
 		}
         // =====Revisamos su rol
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-            return "redirect:/paciente";
+            return "redirect:/patient";
         } else if (userTemp.getRole().equals(Rol.Roles[0])) {
             return "redirect:/admin";
         } else if (userTemp.getRole().equals(Rol.Roles[2])){
