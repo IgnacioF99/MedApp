@@ -47,7 +47,6 @@ public class UserController {
         if (result.hasErrors()) {
             return "register.jsp";
         } else {
-            
             session.setAttribute("userInSession", newUser);
             return "redirect:/inicio";
         }
@@ -147,7 +146,9 @@ public class UserController {
         	model.addAttribute("healthInsurances", healthInsurances);
             return "patientProfileEdit.jsp";
         }
-        if (userTemp.getRole().equals(Rol.Roles[1])) { 	   
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+        	String hashedConfirm = BCrypt.hashpw(userUpdated.getConfirm(), BCrypt.gensalt());
+        	userUpdated.setConfirm(hashedConfirm);
             userUpdated.setRole(Rol.Roles[1]);
             userServices.saveUser(userUpdated);
             return "redirect:/patient/" + userUpdated.getId();
