@@ -1,11 +1,19 @@
 package com.coding.medapp.services;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
@@ -16,6 +24,9 @@ public class UserServices {
     @Autowired
     private UserRepository userRepository;
 
+    @Value("${app.upload.directory}")
+    private String uploadDirectory;
+
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
@@ -24,22 +35,18 @@ public class UserServices {
         return userRepository.findById(id).orElse(null);
     }
 
-    /*Método que registre a un nuevo usuario*/
     public User register(User newUser, BindingResult result) {
         // Comparar las contraseñas
         String password = newUser.getPassword();
         String confirm = newUser.getConfirm();
         if (!password.equals(confirm)) {
-            // SI no son iguales
-            // path, clave, mensaje
             result.rejectValue("confirm", "Matches", "Password and confirmation don't match");
         }
 
         // Revisar que el email no esté registrado
         String email = newUser.getEmail();
-        User userExist = userRepository.findByEmail(email); // Objeto de User o null
+        User userExist = userRepository.findByEmail(email);
         if (userExist != null) {
-            // El correo ya está registrado
             result.rejectValue("email", "Unique", "E-mail already exists");
         }
         
@@ -47,40 +54,29 @@ public class UserServices {
         Integer dni = newUser.getDni();
         User userExistDni = userRepository.findByDni(dni); 
         if (userExistDni != null) {
-        	//el dni ya esta registrado
-        	result.rejectValue("dni", "Unique", "DNI already exists");
+            result.rejectValue("dni", "Unique", "DNI already exists");
         }
 
-        //Asignamos el rol
+        // Asignamos el rol
         newUser.setRole(Rol.Roles[1]);
 
-        // Si existe error, regreso null
         if (result.hasErrors()) {
             return null;
         } else {
-            // NO HAY ERRORES
             // Hashear contraseña
             String passHash = BCrypt.hashpw(password, BCrypt.gensalt());
-            newUser.setPassword(passHash); // Establecemos el password hasheado
-
-            // Asignar rol por defecto
-            newUser.setRole(Rol.Roles[1]); // Asignar rol "USER" por defecto
-
+            newUser.setPassword(passHash);
+            newUser.setRole(Rol.Roles[1]);
             return userRepository.save(newUser);
         }
     }
 
-    /*Método que revisa que los datos sean correctos para Iniciar Sesión*/
     public User login(String email, String password) {
-        // Revisamos que el correo exista en BD
-        User userTryingLogin = userRepository.findByEmail(email); // Objeto User o NULL
-
+        User userTryingLogin = userRepository.findByEmail(email);
         if (userTryingLogin == null) {
             return null;
         }
 
-        // Comparar las contraseñas
-        // BCrypt.checkpw(Contra NO encriptada, Contra SI encriptada) -> True o False
         if (BCrypt.checkpw(password, userTryingLogin.getPassword())) {
             return userTryingLogin;
         } else {
@@ -95,5 +91,16 @@ public class UserServices {
 
     public String getUserRole(User user) {
         return user.getRole();
+    }
+
+    public String saveProfileImage(MultipartFile profileImage) throws IOException {
+        String fileName = UUID.randomUUID().toString() + profileImage.getOriginalFilename();
+        Path filePath = Paths.get(uploadDirectory, fileName);
+        Files.copy(profileImage.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        return "/images/" + fileName;
+    }
+
+    public void updateUser(User user) {
+        userRepository.save(user);
     }
 }
