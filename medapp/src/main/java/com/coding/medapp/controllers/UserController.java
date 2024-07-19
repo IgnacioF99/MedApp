@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.coding.medapp.models.HealthInsurance;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
-import com.coding.medapp.repository.HealthInsuranceRepository;
 import com.coding.medapp.services.HealthInsuranceServices;
 import com.coding.medapp.services.UserServices;
 
