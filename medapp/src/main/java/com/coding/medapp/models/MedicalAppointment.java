@@ -1,5 +1,7 @@
 package com.coding.medapp.models;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,12 +31,12 @@ public class MedicalAppointment {
     @Future
     @NotNull(message="Appointment Time is required")
     @DateTimeFormat(pattern = "HH:mm")
-    private Date appointmentTime;
+    private LocalTime appointmentTime;
     
     @Future
     @NotNull(message="Appointment Date is required")
     @DateTimeFormat(pattern = "dd/MM")
-    private Date appointmentDate;
+    private LocalDate appointmentDate;
     
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -68,20 +70,24 @@ public class MedicalAppointment {
         this.id = id;
     }
 
-    public Date getAppointmentTime() {
+    @Future
+    @NotNull(message = "Appointment Time is required")
+    public LocalTime getAppointmentTime() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(Date appointmentTime) {
-        this.appointmentTime = appointmentTime;
+    public void setAppointmentTime(LocalTime localTime) {
+        this.appointmentTime = localTime;
     }
 
-    public Date getAppointmentDate() {
+    @Future
+    @NotNull(message = "Appointment Date is required")
+    public LocalDate getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(Date appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setAppointmentDate(LocalDate localDate) {
+        this.appointmentDate = localDate;
     }
 
     public Date getCreatedAt() {

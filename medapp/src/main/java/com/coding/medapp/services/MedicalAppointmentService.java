@@ -1,5 +1,8 @@
 package com.coding.medapp.services;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.YearMonth;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ public class MedicalAppointmentService {
     private MedicalAppointmentRepository appointmentRepository;
 
     public MedicalAppointment createAppointment(MedicalAppointment appointment) {
+        // Establecer el estado inicial de la cita
+        appointment.setStatus("Scheduled");
         return appointmentRepository.save(appointment);
     }
 
@@ -41,5 +46,15 @@ public class MedicalAppointmentService {
     public void cancelAppointment(MedicalAppointment appointment) {
         appointment.setStatus("Cancelled");
         appointmentRepository.save(appointment);
+    }
+
+    public List<MedicalAppointment> getAppointmentsByMonth(int year, int month) {
+        // Obtener el primer y último día del mes
+        YearMonth yearMonth = YearMonth.of(year, month);
+        LocalDate startDate = yearMonth.atDay(1);
+        LocalDate endDate = yearMonth.atEndOfMonth();
+        
+        // Buscar citas entre el primer y último día del mes
+        return appointmentRepository.findByAppointmentDateBetween(startDate, endDate);
     }
 }
