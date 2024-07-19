@@ -34,13 +34,13 @@
 
         <div class="row justify-content-center w-100 mt-5">
             <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="#" class="btn btn-custom btn-lg w-100 text-center p-4">Pacientes</a>
+                <a href="/admin/userList" class="btn btn-custom btn-lg w-100 text-center p-4">Pacientes</a>
             </div>
             <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="#" class="btn btn-custom btn-lg w-100 text-center p-4">Doctores</a>
+                <a href="/admin/doctorList" class="btn btn-custom btn-lg w-100 text-center p-4">Doctores</a>
             </div>
             <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="#" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
+                <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
             </div>
         </div>
     </main>
