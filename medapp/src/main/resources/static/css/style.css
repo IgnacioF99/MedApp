@@ -7,6 +7,22 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    height: 100%;
+}
+
+.container-custom {
+    padding: 0;
+    min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+}
+
+.main-custom {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .container-fluid {

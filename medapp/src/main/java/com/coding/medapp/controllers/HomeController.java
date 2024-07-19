@@ -3,7 +3,6 @@ package com.coding.medapp.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
@@ -28,7 +27,7 @@ public class HomeController {
 		}
         // =====Revisamos su rol
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-            return "redirect:/paciente";
+            return "redirect:/patient";
         } else if (userTemp.getRole().equals(Rol.Roles[0])) {
             return "redirect:/admin";
         } else if (userTemp.getRole().equals(Rol.Roles[2])){
@@ -39,5 +38,6 @@ public class HomeController {
 
 
     }
+    
 
 }

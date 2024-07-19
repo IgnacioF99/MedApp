@@ -35,6 +35,7 @@ public class UserServices {
         return userRepository.findById(id).orElse(null);
     }
 
+    /*Método que registre a un nuevo usuario*/
     public User register(User newUser, BindingResult result) {
         // Comparar las contraseñas
         String password = newUser.getPassword();
@@ -65,8 +66,11 @@ public class UserServices {
         } else {
             // Hashear contraseña
             String passHash = BCrypt.hashpw(password, BCrypt.gensalt());
-            newUser.setPassword(passHash);
-            newUser.setRole(Rol.Roles[1]);
+            newUser.setPassword(passHash); // Establecemos el password hasheado
+
+            // Asignar rol por defecto
+            newUser.setRole(Rol.Roles[1]); // Asignar rol "USER" por defecto
+
             return userRepository.save(newUser);
         }
     }

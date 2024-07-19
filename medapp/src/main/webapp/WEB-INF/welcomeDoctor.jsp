@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil</title>
+    <title>Bienvenidx!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -23,30 +23,28 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-light">
-    <div class="container">
-        <div class="row justify-content-center m-5">
-            <div class="col-md-8">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h1 class="pb-3">Mi Perfil</h1>
-                        <p class="card-text"><span>Nombre:</span> ${user.firstName}</p>
-                        <p class="card-text"><span>Apellido:</span> ${user.lastName}</p>
-                        <p class="card-text"><span>DNI:</span> ${user.dni}</p>
-                        <p class="card-text"><span>E-mail:</span> ${user.email}</p>
-                        <p class="card-text"><span>Obra Social: ${user.insurance.name}</span></p>
-                        <a href="/patient/${id}/dates" class="btn btn-custom">Mis Turnos</a>
-                    </div>
-                    <div class="card-footer text-center">
-                        <a href="/patient/edit/${user.id}" class="btn btn-custom">Editar</a>
-                        <a href="/patient" class="p-2">Volver</a>
-                    </div>
-                </div>
+<body>
+    <div class="container-fluid">
+        <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
+            <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2" />
+            <span>Bienvenidx ${userInSession.firstName}!</span>
+            <div>
+                <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+                <a href="/doctor/${userInSession.id}" class="p-4"><img src="/img/profile.png" alt="Perfil"
+                        class="rounded-circle" width="50" height="50"></a>
             </div>
-        </div>
+        </header>
+        <main class="p-4">
+            <h1 class="text-center mt-3">Gestion de turnos</h1>
+            <!-- calendario -->
+        </main>
+        <footer class="text-center">
+            <p class="text-muted">&copy; 2024</p>
+        </footer>
     </div>
-     
+</body>
 
+</html>
 </body>
 
 </html>

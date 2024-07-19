@@ -32,20 +32,24 @@
                         <h1 class="pb-3">Mi Perfil</h1>
                         <p class="card-text"><span>Nombre:</span> ${user.firstName}</p>
                         <p class="card-text"><span>Apellido:</span> ${user.lastName}</p>
-                        <p class="card-text"><span>DNI:</span> ${user.dni}</p>
-                        <p class="card-text"><span>E-mail:</span> ${user.email}</p>
-                        <p class="card-text"><span>Obra Social: ${user.insurance.name}</span></p>
-                        <a href="/patient/${id}/dates" class="btn btn-custom">Mis Turnos</a>
+                        <p class="card-text"><span>Matricula:</span> ${doctor.license}</p>
+                        <div class="mb-4">
+                            <label class="inputLabel">Disponibilidad:</label>
+                            <input type="text" class="form-control" name="disponibilidad"
+                                value="${doctor.disponibilidad}" />
+                        </div>
+                        <p class="card-text"><span>Especialidad:</span> ${specialities.name}</p>
+                        <p class="card-text"><span>Obra Social:</span> ${insurance.name}</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="/patient/edit/${user.id}" class="btn btn-custom">Editar</a>
-                        <a href="/patient" class="p-2">Volver</a>
+                        <a href="/doctor/edit/${user.id}" class="btn btn-custom">Editar</a>
+                        <a href="/doctor" class="p-2">Volver</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-     
+
 
 </body>
 
