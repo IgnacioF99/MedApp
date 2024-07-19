@@ -41,6 +41,33 @@
             <div class="col-md-4 mb-3 d-flex justify-content-center">
                 <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
             </div>
+            <!-- <div class="row">
+                <c:if test="${rol == 'patient'}">
+                    <h2 class="text-center mt-3">Pacientes</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>DNI</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>         
+                                <th>email</th>
+                                <th>Obra Social</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${patients}" var="patient">
+                                <tr>
+                                    <td>${patient.dni}</td>
+                                    <td>${patient.firstName}</td>
+                                    <td>${patient.lastName}</td>
+                                    <td>${patient.email}</td>
+                                    <td>${patient.insurance.name}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:if>
+            </div> -->
         </div>
     </main>
     <footer class="text-center">
