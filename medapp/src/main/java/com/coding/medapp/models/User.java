@@ -62,6 +62,8 @@ public class User {
 
     private String role;
 
+    private String profileImageUrl;
+
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
@@ -113,17 +115,15 @@ public class User {
         this.lastName = lastName;
     }
 
-    
-    
     public Integer getDni() {
-		return dni;
-	}
+        return dni;
+    }
 
-	public void setDni(Integer dni) {
-		this.dni = dni;
-	}
+    public void setDni(Integer dni) {
+        this.dni = dni;
+    }
 
-	public String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -153,6 +153,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 
     public Date getCreatedAt() {

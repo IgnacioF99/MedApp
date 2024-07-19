@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding.medapp.models.HealthInsurance;
@@ -41,8 +42,8 @@ public class UserController {
     // Guardamos un Usuario nuevo
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, HttpSession session) {
-    	userServices.register(newUser, result);
-    	
+        userServices.register(newUser, result);
+        
         if (result.hasErrors()) {
             return "register.jsp";
         } else {
@@ -55,10 +56,10 @@ public class UserController {
     @GetMapping("/login")
     public String login(HttpSession session) {
         // =====REVISAMOS SESION=========
-        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
-		if(userTemp != null) {
-			return "redirect:/";
-		}
+        User userTemp = (User) session.getAttribute("userInSession");
+        if(userTemp != null) {
+            return "redirect:/";
+        }
         return "login.jsp";
     }
 
@@ -68,11 +69,10 @@ public class UserController {
         User userTryingLogin = userServices.login(email, password);
 
         if (userTryingLogin == null) {
-            // Tiene algo mal
             redirectAttributes.addFlashAttribute("errorLogin", "Wrong email/password");
             return "redirect:/login";
         } else {
-            session.setAttribute("userInSession", userTryingLogin); // Guardando en sesión el objeto de User
+            session.setAttribute("userInSession", userTryingLogin);
             return "redirect:/inicio";
         }
     }
@@ -157,39 +157,19 @@ public class UserController {
         }
     }
 
-    //Inicio de Doctor
-    @GetMapping("/doctor")
-    public String welcomeDoctor(HttpSession session, Model model){
-        // =====REVISAMOS SESION=========
-        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
-		if(userTemp == null) {
-			return "redirect:/login";
-		}
-        // =====REVISAMOS SU ROL========
-        if (userTemp.getRole().equals(Rol.Roles[2])) {
-            return "welcomeDoctor.jsp";
-        } else {
-            return "redirect:/";
+    @PostMapping("/update-profile")
+    public String updateProfile(@RequestParam("profileImage") MultipartFile profileImage, HttpSession session, RedirectAttributes redirectAttributes) {
+        User userInSession = (User) session.getAttribute("userInSession");
+        try {
+            String imageUrl = userServices.saveProfileImage(profileImage);
+            userInSession.setProfileImageUrl(imageUrl);
+            userServices.updateUser(userInSession);
+            redirectAttributes.addFlashAttribute("successMessage", "Profile image updated successfully!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error uploading profile image.");
         }
+        return "redirect:/profile";
     }
-
-    //Inicio de Admin
-    @GetMapping("/admin")
-    public String welcomeAdmin(HttpSession session, Model model){
-        // =====REVISAMOS SESION=========
-        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
-		if(userTemp == null) {
-			return "redirect:/login";
-		}
-        // =====REVISAMOS SU ROL========
-        if (userTemp.getRole().equals(Rol.Roles[0])) {
-            return "welcomeAdmin.jsp";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-
 
     // Asignar rol a un usuario
     @PostMapping("/assign_role")
