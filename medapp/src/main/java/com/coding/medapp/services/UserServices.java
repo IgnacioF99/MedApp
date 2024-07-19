@@ -55,7 +55,7 @@ public class UserServices {
         if (userExist != null) {
             result.rejectValue("email", "Unique", "E-mail already exists");
         }
-        
+
         // Revisar que el DNI no este registrado
         Integer dni = newUser.getDni();
         User userExistDni = userRepository.findByDni(dni); 
@@ -72,6 +72,8 @@ public class UserServices {
             // Hashear contraseña
             String passHash = BCrypt.hashpw(password, BCrypt.gensalt());
             newUser.setPassword(passHash); // Establecemos el password hasheado
+            String confirmHash = BCrypt.hashpw(confirm, BCrypt.gensalt());
+            newUser.setConfirm(confirmHash);
 
             // Asignar rol por defecto
             newUser.setRole(Rol.Roles[1]); // Asignar rol "USER" por defecto
@@ -115,11 +117,6 @@ public class UserServices {
 
     public User saveUser(User user) {
         // Hashear la contraseña y el confirm
-        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        String hashedConfirm = BCrypt.hashpw(user.getConfirm(), BCrypt.gensalt());
-        user.setPassword(hashedPassword);
-        user.setConfirm(hashedConfirm);
-
         // Establecer el rol del usuario
         user.setRole(Rol.Roles[1]); // Asignar el rol "USER" por defecto
 
