@@ -40,26 +40,26 @@ public class CalendarController {
         List<MedicalAppointment> appointments = appointmentService.getAppointmentsByMonth(year, month);
         model.addAttribute("appointments", appointments);
         
-        return "calendar"; // Nombre del archivo JSP
+        return "calendar.jsp"; 
     }
 
     @PostMapping("/appointments/create")
     public String createAppointment(@RequestParam String title, 
                                     @RequestParam String date, 
                                     @RequestParam String description,
-                                    @RequestParam Long doctorId, // Suponiendo que necesitas el ID del doctor
-                                    @RequestParam Long patientId) { // Suponiendo que necesitas el ID del paciente
+                                    @RequestParam Long doctorId, // id del doctor
+                                    @RequestParam Long patientId) { // id del paciente
         // Crear una nueva cita médica
         MedicalAppointment appointment = new MedicalAppointment();
-        appointment.setStatus("Scheduled"); // Establecer el estado inicial
-        appointment.setAppointmentDate(LocalDate.parse(date)); // Asegúrate de que este campo sea del tipo correcto
-        appointment.setAppointmentTime(LocalTime.now()); // O establece la hora de la cita según lo que necesites
-        appointment.setDoctor(new Doctor()); // Asumiendo que tienes un constructor en Doctor que acepta ID
-        appointment.setPatient(new User()); // Asumiendo que tienes un constructor en User que acepta ID
+        appointment.setStatus("Scheduled"); // Establece el estado inicial
+        appointment.setAppointmentDate(LocalDate.parse(date)); 
+        appointment.setAppointmentTime(LocalTime.now()); 
+        appointment.setDoctor(new Doctor()); // usar de parameter el doctorId
+        appointment.setPatient(new User()); // usar de parameter el patientId
         
-        // Guardar la cita usando el servicio
+        // Guardar la cita usando el service
         appointmentService.createAppointment(appointment);
         
-        return "redirect:/calendar"; // Redirigir de nuevo al calendario
+        return "redirect:/calendar"; 
     }
 }
