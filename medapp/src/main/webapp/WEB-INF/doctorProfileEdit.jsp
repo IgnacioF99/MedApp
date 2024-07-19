@@ -35,6 +35,11 @@
                             <input type="hidden" name="password" value="${user.password}">
                             <!-- Campo oculto para contraseña -->
                             <input type="hidden" name="confirm" value="${user.confirm}">
+                            <div class="mb-3">
+                                <label for="profileImage" class="form-label inputLabel">Foto de Perfil</label>
+                                <input type="file" class="form-control" id="profileImage" name="profileImage"
+                                    accept="image/*">
+                            </div>
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
                                 <form:input path="firstName" class="form-control" />
@@ -51,12 +56,12 @@
                                 <form:errors path="license" class="text-danger" />
                             </div>
                             <div class="mb-4">
-                                <label class="inputLabel">Disponibilidad:</label>
+                                <label class="inputLabel form-label">Disponibilidad:</label>
                                 <input type="disponibilidad" class="form-control" name="disponibilidad" />
                             </div>
                             <div>
                                 <form:label class="inputLabel" path="insurance">Especialidad:</form:label>
-                                <form:select path="insurance">
+                                <form:select class="form-select" path="insurance">
                                     <c:forEach items="${healthInsurances}" var="insurance">
                                         <form:option value="${insurance.id}">${insurance.name}</form:option>
                                     </c:forEach>
@@ -64,7 +69,7 @@
                             </div>
                             <div>
                                 <form:label class="inputLabel" path="insurance">Obra Social:</form:label>
-                                <form:select path="insurance">
+                                <form:select class="form-select" path="insurance">
                                     <c:forEach items="${healthInsurances}" var="insurance">
                                         <form:option value="${insurance.id}">${insurance.name}</form:option>
                                     </c:forEach>

@@ -23,6 +23,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: white;
 }
 
 .container-fluid {
@@ -87,7 +88,11 @@ a:hover {
     font-weight: 500;
 }
 
-span {
+span{
     font-weight: 500;
     color: #008f8d;
+}
+
+.custom-tr th{
+    color: #023536;
 }

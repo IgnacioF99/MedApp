@@ -58,7 +58,7 @@ pageEncoding="ISO-8859-1"%>
 	        </ul>
 	      </section>
 	    </main>
-	    <footer class="text-center">
+	    <footer class="text-center mt-auto">
 	      <p class="text-muted">&copy; 2024</p>
 	    </footer>
 	  </div>

@@ -33,10 +33,9 @@
                         <p class="card-text"><span>Nombre:</span> ${user.firstName}</p>
                         <p class="card-text"><span>Apellido:</span> ${user.lastName}</p>
                         <p class="card-text"><span>Matricula:</span> ${doctor.license}</p>
-                        <div class="mb-4">
-                            <label class="inputLabel">Disponibilidad:</label>
-                            <input type="text" class="form-control" name="disponibilidad"
-                                value="${doctor.disponibilidad}" />
+                        <div class="mb-3">
+                            <label class="form-label inputLabel">Disponibilidad:</label>
+                            <p class="card-text">${doctor.disponibilidad}</p>
                         </div>
                         <p class="card-text"><span>Especialidad:</span> ${specialities.name}</p>
                         <p class="card-text"><span>Obra Social:</span> ${insurance.name}</p>
@@ -53,4 +52,5 @@
 
 </body>
 
+</html>
 </html>

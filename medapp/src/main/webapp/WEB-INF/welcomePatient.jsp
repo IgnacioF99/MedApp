@@ -56,7 +56,7 @@
                 <a href="#" class="list-group-item list-group-item-action">Urología</a>
             </div>
         </main>
-        <footer class="text-center">
+        <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>
         </footer>
     </div>

@@ -38,7 +38,7 @@
             <h1 class="text-center mt-3">Gestion de turnos</h1>
             <!-- calendario -->
         </main>
-        <footer class="text-center">
+        <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>
         </footer>
     </div>
