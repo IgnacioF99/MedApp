@@ -147,9 +147,6 @@ public class UserController {
             return "patientProfileEdit.jsp";
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-        	String hashedConfirm = BCrypt.hashpw(userUpdated.getConfirm(), BCrypt.gensalt());
-        	userUpdated.setConfirm(hashedConfirm);
-            userUpdated.setRole(Rol.Roles[1]);
             userServices.saveUser(userUpdated);
             return "redirect:/patient/" + userUpdated.getId();
             
