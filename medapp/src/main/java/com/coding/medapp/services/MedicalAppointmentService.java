@@ -18,7 +18,7 @@ public class MedicalAppointmentService {
     private MedicalAppointmentRepository appointmentRepository;
 
     public MedicalAppointment createAppointment(MedicalAppointment appointment) {
-        // Establecer el estado inicial de la cita
+        // Establece el estado inicial de la cita
         appointment.setStatus("Scheduled");
         return appointmentRepository.save(appointment);
     }
