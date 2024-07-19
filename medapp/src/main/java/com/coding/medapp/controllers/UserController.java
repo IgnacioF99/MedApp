@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.coding.medapp.models.HealthInsurance;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
-import com.coding.medapp.repository.HealthInsuranceRepository;
 import com.coding.medapp.services.HealthInsuranceServices;
 import com.coding.medapp.services.UserServices;
 
@@ -47,7 +46,6 @@ public class UserController {
         if (result.hasErrors()) {
             return "register.jsp";
         } else {
-            
             session.setAttribute("userInSession", newUser);
             return "redirect:/inicio";
         }
@@ -147,7 +145,9 @@ public class UserController {
         	model.addAttribute("healthInsurances", healthInsurances);
             return "patientProfileEdit.jsp";
         }
-        if (userTemp.getRole().equals(Rol.Roles[1])) { 	   
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+        	String hashedConfirm = BCrypt.hashpw(userUpdated.getConfirm(), BCrypt.gensalt());
+        	userUpdated.setConfirm(hashedConfirm);
             userUpdated.setRole(Rol.Roles[1]);
             userServices.saveUser(userUpdated);
             return "redirect:/patient/" + userUpdated.getId();

@@ -56,7 +56,6 @@ public class User {
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String password;
    
-    @Transient
     @NotEmpty(message = "Password is required.")
     @Size(min = 6, message = "Password needs at least 6 chars")
     private String confirm;

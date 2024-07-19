@@ -26,7 +26,6 @@
         <span>Bienvenidx Admin ${userInSession.firstName}!</span>
         <div>
             <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
-            <a href="#" class="p-4"><img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50"></a>
         </div>
     </header>
     <main class="p-4 flex-grow-1 d-flex justify-content-center align-items-center flex-column main-custom">
@@ -44,7 +43,7 @@
             </div>
         </div>
     </main>
-    <footer class="text-center mt-auto">
+    <footer class="text-center">
         <p class="text-muted">&copy; 2024</p>
     </footer>
 </div>
