@@ -11,7 +11,8 @@ import com.coding.medapp.models.User;
 public interface UserRepository extends CrudRepository<User,Long>{
 
 
-	List<User> findAll();   
+	List<User> findAll(); 
+	List<User> findByRoleLike(String rol); 
 
 	User findByEmail(String email);
 	

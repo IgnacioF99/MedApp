@@ -31,6 +31,11 @@ public class UserServices {
         return userRepository.findAll();
     }
 
+    //Listar usuario x roll
+    public List<User> findAllUserRol(String rol){
+        return userRepository.findByRoleLike(rol);
+    }
+
     public User getUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }

@@ -24,8 +24,9 @@ import jakarta.validation.Valid;
 public class MedicalAppointmentController {
     @Autowired
     private MedicalAppointmentService appointmentService;
+
     @Autowired
-    private UserServices userService;
+    private UserServices userServices;
 
     @GetMapping("/appointment")
     public String showAppointments(HttpSession session, Model model) {
@@ -38,7 +39,7 @@ public class MedicalAppointmentController {
     @GetMapping("/newAppointment")
     public String newAppointment(@ModelAttribute("appointment") MedicalAppointment appointment, Model model, HttpSession session) {
         User userInSession = (User) session.getAttribute("userInSession");
-        model.addAttribute("doctors", userService.findAllUsers());
+        model.addAttribute("doctors", userServices.findAllUsers());
         return "newAppointment.jsp";
     }
 
