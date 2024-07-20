@@ -29,7 +29,7 @@ public class UserServices {
 
     public List<User> findAllUsers() {
         return userRepository.findAll();
-    }
+    }	
 
     //Listar usuario x roll
     public List<User> findAllUserRol(String rol){

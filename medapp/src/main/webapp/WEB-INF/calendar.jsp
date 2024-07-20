@@ -20,41 +20,23 @@
         .calendar th {
             background-color: #f2f2f2;
         }
-        .calendar .day {
-            height: 80px;
-            vertical-align: top;
-        }
         .calendar .today {
             background-color: #dff0d8;
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .select-container {
-            display: flex;
-            align-items: center;
-        }
-        .select-container label {
-            margin-right: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header-container mt-4">
-            <h1>Calendario de Citas Médicas</h1>
-            <div class="select-container">
-                <label for="monthSelect">Mes:</label>
-                <select id="monthSelect" class="form-control" onchange="updateCalendar()">
-                    <c:forEach var="month" items="${months}">
-                        <option value="${month}" <c:if test="${month eq param.month}">selected</c:if>>${month}</option>
-                    </c:forEach>
-                </select>
-            </div>
+    <div class="container mt-4">
+        <h1>Calendario de Citas Médicas</h1>
+        <div class="mb-3">
+            <label for="monthSelect">Mes:</label>
+            <select id="monthSelect" class="form-control" onchange="updateCalendar()">
+                <c:forEach var="month" items="${months}">
+                    <option value="${month}" <c:if test="${month eq param.month}">selected</c:if>>${month}</option>
+                </c:forEach>
+            </select>
         </div>
-        <h3 class="text-center" id="monthYear"></h3>
+        <h3 class="text-center" id="monthYear">${year} - ${months[param.month - 1]}</h3>
         <table class="calendar table table-bordered mt-4">
             <thead>
                 <tr>
@@ -68,7 +50,7 @@
                 </tr>
             </thead>
             <tbody id="calendarBody">
-                <!-- Calendar rows will be inserted here -->
+                <!-- Las filas del calendario se insertan aca -->
             </tbody>
         </table>
     </div>
@@ -85,6 +67,8 @@
                 </div>
                 <div class="modal-body">
                     <form id="appointmentForm" action="${pageContext.request.contextPath}/appointments/create" method="post">
+                        <input type="hidden" name="doctorId" value="${doctorId}">
+                        <input type="hidden" name="patientId" value="${patientId}">
                         <div class="form-group">
                             <label for="appointmentTitle">Título</label>
                             <input type="text" class="form-control" id="appointmentTitle" name="title" required>
@@ -114,14 +98,7 @@
         function updateCalendar() {
             const monthSelect = document.getElementById('monthSelect');
             const month = parseInt(monthSelect.value);
-            // const year = ${year}; -----------------------> ERROR A ARREGLAR
-
-            const monthNames = [
-                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-            ];
-            const monthYear = document.getElementById('monthYear');
-            monthYear.textContent = monthNames[month - 1] + ' ' + year;
+            const year = ${year}; // Ojo aca!!
 
             const calendarBody = document.getElementById('calendarBody');
             calendarBody.innerHTML = '';
@@ -143,12 +120,10 @@
                         break;
                     } else {
                         cell.innerHTML = date;
-                        cell.classList.add('day');
                         if (date === new Date().getDate() && month - 1 === new Date().getMonth() && year === new Date().getFullYear()) {
                             cell.classList.add('today');
                         }
                         cell.onclick = function() {
-                            // Al hacer clic en un día, abrir el modal para agregar una cita
                             document.getElementById('appointmentDate').value = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                             $('#appointmentModal').modal('show');
                         };
