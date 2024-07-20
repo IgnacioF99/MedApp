@@ -33,7 +33,7 @@
             </div>
         </header>
         <main class="d-flex flex-column align-items-center main-custom">
-            <h1 class="text-center">Pacientes</h1>
+            <h1 class="text-center">Doctores</h1>
             <!-- Contenedor del formulario de búsqueda -->
             <div class="d-flex justify-content-center w-100 m-4">
                 <div class="d-flex align-items-center">
@@ -48,9 +48,9 @@
                 <table class="table table-hover w-75">
                     <thead>
                         <tr class="custom-tr">
-                            <th class="text-center">Nombre</th>
                             <th class="text-center">DNI</th>
-                            <th class="text-center">Obra Social</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Licencia</th>
                             <th class="text-center">E-mail</th>
                             <th class="text-center">Acciones</th>
                         </tr>
