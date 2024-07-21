@@ -35,13 +35,13 @@
                         <p class="card-text"><span>Matricula:</span> ${doctor.license}</p>
                         <div class="mb-3">
                             <label class="form-label inputLabel">Disponibilidad:</label>
-                            <p class="card-text">${doctor.disponibilidad}</p>
+                            <p class="card-text">${doctor.availability}</p>
                         </div>
-                        <p class="card-text"><span>Especialidad:</span> ${specialities.name}</p>
-                        <p class="card-text"><span>Obra Social:</span> ${insurance.name}</p>
+                        <p class="card-text"><span>Especialidad:</span> ${doctor.specialitiesDoctor}</p>
+                        <p class="card-text"><span>Obra Social:</span> ${doctor.insurance}</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="/doctor/edit/${user.id}" class="btn btn-custom">Editar</a>
+                        <a href="/doctor/edit/${doctor.id}" class="btn btn-custom">Editar</a>
                         <a href="/doctor" class="p-2">Volver</a>
                     </div>
                 </div>

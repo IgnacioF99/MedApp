@@ -41,7 +41,7 @@
             <div class="col-md-4 mb-3 d-flex justify-content-center">
                 <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
             </div>
-            <!-- <div class="row">
+             <div class="row">
                 <c:if test="${rol == 'patient'}">
                     <h2 class="text-center mt-3">Pacientes</h2>
                     <table class="table table-striped">
@@ -67,7 +67,7 @@
                         </tbody>
                     </table>
                 </c:if>
-            </div> -->
+            </div> 
         </div>
     </main>
     <footer class="text-center mt-auto">

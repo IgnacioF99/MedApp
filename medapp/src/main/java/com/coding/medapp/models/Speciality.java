@@ -90,9 +90,15 @@ public class Speciality {
 	
 
 	
+	
 
 	//PrePersist
 	
+	@Override
+	public String toString() {
+		return  name;
+	}
+
 	@PrePersist //Before creating a user
 	protected void onCreate() {
 		this.createdAt = new Date(); //Default current_timestamp
