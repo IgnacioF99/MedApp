@@ -1,11 +1,18 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- Importacion para hacer html con jsp en spring -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!-- Importacion para usar recursos logicos de java -->    
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- Me permite mostrar errores en las ediciones -->
+<%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario de Citas MÃ©dicas</title>
+    <title>Calendario de Citas Médicas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .calendar {
@@ -44,7 +51,7 @@
 <body>
     <div class="container">
         <div class="header-container mt-4">
-            <h1>Calendario de Citas MÃ©dicas</h1>
+            <h1>Calendario de Citas Médicas</h1>
             <div class="select-container">
                 <label for="monthSelect">Mes:</label>
                 <select id="monthSelect" class="form-control" onchange="updateCalendar()">
@@ -61,10 +68,10 @@
                     <th>Dom</th>
                     <th>Lun</th>
                     <th>Mar</th>
-                    <th>MiÃ©</th>
+                    <th>Mié</th>
                     <th>Jue</th>
                     <th>Vie</th>
-                    <th>SÃ¡b</th>
+                    <th>Sáb</th>
                 </tr>
             </thead>
             <tbody id="calendarBody">
@@ -86,7 +93,7 @@
                 <div class="modal-body">
                     <form id="appointmentForm" action="${pageContext.request.contextPath}/appointments/create" method="post">
                         <div class="form-group">
-                            <label for="appointmentTitle">TÃ­tulo</label>
+                            <label for="appointmentTitle">Título</label>
                             <input type="text" class="form-control" id="appointmentTitle" name="title" required>
                         </div>
                         <div class="form-group">
@@ -94,7 +101,7 @@
                             <input type="date" class="form-control" id="appointmentDate" name="date" required>
                         </div>
                         <div class="form-group">
-                            <label for="appointmentDescription">DescripciÃ³n</label>
+                            <label for="appointmentDescription">Descripción</label>
                             <textarea class="form-control" id="appointmentDescription" name="description" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar Cita</button>
@@ -148,7 +155,7 @@
                             cell.classList.add('today');
                         }
                         cell.onclick = function() {
-                            // Al hacer clic en un dÃ­a, abrir el modal para agregar una cita
+                            // Al hacer clic en un día, abrir el modal para agregar una cita
                             document.getElementById('appointmentDate').value = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                             $('#appointmentModal').modal('show');
                         };

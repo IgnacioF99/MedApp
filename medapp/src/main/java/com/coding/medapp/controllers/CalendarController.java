@@ -1,9 +1,10 @@
 package com.coding.medapp.controllers;
 
-import com.coding.medapp.models.Doctor;
-import com.coding.medapp.models.MedicalAppointment;
-import com.coding.medapp.models.User;
-import com.coding.medapp.services.MedicalAppointmentService;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.List;
+import com.coding.medapp.models.Doctor;
+import com.coding.medapp.models.MedicalAppointment;
+import com.coding.medapp.models.User;
+import com.coding.medapp.services.MedicalAppointmentService;
 
 @Controller
 public class CalendarController {
