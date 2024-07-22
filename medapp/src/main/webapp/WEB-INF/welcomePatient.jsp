@@ -48,6 +48,7 @@
                         </select>
                     </div>
                 </form>
+							<!--NO SE ESTA MOSTRANDO EN LA WEB -->
                 <div class="row d-flex justify-content-center flex-wrap pt-4">
                     <c:forEach var="doctor" items="${doctors}">
                         <div class="col-md-3 d-flex justify-content-center">
