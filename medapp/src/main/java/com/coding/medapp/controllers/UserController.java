@@ -2,7 +2,6 @@ package com.coding.medapp.controllers;
 
 import java.util.List;
 
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.HealthInsurance;
 import com.coding.medapp.models.Rol;
+import com.coding.medapp.models.Speciality;
 import com.coding.medapp.models.User;
+import com.coding.medapp.services.DoctorServices;
 import com.coding.medapp.services.HealthInsuranceServices;
+import com.coding.medapp.services.SpecialityServices;
 import com.coding.medapp.services.UserServices;
 
 import jakarta.servlet.http.HttpSession;
@@ -27,11 +30,18 @@ import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
-    @Autowired
+   
+	@Autowired
     private UserServices userServices;
     
+	@Autowired
+	private SpecialityServices specialityServices;
+	
     @Autowired
     private HealthInsuranceServices insuranceServices;
+    
+    @Autowired
+    private DoctorServices doctorServices;
 
     // Entramos a Register
     @GetMapping("/register")
@@ -95,6 +105,10 @@ public class UserController {
 		}
         // =====REVISAMOS SU ROL========
         if (userTemp.getRole().equals(Rol.Roles[1])) {
+        	List<Speciality> specialities = specialityServices.findAllSpecialties();
+        	model.addAttribute("specialities", specialities);
+        	List<Doctor> doctors = doctorServices.findAllDoctors();
+        	model.addAttribute("doctors", doctors);
             return "welcomePatient.jsp";
         } else {
             return "redirect:/";

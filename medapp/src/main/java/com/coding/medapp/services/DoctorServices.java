@@ -1,5 +1,7 @@
 package com.coding.medapp.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +16,26 @@ public class DoctorServices {
     @Autowired
     private UserServices userServices;
 
-    public Doctor saveDoctor(Long id){
+    public Doctor newDoctor(Long id){
         User doctor = userServices.getUser(id);
-        Long num = 0L;
+        String num = "0";
         Doctor newDoctor = new Doctor();
         newDoctor.setDoctor(doctor);
         newDoctor.setLicense(num);
+        newDoctor.setAvailability("A");
         return doctorRepository.save(newDoctor);
     }
+
+	public Doctor getDoctor(Long id) {
+		return doctorRepository.findById(id).orElse(null);
+	}
+
+    public Doctor saveDoctor(Doctor newDoctor){
+        return doctorRepository.save(newDoctor);
+    }
+
+	public List<Doctor> findAllDoctors(){
+		return doctorRepository.findAll();
+	}
+
 }

@@ -19,7 +19,9 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name="doctors")
@@ -29,8 +31,13 @@ public class Doctor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message="Must be required")
-	private Long license;
+	@NotEmpty(message= "Must be required")
+    @Pattern(regexp = "\\d+", message = "La matrícula debe ser un número")
+    private String license;
+
+	
+	@NotEmpty(message="Must be required")
+	private String availability;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -74,11 +81,13 @@ public class Doctor {
 		this.id = id;
 	}
 
-	public Long getLicense() {
+	
+
+	public String getLicense() {
 		return license;
 	}
 
-	public void setLicense(Long license) {
+	public void setLicense(String license) {
 		this.license = license;
 	}
 
@@ -109,6 +118,16 @@ public class Doctor {
 
 	public void setDoctor(User doctor) {
 		this.doctor = doctor;
+	}
+	
+	
+
+	public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
 	}
 
 	public List<Speciality> getSpecialitiesDoctor() {

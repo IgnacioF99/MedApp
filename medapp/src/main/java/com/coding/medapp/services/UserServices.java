@@ -118,7 +118,7 @@ public class UserServices {
     public User saveUser(User user) {
         // Hashear la contraseña y el confirm
         // Establecer el rol del usuario
-        user.setRole(Rol.Roles[1]); // Asignar el rol "USER" por defecto
+        // Asignar el rol "USER" por defecto
 
         // Guardar el usuario en el repositorio
         return userRepository.save(user);

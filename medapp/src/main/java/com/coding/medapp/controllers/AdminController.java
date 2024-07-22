@@ -78,7 +78,7 @@ public class AdminController {
             userEdit.setRole(role);
             userServices.saveRol(userTemp);
             if (role.equals("DOCTOR")) {
-                doctorServices.saveDoctor(id);
+                doctorServices.newDoctor(id);
             } 
             return "redirect:/admin/userList";
         } else {
