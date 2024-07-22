@@ -123,4 +123,8 @@ public class UserServices {
         // Guardar el usuario en el repositorio
         return userRepository.save(user);
     }
+
+    public User saveRol(User user){
+        return userRepository.save(user);
+    }
 }
