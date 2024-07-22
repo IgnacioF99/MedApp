@@ -34,7 +34,7 @@
                             <input type="hidden" name="_method" value="put">
                             <input type="hidden" name="password" value="${user.password}"> <!-- Campo oculto para contrase�a -->
                             <input type="hidden" name="confirm" value="${user.confirm}">
-                            <input type="hidden" name="confirm" value="${user.role}">	
+                            <input type="hidden" name="role" value="${user.role}">	
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
                                 <form:input path="firstName" class="form-control" />

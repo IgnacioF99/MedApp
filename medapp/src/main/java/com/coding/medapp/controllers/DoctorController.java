@@ -62,11 +62,16 @@ public class DoctorController {
             return "redirect:/login";
         }
         if (userTemp.getRole().equals(Rol.Roles[2])) {
-            Doctor myDoctor = doctorServices.getDoctor(id);
-            User myUser = myDoctor.getDoctor();
-            model.addAttribute("user", myUser);
-            model.addAttribute("doctor", myDoctor); // Asegúrate de añadir el usuario al modelo
-            return "doctorProfile.jsp";
+            if (userTemp.getDoctor2().getId() == id) {
+                Doctor myDoctor = doctorServices.getDoctor(id);
+                User myUser = myDoctor.getDoctor();
+                model.addAttribute("user", myUser);
+                model.addAttribute("doctor", myDoctor); // Asegúrate de añadir el usuario al modelo
+                return "doctorProfile.jsp";
+            } else {
+                return "redirect:/";
+            }
+            
         } else {
             return "redirect:/";
         }
@@ -79,13 +84,16 @@ public class DoctorController {
         if (userTemp == null) {
             return "redirect:/login";
         }
-        Doctor doctor = doctorServices.getDoctor(id);
-        List<Speciality> specialties = specialityServices.findAllSpecialties();
-        List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances(); 
-        model.addAttribute("doctor", doctor);
-        model.addAttribute("specialities", specialties);
-        model.addAttribute("healthInsurances", healthInsurances);
-        return "doctorProfileEdit.jsp";
+        if (userTemp.getDoctor2().getId() == id) {
+            Doctor doctor = doctorServices.getDoctor(id);
+            List<Speciality> specialties = specialityServices.findAllSpecialties();
+            List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances(); 
+            model.addAttribute("doctor", doctor);
+            model.addAttribute("specialities", specialties);
+            model.addAttribute("healthInsurances", healthInsurances);
+            return "doctorProfileEdit.jsp";
+        }
+        return "redirect:/login";
     }
 
     @PutMapping("/doctor/update/{id}")

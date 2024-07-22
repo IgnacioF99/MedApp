@@ -63,7 +63,7 @@
                                     </c:forEach>
                                 </form:select>
                             </div>
-                            <input type="hidden" value="${doctor.doctor}" name="doctor">
+                            <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
