@@ -57,7 +57,7 @@
                             </div>
                             <div>
                             	<form:label class="inputLabel" path="insurance">Obra Social</form:label>
-                               	<form:select path="insurance">
+                               	<form:select path="insurance" class="form-select">
                                		<c:forEach items="${healthInsurances}" var="insurance">
                                			<form:option value="${insurance.id}">${insurance.name}</form:option>
                                		</c:forEach>

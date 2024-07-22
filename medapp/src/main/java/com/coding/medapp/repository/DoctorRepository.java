@@ -11,4 +11,6 @@ import com.coding.medapp.models.Doctor;
 public interface DoctorRepository extends CrudRepository<Doctor,Long>{
 
 	List<Doctor> findAll();
+	
+	
 }

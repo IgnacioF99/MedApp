@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
 import com.coding.medapp.services.DoctorServices;
@@ -23,7 +24,8 @@ import jakarta.validation.Valid;
 
 @Controller
 public class AdminController {
-    @Autowired
+    
+	@Autowired
     private UserServices userServices;
     @Autowired
     private DoctorServices doctorServices;
@@ -104,6 +106,8 @@ public class AdminController {
             return "redirect:/";
         }  
     }
+    
+   
     
     
     
