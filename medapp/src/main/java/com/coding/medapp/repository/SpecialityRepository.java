@@ -11,4 +11,6 @@ import com.coding.medapp.models.Speciality;
 public interface SpecialityRepository extends CrudRepository<Speciality,Long>{
 
 	List<Speciality> findAll();
+	
+	
 }

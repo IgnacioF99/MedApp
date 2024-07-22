@@ -115,6 +115,8 @@ public class UserController {
         }
     }
     
+	
+    
     @GetMapping("/patient/{id}")
     public String profilePatient(@PathVariable("id") Long id, HttpSession session, Model model) {
         User userTemp = (User) session.getAttribute("userInSession"); 
@@ -135,7 +137,7 @@ public class UserController {
          }
      
      }
-	            
+        
 
     @GetMapping("/patient/edit/{id}")
     public String editProfile(@PathVariable("id") Long id, HttpSession session, Model model) {

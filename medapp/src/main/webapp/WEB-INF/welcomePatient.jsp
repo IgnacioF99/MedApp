@@ -26,13 +26,13 @@
         <main class="p-4">
             <div class="container">
                 <h1 class="text-center mt-3">Agenda tu cita medica</h1>
-                <form>
+                <form action="/search" method="get">
                     <div class="form-group mt-5">
                         <label for="speciality" class="form-label">Selecciona una especialidad:</label>
                         <select id="speciality" name="speciality" class="form-select">
                             <option value="">Todas las especialidades</option>
                             <c:forEach items="${specialities}" var="speciality">
-                                <option value="${speciality.id}">${speciality.name}</option>
+                                <option value="${speciality.name}">${speciality.name}</option>
                             </c:forEach>
                         </select>
                     </div>

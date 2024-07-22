@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.Speciality;
-import com.coding.medapp.repository.DoctorRepository;
 import com.coding.medapp.repository.SpecialityRepository;
 
 @Service
@@ -40,6 +39,8 @@ public class SpecialityServices {
     	myDoctor.getSpecialitiesDoctor().add(mySpeciality);
     	doctorServices.saveDoctor(myDoctor);
     }
+    
+    
 
     
 }
