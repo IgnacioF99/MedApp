@@ -97,12 +97,16 @@ public class AdminController {
         if (userTemp.getRole().equals(Rol.Roles[0])) {
             //Obtener Lista de pacientes
             List<User> userList = userServices.findAllUserRol("DOCTOR");
-            model.addAttribute("patients", userList);          
-            return "welcomeAdmin.jsp";
+            model.addAttribute("doctors", userList); 
+            model.addAttribute("roles", Rol.Roles);
+            return "infoDoctors.jsp";
         } else {
             return "redirect:/";
         }  
     }
+    
+    
+    
 
     @GetMapping("/admin/adminList")
     public String adminAdminList(HttpSession session, Model model){
@@ -114,8 +118,9 @@ public class AdminController {
         if (userTemp.getRole().equals(Rol.Roles[0])) {
             //Obtener Lista de pacientes
             List<User> userList = userServices.findAllUserRol("ADMIN");
-            model.addAttribute("patients", userList);          
-            return "welcomeAdmin.jsp";
+            model.addAttribute("admins", userList);
+            model.addAttribute("roles", Rol.Roles);
+            return "infoAdmins.jsp";
         } else {
             return "redirect:/";
         }  

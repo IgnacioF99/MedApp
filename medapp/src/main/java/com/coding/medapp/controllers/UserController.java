@@ -122,13 +122,20 @@ public class UserController {
             return "redirect:/login";
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-            User myPatient = userServices.getUser(id);
-            model.addAttribute("user", myPatient); // Asegúrate de añadir el usuario al modelo
-            return "patientProfile.jsp";
-        } else {
-            return "redirect:/";
-        }
-    }
+        	if(userTemp.getId() == id) {
+	            User myPatient = userServices.getUser(id);
+	            model.addAttribute("user", myPatient); // Asegúrate de añadir el usuario al modelo
+	            return "patientProfile.jsp";
+        	 } else {
+                 return "redirect:/";
+             }
+             
+         } else {
+             return "redirect:/";
+         }
+     
+     }
+	            
 
     @GetMapping("/patient/edit/{id}")
     public String editProfile(@PathVariable("id") Long id, HttpSession session, Model model) {
@@ -137,16 +144,24 @@ public class UserController {
             return "redirect:/login";
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-            User user = userServices.getUser(id); // Obtener el usuario para editar
-            //Muestra todas las obras sociales y las manda al jsp
-            List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances(); 
-            model.addAttribute("healthInsurances", healthInsurances);
-            model.addAttribute("user", user); // Añadir el usuario al modelo
-            return "patientProfileEdit.jsp";
+        	if(userTemp.getId() == id) {
+	            User user = userServices.getUser(id); // Obtener el usuario para editar
+	            //Muestra todas las obras sociales y las manda al jsp
+	            List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances(); 
+	            model.addAttribute("healthInsurances", healthInsurances);
+	            model.addAttribute("user", user); // Añadir el usuario al modelo
+	            return "patientProfileEdit.jsp";
+        	} else {
+                return "redirect:/";
+            }
+            
         } else {
             return "redirect:/";
         }
+    
     }
+    
+	            
 
     @PutMapping("/patient/update/{id}")
     public String updateProfile(@Valid @ModelAttribute("user") User userUpdated, BindingResult result, HttpSession session,Model model) {
