@@ -96,3 +96,19 @@ span{
 .custom-tr th{
     color: #023536;
 }
+
+.doctor-card {
+    background-color: #e3ffff;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 20px;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.doctor-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
