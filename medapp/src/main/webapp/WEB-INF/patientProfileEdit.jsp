@@ -35,6 +35,7 @@
                             <input type="hidden" name="password" value="${user.password}"> <!-- Campo oculto para contrase�a -->
                             <input type="hidden" name="confirm" value="${user.confirm}">
                             <input type="hidden" name="role" value="${user.role}">	
+                            <input type="hidden" name="dni" value="${user.dni}">
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
                                 <form:input path="firstName" class="form-control" />
@@ -44,12 +45,7 @@
                                 <form:label class="inputLabel" path="lastName">Apellido:</form:label>
                                 <form:input path="lastName" class="form-control" />
                                 <form:errors path="lastName" class="text-danger" />
-                            </div>
-                            <div>
-                                <form:label class="inputLabel" path="dni">DNI:</form:label>
-                                <form:input path="dni" class="form-control" />
-                                <form:errors path="dni" class="text-danger" />
-                            </div>
+                            </div>                     
                             <div>
                                 <form:label class="inputLabel" path="email">E-mail:</form:label>
                                 <form:input path="email" class="form-control" />
