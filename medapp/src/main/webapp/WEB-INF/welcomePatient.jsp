@@ -26,43 +26,50 @@
 <body>
     <div class="container-fluid">
         <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
-            <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2"/>
+            <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2" />
             <span>Bienvenidx ${userInSession.firstName}!</span>
             <div>
                 <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
-                <a href="/patient/${userInSession.id}" class="p-4"><img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50"/></a>
+                <a href="/patient/${userInSession.id}" class="p-4"><img src="/img/profile.png" alt="Perfil"
+                        class="rounded-circle" width="50" height="50"></a>
             </div>
-
         </header>
         <main class="p-4">
-            <h1 class="text-center mt-3">Agenda tu cita medica</h1>
-            <h4 class="mt-5">Nuestras Especialidades</h4>
-            <div class="list-group mt-4">
-                <a href="#" class="list-group-item list-group-item-action">Cardiología</a>
-                <a href="#" class="list-group-item list-group-item-action">Dermatología</a>
-                <a href="#" class="list-group-item list-group-item-action">Endocrinología</a>
-                <a href="#" class="list-group-item list-group-item-action">Gastroenterología</a>
-                <a href="#" class="list-group-item list-group-item-action">Ginecología</a>
-                <a href="#" class="list-group-item list-group-item-action">Obstetricia</a>
-                <a href="#" class="list-group-item list-group-item-action">Hematología</a>
-                <a href="#" class="list-group-item list-group-item-action">Medicina Familiar y General</a>
-                <a href="#" class="list-group-item list-group-item-action">Neumonología</a>
-                <a href="#" class="list-group-item list-group-item-action">Neurología</a>
-                <a href="#" class="list-group-item list-group-item-action">Oftalmología</a>
-                <a href="#" class="list-group-item list-group-item-action">Oncología</a>
-                <a href="#" class="list-group-item list-group-item-action">Traumatología</a>
-                <a href="#" class="list-group-item list-group-item-action">Pediatría</a>
-                <a href="#" class="list-group-item list-group-item-action">Reumatología</a>
-                <a href="#" class="list-group-item list-group-item-action">Urología</a>
+            <div class="container">
+                <h1 class="text-center mt-3">Agenda tu cita medica</h1>
+                <form method="get" action="#">
+                    <div class="form-group mt-5">
+                        <label class="inputLabel" for="speciality">Selecciona una especialidad:</label>
+                        <select name="speciality" id="speciality" class="form-select">
+                            <option value="">Todas las especialidades</option>
+                            <c:forEach var="speciality" items="${specialities}">
+                                <option value="${speciality.name}"></option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </form>
+							<!--NO SE ESTA MOSTRANDO EN LA WEB -->
+                <div class="row d-flex justify-content-center flex-wrap pt-4">
+                    <c:forEach var="doctor" items="${doctors}">
+                        <div class="col-md-3 d-flex justify-content-center">
+                            <div class="doctor-card">
+                                <h5 class="mb-3 text-center">${doctor.firstName} ${doctor.lastName}</h5>
+                                <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.speciality}</p>
+                                <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
+                                <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.disponibility}</p>
+                                <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurance}</p>
+
+                                <a href="#" class="btn btn-custom d-block">Agendar</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </main>
         <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>
         </footer>
     </div>
-</body>
-
-</html>
 </body>
 
 </html>
