@@ -16,7 +16,7 @@
     <title>Info Pacientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -26,7 +26,7 @@
 <body class="bg-light">
     <div class="container-custom d-flex flex-column container-fluid">
         <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
-            <img src="img/logo2.png" alt="logoPrincipal" class="logo p-2" />
+            <img src="/img/logo2.png" alt="logoPrincipal" class="logo p-2" />
             <span>Bienvenidx Admin ${userInSession.firstName}!</span>
             <div>
                 <a href="/admin" class="btn btn-custom">Gestion De Usuarios</a>
@@ -67,7 +67,7 @@
                                     <form action="/patient/editRole/${patient.id}" method="POST">
                                         <input type="hidden" name="_method" value="PUT">
                                         <label for="roleid">${patient.role}</label>
-                                        <select name="role" id="roleid">
+                                        <select class="form-select" name="role" id="roleid">
                                             <c:forEach items="${roles}" var="role">
                                                 <option value="${role}">${role}</option>
                                             </c:forEach>
