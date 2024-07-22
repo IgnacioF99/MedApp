@@ -52,14 +52,24 @@ public class HealthInsurance {
 	//--------- Empty Constructor ---------------
 	public HealthInsurance() {}
 	
+	//To String
+	
+	@Override
+	public String toString() {
+		return  name ;
+	}
+	
 	//-------------------------------------------
 	
 	// --------Getters And Setters --------------
+	
 	
 
 	public Long getId() {
 		return id;
 	}
+
+	
 
 	public void setId(Long id) {
 		this.id = id;

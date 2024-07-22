@@ -30,25 +30,12 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="pb-3">Editar mi perfil</h1>
-                        <form:form action="/patient/update/${user.id}" method="post" modelAttribute="user">
+                        <form:form action="/doctor/update/${doctor.id}" method="post" modelAttribute="doctor">
                             <input type="hidden" name="_method" value="put">
-                            <input type="hidden" name="password" value="${user.password}">
-                            <!-- Campo oculto para contraseña -->
-                            <input type="hidden" name="confirm" value="${user.confirm}">
                             <div class="mb-3">
                                 <label for="profileImage" class="form-label inputLabel">Foto de Perfil</label>
                                 <input type="file" class="form-control" id="profileImage" name="profileImage"
                                     accept="image/*">
-                            </div>
-                            <div>
-                                <form:label class="inputLabel" path="firstName">Nombre:</form:label>
-                                <form:input path="firstName" class="form-control" />
-                                <form:errors path="firstName" class="text-danger" />
-                            </div>
-                            <div>
-                                <form:label class="inputLabel" path="lastName">Apellido:</form:label>
-                                <form:input path="lastName" class="form-control" />
-                                <form:errors path="lastName" class="text-danger" />
                             </div>
                             <div>
                                 <form:label class="inputLabel" path="license">Matricula:</form:label>
@@ -56,14 +43,15 @@
                                 <form:errors path="license" class="text-danger" />
                             </div>
                             <div class="mb-4">
-                                <label class="inputLabel form-label">Disponibilidad:</label>
-                                <input type="disponibilidad" class="form-control" name="disponibilidad" />
+                                <form:label class="inputLabel" path="availability">Disponibilidad:</form:label>
+                                <form:input path="availability" class="form-control" name="availability"/>
+                                <form:errors path="availability" class="text-danger" />
                             </div>
                             <div>
-                                <form:label class="inputLabel" path="insurance">Especialidad:</form:label>
-                                <form:select class="form-select" path="insurance">
-                                    <c:forEach items="${healthInsurances}" var="insurance">
-                                        <form:option value="${insurance.id}">${insurance.name}</form:option>
+                                <form:label class="inputLabel" path="specialitiesDoctor">Especialidad:</form:label>
+                                <form:select class="form-select" path="specialitiesDoctor">
+                                    <c:forEach items="${specialities}" var="speciality">
+                                        <form:option value="${speciality.id}">${speciality.name}</form:option>
                                     </c:forEach>
                                 </form:select>
                             </div>
@@ -75,6 +63,7 @@
                                     </c:forEach>
                                 </form:select>
                             </div>
+                            <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
