@@ -1,5 +1,7 @@
 package com.coding.medapp.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +20,9 @@ public class DoctorServices {
 
 	public void saveDoctor(Doctor doctor) {
 		doctorRepository.save(doctor);
+	}
+	
+	public List<Doctor> findAllDoctors(){
+		return doctorRepository.findAll();
 	}
 }
