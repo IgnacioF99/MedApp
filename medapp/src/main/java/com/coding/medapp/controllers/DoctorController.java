@@ -63,7 +63,7 @@ public class DoctorController {
         }
         if (userTemp.getRole().equals(Rol.Roles[2])) {
             Doctor myDoctor = doctorServices.getDoctor(id);
-            User myUser = userServices.getUser(id);
+            User myUser = myDoctor.getDoctor();
             model.addAttribute("user", myUser);
             model.addAttribute("doctor", myDoctor); // Asegúrate de añadir el usuario al modelo
             return "doctorProfile.jsp";
@@ -120,6 +120,7 @@ public class DoctorController {
             // Setea las especialidades existentes en el doctor actualizado
             doctorUpdated.setSpecialitiesDoctor(existingDoctor.getSpecialitiesDoctor());
             doctorServices.saveDoctor(doctorUpdated);
+            System.out.println(doctorUpdated.getId());
             return "redirect:/doctor/" + doctorUpdated.getId();
         } else {
             return "redirect:/";
