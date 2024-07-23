@@ -24,7 +24,7 @@ public class DoctorServices {
     @Lazy
     private SpecialityServices specialityServices;
     
-   
+    
     
 
     public Doctor newDoctor(Long id){
@@ -67,6 +67,11 @@ public class DoctorServices {
 	public List<Doctor> findAllDoctors(){
 		return doctorRepository.findAll();
 	}
+
+    //Eliminacion de doctor
+    public void removeDoctor(Doctor doctorRemove){
+        doctorRepository.delete(doctorRemove);
+    }
 }
 	
 	
