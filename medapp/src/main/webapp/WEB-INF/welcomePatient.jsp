@@ -35,9 +35,14 @@
                                 <option value="${speciality.id}">${speciality.name}</option>
                             </c:forEach>
                         </select>
-                        <input type="submit" value="buscar" class="btn btn-custom mt-4">
+                        <input type="submit" value="Buscar" class="btn btn-custom mt-4">
                     </div>
+                    
                 </form>
+                <c:if test="${noDoctorsFound}">
+                    <div class="alert alert-danger mt-4">No se encontraron doctores con la especialidad seleccionada.</div>
+                </c:if>
+                
             </div>
             <div class="row d-flex justify-content-center flex-wrap pt-4">
                     <c:forEach var="doctor" items="${doctors}">
