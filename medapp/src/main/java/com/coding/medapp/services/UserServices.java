@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,7 @@ public class UserServices {
         return userRepository.findByRoleLike(rol);
     }
 
+    //Buscar usuario por id
     public User getUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
@@ -126,5 +128,14 @@ public class UserServices {
 
     public User saveRol(User user){
         return userRepository.save(user);
+    }
+
+    public List<User> usrDni(Integer dni){
+        List<User> userdni = new ArrayList<>();
+        User user = userRepository.findByDni(dni);
+        if (user != null) {
+            userdni.add(user);
+        }
+        return userdni;
     }
 }

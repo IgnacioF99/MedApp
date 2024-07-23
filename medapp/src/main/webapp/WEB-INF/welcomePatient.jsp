@@ -32,9 +32,10 @@
                         <select id="speciality" name="speciality" class="form-select">
                             <option value="">Todas las especialidades</option>
                             <c:forEach items="${specialities}" var="speciality">
-                                <option value="${speciality.name}">${speciality.name}</option>
+                                <option value="${speciality.id}">${speciality.name}</option>
                             </c:forEach>
                         </select>
+                        <input type="submit" value="buscar" class="btn btn-custom mt-4">
                     </div>
                 </form>
             </div>

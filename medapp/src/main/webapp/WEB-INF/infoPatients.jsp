@@ -37,11 +37,13 @@
             <!-- Contenedor del formulario de b�squeda -->
             <div class="d-flex justify-content-center w-100 m-4">
                 <div class="d-flex align-items-center">
-                    <div class="form-group me-2">
+                    <form action="/admin/patient">
+                        <div class="form-group me-2">
                         <label for="searchDNI" class="visually-hidden">Buscar por DNI:</label>
-                        <input type="text" id="searchDNI" class="form-control" placeholder="Ingrese DNI">
-                    </div>
-                    <button class="btn btn-custom" onclick="searchTable()">Buscar</button>
+                        <input type="text" id="searchDNI" name="dni" class="form-control" placeholder="Ingrese DNI">
+                        </div>
+                        <input class="btn btn-custom" type="submit" value="Buscar">
+                    </form>
                 </div>
             </div>
             <div class="d-flex justify-content-center w-100 mt-2">

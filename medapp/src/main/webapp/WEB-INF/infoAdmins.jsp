@@ -30,15 +30,8 @@
         </header>
         <main class="d-flex flex-column align-items-center main-custom">
             <h1 class="text-center">Administradores</h1>
-            <!-- Contenedor del formulario de búsqueda -->
+            <!-- Contenedor del formulario de bï¿½squeda -->
             <div class="d-flex justify-content-center w-100 m-4">
-                <div class="d-flex align-items-center">
-                    <div class="form-group me-2">
-                        <label for="searchDNI" class="visually-hidden">Buscar por DNI:</label>
-                        <input type="text" id="searchDNI" class="form-control" placeholder="Ingrese DNI">
-                    </div>
-                    <button class="btn btn-custom" onclick="searchTable()">Buscar</button>
-                </div>
             </div>
             <div class="d-flex justify-content-center w-100 mt-2">
                 <table class="table table-hover w-75">
@@ -48,7 +41,6 @@
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Licencia</th>
                             <th class="text-center">E-mail</th>
-                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,18 +50,6 @@
                                 <td>${admin.firstName} ${admin.lastName}</td>
                                 <td>${admin.insurance.name}</td>
                                 <td>${admin.email}</td>
-                                <td>
-                                    <form action="/patient/editRole/${user.id}" method="POST">
-                                        <input class="inputLabel" type="hidden" name="_method" value="PUT">
-                                        <label for="roleid">${user.role}</label>
-                                        <select class="form-select" name="role" id="roleid">
-                                            <c:forEach items="${roles}" var="role">
-                                                <option value="${role}">${role}</option>
-                                            </c:forEach>
-                                        </select>
-                                        <input type="submit" class="btn btn-success mt-3" value="Save">
-                                    </form>
-                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
