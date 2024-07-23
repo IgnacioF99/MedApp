@@ -47,16 +47,6 @@
                                 <form:input path="availability" class="form-control" name="availability" />
                                 <form:errors path="availability" class="text-danger" />
                             </div>
-<<<<<<< HEAD
-                            <div class="form-group">
-                                <label class="inputLabel" for="insurance" class="form-label">Obra social:</label>
-                                <select id="insurance" name="insurance" class="form-select">
-                                    <option value="">Todas las obras sociales</option>
-                                    <c:forEach items="${healthInsurances}" var="insurance">
-                                        <option value="${insurance.name}">${insurance.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
                             <div class="form-group">
                                 <label class="inputLabel" for="speciality" class="form-label">Especialidad:</label>
                                 <select id="speciality" name="speciality" class="form-select">
@@ -67,7 +57,6 @@
                                 </select>
                             </div>
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}">
-=======
                               <div>
                                 <form:label class="inputLabel" path="specialitiesDoctor">Especialidad:</form:label>
                                 <form:select class="form-select" path="specialitiesDoctor">
@@ -85,7 +74,6 @@
                                 </form:select>
                             </div>
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
->>>>>>> branch 'main' of https://github.com/IgnacioF99/MedApp.git
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
