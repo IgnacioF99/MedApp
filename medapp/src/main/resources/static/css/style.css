@@ -68,6 +68,10 @@ header {
 footer {
     background-color:#008f8d;
     padding: 3px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
 }
 
 .text-muted {
