@@ -98,8 +98,8 @@ public class AdminController {
         // =====REVISAMOS SU ROL========
         if (userTemp.getRole().equals(Rol.Roles[0])) {
             //Obtener Lista de pacientes
-            List<User> userList = userServices.findAllUserRol("DOCTOR");
-            model.addAttribute("doctors", userList); 
+            List<Doctor> doctorList = doctorServices.findAllDoctors();
+            model.addAttribute("doctors", doctorList); 
             model.addAttribute("roles", Rol.Roles);
             return "infoDoctors.jsp";
         } else {
@@ -107,7 +107,27 @@ public class AdminController {
         }  
     }
     
-   
+    @PutMapping("/doctor/editRole/{id}")
+    public String updateDoctorList(@PathVariable("id") Long id, @RequestParam(value = "role")String role, HttpSession session, Model model){
+        System.out.println("el rol es "+ role);
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+        if(userTemp == null) {
+            return "redirect:/login";
+        }
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[0])) {   
+            User userEdit = userServices.getUser(id);
+            Doctor doctorRemove = userEdit.getDoctor2();
+            userEdit.setRole(role);
+            userServices.saveRol(userTemp);
+            if (role.equals("USER")) {
+                doctorServices.removeDoctor(doctorRemove);
+            } 
+            return "redirect:/admin/doctorList";
+        } else {
+            return "redirect:/";
+        }
+    }
     
     
     
@@ -123,11 +143,36 @@ public class AdminController {
             //Obtener Lista de pacientes
             List<User> userList = userServices.findAllUserRol("ADMIN");
             model.addAttribute("admins", userList);
-            model.addAttribute("roles", Rol.Roles);
+            //model.addAttribute("roles", Rol.Roles);
             return "infoAdmins.jsp";
         } else {
             return "redirect:/";
         }  
     }
 
+
+    //Buscar usuario por dni
+    @GetMapping("/admin/patient")
+    public String adminUser(HttpSession session, @RequestParam(value = "dni") Integer dni, Model model){
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+		if(userTemp == null) {
+			return "redirect:/login";
+		}
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[0])) {
+            //Obtener Lista de pacientes
+            List<User> userList = userServices.usrDni(dni);
+            User user = userList.get(0);
+            if (user.getRole().equals("USER")) {
+                model.addAttribute("patients", userList); 
+                model.addAttribute("roles", Rol.Roles);
+                return "infoPatients.jsp";
+            } else {
+                return "redirect:/admin/userList";
+            }
+            
+        } else {
+            return "redirect:/";
+        }  
+    }
 }

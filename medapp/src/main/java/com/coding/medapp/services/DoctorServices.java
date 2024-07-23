@@ -19,9 +19,9 @@ public class DoctorServices {
     @Autowired
     private UserServices userServices;
     
-   
     
-
+    
+    //Creacion de doctor
     public Doctor newDoctor(Long id){
         User doctor = userServices.getUser(id);
         String num = "0";
@@ -31,6 +31,12 @@ public class DoctorServices {
         newDoctor.setAvailability("A");
         return doctorRepository.save(newDoctor);
     }
+
+    //Eliminacion de doctor
+    public void removeDoctor(Doctor doctorRemove){
+        doctorRepository.delete(doctorRemove);
+    }
+
 
 	public Doctor getDoctor(Long id) {
 		return doctorRepository.findById(id).orElse(null);
