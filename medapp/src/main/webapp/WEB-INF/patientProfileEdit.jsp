@@ -23,7 +23,7 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-light">
+<body class="body-custom">
     <div class="container">
         <div class="row justify-content-center m-5">
             <div class="col-md-8">
@@ -32,9 +32,10 @@
                         <h1 class="pb-3">Editar mi perfil</h1>
                         <form:form action="/patient/update/${user.id}" method="post" modelAttribute="user">
                             <input type="hidden" name="_method" value="put">
-                            <input type="hidden" name="password" value="${user.password}"> <!-- Campo oculto para contrase�a -->
+                            <input type="hidden" name="password" value="${user.password}">
+                            <!-- Campo oculto para contrase�a -->
                             <input type="hidden" name="confirm" value="${user.confirm}">
-                            <input type="hidden" name="role" value="${user.role}">	
+                            <input type="hidden" name="role" value="${user.role}">
                             <input type="hidden" name="dni" value="${user.dni}">
                             <div>
                                 <form:label class="inputLabel" path="firstName">Nombre:</form:label>
@@ -45,28 +46,28 @@
                                 <form:label class="inputLabel" path="lastName">Apellido:</form:label>
                                 <form:input path="lastName" class="form-control" />
                                 <form:errors path="lastName" class="text-danger" />
-                            </div>                     
+                            </div>
                             <div>
                                 <form:label class="inputLabel" path="email">E-mail:</form:label>
                                 <form:input path="email" class="form-control" />
                                 <form:errors path="email" class="text-danger" />
                             </div>
                             <div>
-                            	<form:label class="inputLabel" path="insurance">Obra Social</form:label>
-                               	<form:select path="insurance" class="form-select">
-                               		<c:forEach items="${healthInsurances}" var="insurance">
-                               			<form:option value="${insurance.id}">${insurance.name}</form:option>
-                               		</c:forEach>
-                              	</form:select>        
-                            </div> 
-                                
+                                <form:label class="inputLabel" path="insurance">Obra Social</form:label>
+                                <form:select path="insurance" class="form-select">
+                                    <c:forEach items="${healthInsurances}" var="insurance">
+                                        <form:option value="${insurance.id}">${insurance.name}</form:option>
+                                    </c:forEach>
+                                </form:select>
+                            </div>
+
                             <input type="submit" value="Guardar" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
-       
+
 
 </body>
 
