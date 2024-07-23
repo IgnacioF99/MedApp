@@ -162,12 +162,15 @@ public class AdminController {
         if (userTemp.getRole().equals(Rol.Roles[0])) {
             //Obtener Lista de pacientes
             List<User> userList = userServices.usrDni(dni);
-            User user = userList.get(0);
-            if (user.getRole().equals("USER")) {
-                model.addAttribute("patients", userList); 
-                model.addAttribute("roles", Rol.Roles);
-                return "infoPatients.jsp";
-            } else {
+            if (!userList.isEmpty()) {
+                User user = userList.get(0);
+                if (user.getRole().equals("USER")) {
+                    model.addAttribute("patients", userList); 
+                    model.addAttribute("roles", Rol.Roles);
+                    return "infoPatients.jsp";
+                }    
+                return "redirect:/admin/userList";
+            }else {
                 return "redirect:/admin/userList";
             }
             
