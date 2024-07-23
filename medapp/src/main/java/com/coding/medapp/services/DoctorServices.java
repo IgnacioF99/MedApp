@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.coding.medapp.models.Doctor;
@@ -19,6 +20,10 @@ public class DoctorServices {
     @Autowired
     private UserServices userServices;
     
+    @Autowired
+    @Lazy
+    private SpecialityServices specialityServices;
+    
    
     
 
@@ -30,6 +35,25 @@ public class DoctorServices {
         newDoctor.setLicense(num);
         newDoctor.setAvailability("A");
         return doctorRepository.save(newDoctor);
+    }
+    
+    public List<Doctor> findDoctorsBySpeciality(Long specialityId) {
+        Speciality mySpeciality = specialityServices.getSpeciality(specialityId);
+
+        if (mySpeciality == null) {
+            return Collections.emptyList(); // Si la especialidad no existe, devolver una lista vacía
+        }
+
+        List<Doctor> allDoctors = findAllDoctors();
+        List<Doctor> filteredDoctors = new ArrayList<>();
+
+        for (Doctor doctor : allDoctors) {
+            if (doctor.getSpecialitiesDoctor().contains(mySpeciality)) {
+                filteredDoctors.add(doctor);
+            }
+        }
+
+        return filteredDoctors;
     }
 
 	public Doctor getDoctor(Long id) {

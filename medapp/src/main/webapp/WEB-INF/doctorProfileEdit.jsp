@@ -47,24 +47,22 @@
                                 <form:input path="availability" class="form-control" name="availability"/>
                                 <form:errors path="availability" class="text-danger" />
                             </div>
+                              <div>
+                                <form:label class="inputLabel" path="specialitiesDoctor">Especialidad:</form:label>
+                                <form:select class="form-select" path="specialitiesDoctor">
+                                    <c:forEach items="${specialities}" var="speciality">
+                                        <form:option value="${speciality.id}">${speciality.name}</form:option>
+                                    </c:forEach>
+                                </form:select>
+                            </div>
                             <div class="form-group mt-5">
-		                        <label for="insurance" class="form-label">Obra social:</label>
-		                        <select id="insurance" name="insurance" class="form-select">
-		                            <option value="">Todas las obras sociales</option>
-		                            <c:forEach items="${healthInsurances}" var="insurance">
-		                                <option value="${insurance.name}">${insurance.name}</option>
-		                            </c:forEach>
-		                        </select>
-		                    </div>
-		                    <div class="form-group mt-5">
-		                        <label for="speciality" class="form-label">Especialidad:</label>
-		                        <select id="speciality" name="speciality" class="form-select">
-		                            <option value="">Todas las especialidades</option>
-		                            <c:forEach items="${specialities}" var="speciality">
-		                                <option value="${speciality.name}">${speciality.name}</option>
-		                            </c:forEach>
-		                        </select>
-		                    </div>
+                                <form:label class="inputLabel" path="insurance">Obra Social:</form:label>
+                                <form:select class="form-select" path="insurance">
+                                    <c:forEach items="${healthInsurances}" var="insurance">
+                                        <form:option value="${insurance.id}">${insurance.name}</form:option>
+                                    </c:forEach>
+                                </form:select>
+                            </div>
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                         </form:form>
