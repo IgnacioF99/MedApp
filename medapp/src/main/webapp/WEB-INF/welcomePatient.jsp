@@ -42,6 +42,10 @@
                     </div>
                     <button type="submit" class="btn btn-custom mt-3">Buscar</button>
                 </form>
+                <c:if test="${noDoctorsFound}">
+                    <div class="alert alert-danger mt-4">No se encontraron doctores con la especialidad seleccionada.</div>
+                </c:if>
+                
             </div>
             <div class="row d-flex justify-content-center pt-4">
                 <c:forEach var="doctor" items="${doctors}">
@@ -49,7 +53,7 @@
                         <div class="doctor-card card-wrapper">
                             <h5 class=" text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
                             <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.specialitiesDoctor}</p>
-                            <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
+                            <p class="card-text mb-1"><span>Matrï¿½cula:</span> ${doctor.license}</p>
                             <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
                             <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurance}</p>
                             <a href="#" class="btn btn-custom d-block">Agendar</a>

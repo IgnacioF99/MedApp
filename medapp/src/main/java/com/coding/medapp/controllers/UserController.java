@@ -155,6 +155,10 @@ public class UserController {
             } else {
                 // Filtrar doctores por la especialidad seleccionada
                 doctors = doctorServices.findDoctorsBySpeciality(specialityId);
+                if (doctors.isEmpty()) {
+                    model.addAttribute("noDoctorsFound", true);
+                }
+
             }
 
             // Agregamos la lista de doctores al modelo
