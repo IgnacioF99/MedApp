@@ -137,6 +137,38 @@ public class UserController {
          }
      
      }
+    
+    @GetMapping("/search")
+    public String SearchBySpeciality(@RequestParam(value="speciality", required= false) Long specialityId,
+                                    HttpSession session,  Model model) {
+        // =====REVISAMOS SESION=========
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+        if(userTemp == null) {
+            return "redirect:/login";
+        }
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+            List<Doctor> doctors;
+            if (specialityId == null) {
+                // Si no se selecciona ninguna especialidad, devolver todos los doctores
+                doctors = doctorServices.findAllDoctors();
+            } else {
+                // Filtrar doctores por la especialidad seleccionada
+                doctors = doctorServices.findDoctorsBySpeciality(specialityId);
+            }
+
+            // Agregamos la lista de doctores al modelo
+            model.addAttribute("doctors", doctors);
+            List<Speciality> specialities = specialityServices.findAllSpecialties();
+        	model.addAttribute("specialities", specialities);
+
+            // Devolvemos la vista correspondiente
+            return "welcomePatient.jsp";
+        }
+        else {
+            return "redirect:/";
+        }
+    }
         
 
     @GetMapping("/patient/edit/{id}")
