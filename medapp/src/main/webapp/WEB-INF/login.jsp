@@ -22,7 +22,7 @@ pageEncoding="ISO-8859-1"%>
     rel="stylesheet" />
 </head>
 
-<body class="bg-light">
+<body class="body-custom">
   <div class="container">
     <div class="row justify-content-center m-5">
       <div class="col-md-8">
@@ -49,7 +49,7 @@ pageEncoding="ISO-8859-1"%>
       </div>
     </div>
   </div>
-  
+
 
 </body>
 

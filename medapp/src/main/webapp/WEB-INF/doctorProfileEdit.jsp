@@ -23,7 +23,7 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-light">
+<body class="body-custom">
     <div class="container">
         <div class="row justify-content-center m-5">
             <div class="col-md-8">
@@ -42,11 +42,32 @@
                                 <form:input path="license" class="form-control" />
                                 <form:errors path="license" class="text-danger" />
                             </div>
-                            <div class="mb-4">
+                            <div>
                                 <form:label class="inputLabel" path="availability">Disponibilidad:</form:label>
-                                <form:input path="availability" class="form-control" name="availability"/>
+                                <form:input path="availability" class="form-control" name="availability" />
                                 <form:errors path="availability" class="text-danger" />
                             </div>
+<<<<<<< HEAD
+                            <div class="form-group">
+                                <label class="inputLabel" for="insurance" class="form-label">Obra social:</label>
+                                <select id="insurance" name="insurance" class="form-select">
+                                    <option value="">Todas las obras sociales</option>
+                                    <c:forEach items="${healthInsurances}" var="insurance">
+                                        <option value="${insurance.name}">${insurance.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="inputLabel" for="speciality" class="form-label">Especialidad:</label>
+                                <select id="speciality" name="speciality" class="form-select">
+                                    <option value="">Todas las especialidades</option>
+                                    <c:forEach items="${specialities}" var="speciality">
+                                        <option value="${speciality.name}">${speciality.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            <input type="hidden" name="doctor" value="${doctor.doctor.id}">
+=======
                               <div>
                                 <form:label class="inputLabel" path="specialitiesDoctor">Especialidad:</form:label>
                                 <form:select class="form-select" path="specialitiesDoctor">
@@ -64,12 +85,14 @@
                                 </form:select>
                             </div>
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
+>>>>>>> branch 'main' of https://github.com/IgnacioF99/MedApp.git
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
