@@ -159,6 +159,8 @@ public class UserController {
 
             // Agregamos la lista de doctores al modelo
             model.addAttribute("doctors", doctors);
+            List<Speciality> specialities = specialityServices.findAllSpecialties();
+        	model.addAttribute("specialities", specialities);
 
             // Devolvemos la vista correspondiente
             return "welcomePatient.jsp";
