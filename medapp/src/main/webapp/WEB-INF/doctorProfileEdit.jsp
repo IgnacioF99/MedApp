@@ -1,12 +1,12 @@
 <!-- Importacion para hacer html con jsp en spring -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!-- Importacion para usar recursos logicos de java -->    
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<!-- Importacion para usar recursos logicos de java -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- Me permite mostrar errores en las ediciones -->
-<%@ page isErrorPage="true" %>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,11 +32,6 @@
                         <h1 class="pb-3">Editar mi perfil</h1>
                         <form:form action="/doctor/update/${doctor.id}" method="post" modelAttribute="doctor">
                             <input type="hidden" name="_method" value="put">
-                            <div class="mb-3">
-                                <label for="profileImage" class="form-label inputLabel">Foto de Perfil</label>
-                                <input type="file" class="form-control" id="profileImage" name="profileImage"
-                                    accept="image/*">
-                            </div>
                             <div>
                                 <form:label class="inputLabel" path="license">Matricula:</form:label>
                                 <form:input path="license" class="form-control" />
@@ -47,10 +42,10 @@
                                 <form:input path="availability" class="form-control" name="availability" />
                                 <form:errors path="availability" class="text-danger" />
                             </div>
-<<<<<<< HEAD
+
                             <div class="form-group">
-                                <label class="inputLabel" for="insurance" class="form-label">Obra social:</label>
-                                <select id="insurance" name="insurance" class="form-select">
+                                <label class="inputLabel" for="insurance" class="form-label">Obra
+                                    social:</label> <select id="insurance" name="insurance" class="form-select">
                                     <option value="">Todas las obras sociales</option>
                                     <c:forEach items="${healthInsurances}" var="insurance">
                                         <option value="${insurance.name}">${insurance.name}</option>
@@ -67,26 +62,10 @@
                                 </select>
                             </div>
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}">
-=======
-                              <div>
-                                <form:label class="inputLabel" path="specialitiesDoctor">Especialidad:</form:label>
-                                <form:select class="form-select" path="specialitiesDoctor">
-                                    <c:forEach items="${specialities}" var="speciality">
-                                        <form:option value="${speciality.id}">${speciality.name}</form:option>
-                                    </c:forEach>
-                                </form:select>
+                            <div class="mt-3">
+                                <input type="submit" value="Guardar cambios" class="btn btn-custom">
+                                <a href="#" class="m-2">Volver</a>
                             </div>
-                            <div class="form-group mt-5">
-                                <form:label class="inputLabel" path="insurance">Obra Social:</form:label>
-                                <form:select class="form-select" path="insurance">
-                                    <c:forEach items="${healthInsurances}" var="insurance">
-                                        <form:option value="${insurance.id}">${insurance.name}</form:option>
-                                    </c:forEach>
-                                </form:select>
-                            </div>
-                            <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
->>>>>>> branch 'main' of https://github.com/IgnacioF99/MedApp.git
-                            <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                         </form:form>
                     </div>
                 </div>

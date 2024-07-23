@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InfoPacientes</title>
+    <title>Historial Medico</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
@@ -29,7 +29,7 @@
 			<div class="col-md-8">
 				<div class="card shadow">
 					<div class="card-body">
-						<h2 class="text-center mb-4">Historial Medico</h2>
+						<h2 class="text-center mb-4">Nuevo historial medico</h2>
 						<form:form action="/create" method="POST" modelAttribute="newMedicalHistory">
 							<div class="mb-3">
 								<form:label class="inputLabel" path="dni">DNI:</form:label>
@@ -58,8 +58,8 @@
                             </div>
 						</form:form>
                         <div class="text-center">
-                            <a href="/patient/edit/${user.id}" class="btn btn-custom">Crear Historial</a>
-                            <a href="/patient" class="p-2">Volver</a>
+                            <a href="#" class="btn btn-custom">Crear Historial</a>
+                            <a href="#" class="p-2">Volver</a>
                         </div>
 					</div>
 				</div>
