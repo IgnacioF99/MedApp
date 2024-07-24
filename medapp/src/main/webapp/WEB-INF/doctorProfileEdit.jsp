@@ -32,11 +32,6 @@
                         <h1 class="pb-3">Editar mi perfil</h1>
                         <form:form action="/doctor/update/${doctor.id}" method="post" modelAttribute="doctor">
                             <input type="hidden" name="_method" value="put">
-                            <div class="mb-3">
-                                <label for="profileImage" class="form-label inputLabel">Foto de Perfil</label>
-                                <input type="file" class="form-control" id="profileImage" name="profileImage"
-                                    accept="image/*">
-                            </div>
                             <div>
                                 <form:label class="inputLabel" path="license">Matricula:</form:label>
                                 <form:input path="license" class="form-control" />
@@ -48,33 +43,26 @@
                                 <form:errors path="availability" class="text-danger" />
                             </div>
                             <div class="form-group">
-                                <label class="inputLabel" for="speciality" class="form-label">Especialidad:</label>
-                                <select id="speciality" name="speciality" class="form-select">
+                                <label class="inputLabel" for="specialitiesDoctor" class="form-label">Especialidad:</label>
+                                <select id="speciality" name="specialitiesDoctor" class="form-select">
                                     <option value="">Todas las especialidades</option>
                                     <c:forEach items="${specialities}" var="speciality">
-                                        <option value="${speciality.name}">${speciality.name}</option>
+                                        <option value="${speciality.id}">${speciality.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
-                            <input type="hidden" name="doctor" value="${doctor.doctor.id}">
-                              <div>
-                                <form:label class="inputLabel" path="specialitiesDoctor">Especialidad:</form:label>
-                                <form:select class="form-select" path="specialitiesDoctor">
-                                    <c:forEach items="${specialities}" var="speciality">
-                                        <form:option value="${speciality.id}">${speciality.name}</form:option>
-                                    </c:forEach>
-                                </form:select>
-                            </div>
-                            <div class="form-group mt-5">
-                                <form:label class="inputLabel" path="insurance">Obra Social:</form:label>
-                                <form:select class="form-select" path="insurance">
+                             <div class="form-group">
+                                <label class="inputLabel" for="insurance">Obra Social</label>
+                                <select id="insurance" name="insurance" class="form-select">
+                                	<option value="">Todas las obras sociales</option>
                                     <c:forEach items="${healthInsurances}" var="insurance">
-                                        <form:option value="${insurance.id}">${insurance.name}</form:option>
+                                        <option value="${insurance.id}">${insurance.name}</option>
                                     </c:forEach>
-                                </form:select>
+                                </select>
                             </div>
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
+                             <a href="/doctor" class="m-2">Volver</a>
                         </form:form>
                     </div>
                 </div>
