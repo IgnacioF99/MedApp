@@ -47,7 +47,7 @@ function updateCalendar() {
                     // Agregar la clase 'clicked' para el efecto visual
                     cell.classList.add('clicked');
 
-                    // Opcional: quitar la clase después de un tiempo
+                    // quitar la clase después de un tiempo
                     setTimeout(() => {
                         cell.classList.remove('clicked');
                     }, 300); // Tiempo en milisegundos
