@@ -30,7 +30,10 @@
             </div>
             <img src="/img/logo2.png" alt="logoprincipal"
                 class="logo position-absolute start-50 translate-middle-x p-2">
-            <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+            <div>
+                <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+                <a href="/patient/${userInSession.id}" class=" btn btn-custom">Ir a mi perfil</a>
+            </div>
         </header>
         <main class="flex-grow-1 p-4">
             <div class="header-container mt-4 text-center">
