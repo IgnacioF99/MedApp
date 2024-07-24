@@ -1,0 +1,146 @@
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.calendar th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color:#023536;
+}
+
+.calendar .day {
+    height: 80px;
+    vertical-align: top;
+    cursor: pointer; /* Cambia el cursor al pasar sobre un día */
+    position: relative; /* Para efectos de pseudo-elementos */
+}
+
+.calendar .day:hover {
+    background-color: #e0f7fa; /* Cambia el color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    z-index: 1; /* Asegúrate de que el día esté por encima de otros elementos */
+}
+
+.calendar .day.today {
+    background-color: #dff0d8; /* Color para el día actual */
+}
+
+.calendar .day.clicked {
+    background-color: #b2ebf2; /* Color para el día clickeado */
+    animation: clickAnimation 0.3s ease; /* Animación al hacer clic */
+}
+
+@keyframes clickAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-container {
+    display: flex;
+    align-items: center;
+}
+
+.select-container label {
+    margin-right: 8px;
+}
+
+/* Estilos para el modal */
+.modal-header {
+    background-color:#7ce0a0;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body .form-control {
+    margin-bottom: 10px;
+}
+
+h1, h2, h3, h4 {
+    color: #008f8d;
+}
+
+p {
+    color: #023536;
+}
+
+header {
+    background-color: #e3ffff;
+    height: 100px;
+}
+
+.logo {
+    padding: 0;
+    height: 100px;
+    width: auto;
+}
+
+.btn-custom {
+    background-color: #7ce0a0;
+    color: #e3ffff;
+}
+
+.btn-custom:hover {
+    color:#008f8d;
+    background-color: #7ce0a0;
+
+}
+
+footer {
+    background-color:#008f8d;
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.text-muted {
+    margin: 3px;
+    color: #B2FFEF !important;
+}
+
+a {
+    color: #023536;
+}
+
+a:hover {
+    color:#7ce0a0;
+}
+
+.inputLabel, span {
+    color: #008f8d;
+    font-weight: 500;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    
+}
+
+.container-fluid {
+    padding: 0;
+    flex:1;
+}

@@ -23,15 +23,15 @@
 <div class="container-custom d-flex flex-column">
     <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
         <img src="img/logo2.png" alt="logoPrincipal" class="logo p-2" />
-        <span>Bienvenidx Admin ${userInSession.firstName}!</span>
+        <span class="text-center">Bienvenidx Admin ${userInSession.firstName}!</span>
         <div>
             <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
         </div>
     </header>
     <main class="p-4 flex-grow-1 d-flex justify-content-center align-items-center flex-column main-custom">
+        
         <h1 class="text-center mt-3">Gestion De Usuarios</h1>
-
-        <div class="row justify-content-center w-100 mt-5">
+        <div class="row justify-content-center w-100 mt-4">
             <div class="col-md-4 mb-3 d-flex justify-content-center">
                 <a href="/admin/userList" class="btn btn-custom btn-lg w-100 text-center p-4">Pacientes</a>
             </div>
@@ -41,6 +41,16 @@
             <div class="col-md-4 mb-3 d-flex justify-content-center">
                 <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
             </div>
+            
+            <h1 class="text-center mt-3">Gestion De Clinica</h1>
+        <div class="row justify-content-center w-100 mt-4">
+            <div class="col-md-4 mb-3 d-flex justify-content-center">
+                <a href="/admin/#" class="btn btn-custom btn-lg w-100 text-center p-4">Obras Sociales</a>
+            </div>
+            <div class="col-md-4 mb-3 d-flex justify-content-center">
+                <a href="/admin/#" class="btn btn-custom btn-lg w-100 text-center p-4">Especialidades</a>
+            </div>
+        </div>
              <div class="row">
                 <c:if test="${rol == 'patient'}">
                     <h2 class="text-center mt-3">Pacientes</h2>

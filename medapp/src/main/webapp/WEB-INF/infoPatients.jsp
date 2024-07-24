@@ -34,7 +34,7 @@
         </header>
         <main class="d-flex flex-column align-items-center main-custom">
             <h1 class="text-center">Pacientes</h1>
-            <!-- Contenedor del formulario de b�squeda -->
+            <!-- Contenedor del formulario de busqueda -->
             <div class="d-flex justify-content-center w-100 m-4">
                 <div class="d-flex align-items-center">
                     <form action="/admin/patient">

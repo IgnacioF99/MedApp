@@ -33,7 +33,7 @@
                         <form:form action="/patient/update/${user.id}" method="post" modelAttribute="user">
                             <input type="hidden" name="_method" value="put">
                             <input type="hidden" name="password" value="${user.password}">
-                            <!-- Campo oculto para contraseï¿½a -->
+                            <!-- Campo oculto para contraseña -->
                             <input type="hidden" name="confirm" value="${user.confirm}">
                             <input type="hidden" name="role" value="${user.role}">
                             <input type="hidden" name="dni" value="${user.dni}">
@@ -60,8 +60,10 @@
                                     </c:forEach>
                                 </form:select>
                             </div>
-
-                            <input type="submit" value="Guardar" class="btn btn-custom mt-3">
+                            <div class="mt-3">
+                                <input type="submit" value="Guardar cambios" class="btn btn-custom">
+                                <a href="#" class="m-2">Volver</a>
+                            </div>
                         </form:form>
                     </div>
                 </div>

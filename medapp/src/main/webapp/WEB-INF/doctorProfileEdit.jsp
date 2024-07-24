@@ -1,12 +1,12 @@
 <!-- Importacion para hacer html con jsp en spring -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!-- Importacion para usar recursos logicos de java -->    
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="ISO-8859-1"%>
+<!-- Importacion para usar recursos logicos de java -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!-- Me permite mostrar errores en las ediciones -->
-<%@ page isErrorPage="true" %>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,32 +42,32 @@
                                 <form:input path="availability" class="form-control" name="availability" />
                                 <form:errors path="availability" class="text-danger" />
                             </div>
-                            <div class="form-group">
-                                <label class="inputLabel" for="specialitiesDoctor" class="form-label">Especialidad:</label>
-                                <select id="speciality" name="specialitiesDoctor" class="form-select">
-                                    <option value="">Todas las especialidades</option>
-                                    <c:forEach items="${specialities}" var="speciality">
-                                        <option value="${speciality.id}">${speciality.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                             <div class="form-group">
-                                <label class="inputLabel" for="insurance">Obra Social</label>
-                                <select id="insurance" name="insurance" class="form-select">
-                                	<option value="">Todas las obras sociales</option>
-                                    <c:forEach items="${healthInsurances}" var="insurance">
-                                        <option value="${insurance.id}">${insurance.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
-                            <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
-                             <a href="/doctor" class="m-2">Volver</a>
-                        </form:form>
-                    </div>
+						    <div class="form-group">
+							    <label class="inputLabel" for="specialitiesDoctor" class="form-label">Especialidad:</label>
+							    <select id="speciality" name="specialitiesDoctor" class="form-select">
+							        <option value="">Todas las especialidades</option>
+							        <c:forEach items="${specialities}" var="speciality">
+							            <option value="${speciality.id}">${speciality.name}</option>
+							        </c:forEach>
+							    </select>
+							</div>
+							<div class="form-group">
+							    <label class="inputLabel" for="insurance">Obra Social</label>
+							    <select id="insurance" name="insurance" class="form-select">
+							        <option value="">Todas las obras sociales</option>
+							        <c:forEach items="${healthInsurances}" var="insurance">
+							            <option value="${insurance.id}">${insurance.name}</option>
+							        </c:forEach>
+							    </select>
+							</div>
+							<input type="hidden" name="doctor" value="${doctor.doctor.id}">
+							<input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
+							<a href="/doctor" class="m-2">Volver</a>		
+					</form:form>
                 </div>
             </div>
         </div>
+   	 </div>
     </div>
 </body>
 

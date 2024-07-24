@@ -1,110 +1,143 @@
-<!-- Importacion para hacer html con jsp en spring -->
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!-- Importacion para usar recursos logicos de java -->    
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- Me permite mostrar errores en las ediciones -->
 <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario de Citas Médicas</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .calendar {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .calendar th, .calendar td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        .calendar th {
-            background-color: #f2f2f2;
-        }
-        .calendar .day {
-            height: 80px;
-            vertical-align: top;
-        }
-        .calendar .today {
-            background-color: #dff0d8;
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .select-container {
-            display: flex;
-            align-items: center;
-        }
-        .select-container label {
-            margin-right: 8px;
-        }
-    </style>
+    <title>Calendario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/calendar.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-    <div class="container">
-        <div class="header-container mt-4">
-            <h1>Calendario de Citas Médicas</h1>
-            <div class="select-container">
-                <label for="monthSelect">Mes:</label>
-                <select id="monthSelect" class="form-control" onchange="updateCalendar()">
-                    <c:forEach var="month" items="${months}">
-                        <option value="${month}" <c:if test="${month eq param.month}">selected</c:if>>${month}</option>
-                    </c:forEach>
-                </select>
+    <div class="container-fluid d-flex flex-column">
+        <header class="d-flex justify-content-between align-items-center p-4 position-relative">
+            <div class="d-flex align-items-center">
+                <img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <p class="mb-0">${doctor.firstName} ${doctor.lastName}</p>
+                    <p class="mb-0">${doctor.speciality}</p>
+                    <p class="mb-0">${doctor.aviality}</p>
+                </div>
             </div>
-        </div>
-        <h3 class="text-center" id="monthYear"></h3>
-        <table class="calendar table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th>Dom</th>
-                    <th>Lun</th>
-                    <th>Mar</th>
-                    <th>Mié</th>
-                    <th>Jue</th>
-                    <th>Vie</th>
-                    <th>Sáb</th>
-                </tr>
-            </thead>
-            <tbody id="calendarBody">
-                <!-- Calendar rows will be inserted here -->
-            </tbody>
-        </table>
+            <img src="/img/logo2.png" alt="logoprincipal"
+                class="logo position-absolute start-50 translate-middle-x p-2">
+            <div>
+                <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+                <a href="/patient/${userInSession.id}" class=" btn btn-custom">Ir a mi perfil</a>
+            </div>
+        </header>
+        <main class="flex-grow-1 p-4">
+            <div class="header-container mt-4 text-center">
+                <h1>Calendario de Citas Médicas</h1>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="d-flex align-items-center me-3">
+                        <label class="inputLabel me-2" for="monthSelect">Mes:</label>
+                        <select id="monthSelect" class="form-control" onchange="updateCalendar()">
+                            <c:forEach var="month" items="${months}">
+                                <option value="${month}" <c:if test="${month eq param.month}">selected</c:if>
+                                    >${monthNames[month - 1]}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <label class="inputLabel me-2" for="yearSelect">Año:</label>
+                        <select id="yearSelect" class="form-control" onchange="updateCalendar()">
+                            <c:forEach begin="2024" end="2030" var="year">
+                                <option value="${year}" <c:if test="${year == param.year}">selected</c:if>>${year}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <h3 class="text-center mt-4" id="monthYear"></h3>
+            <table class="calendar table table-bordered mt-4 mb-5">
+                <thead>
+                    <tr>
+                        <th>Dom</th>
+                        <th>Lun</th>
+                        <th>Mar</th>
+                        <th>Mié</th>
+                        <th>Jue</th>
+                        <th>Vie</th>
+                        <th>Sáb</th>
+                    </tr>
+                </thead>
+                <tbody id="calendarBody">
+                    <!-- Calendar rows will be inserted here -->
+                </tbody>
+            </table>
+        </main>
+
+        <footer class="text-center mt-auto">
+            <p class="text-muted">&copy; 2024</p>
+        </footer>
     </div>
 
-    <!-- Modal para agregar citas -->
-    <div class="modal fade" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="appointmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="appointmentModal" tabindex="-1" role="dialog" aria-labelledby="appointmentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-white">
                     <h5 class="modal-title" id="appointmentModalLabel">Nueva Cita</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="btn-close btn-close-white " data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><!-- &times;- --></span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="appointmentForm" action="${pageContext.request.contextPath}/appointments/create" method="post">
+                    <form id="appointmentForm" action="${pageContext.request.contextPath}/appointments/create"
+                        method="post">
+                        <!-- Campo de fecha oculto -->
+                        <input type="hidden" id="appointmentDate" name="date" required>
                         <div class="form-group">
-                            <label for="appointmentTitle">Título</label>
-                            <input type="text" class="form-control" id="appointmentTitle" name="title" required>
+                            <label class="inputLabel" for="appointmentTime">Horario</label>
+                            <select class="form-select" id="appointmentTime" name="time" required>
+                                <c:forEach begin="8" end="23" var="hour">
+                                    <c:forEach begin="0" end="3" var="quarter">
+                                        <c:set var="minute" value="${quarter * 15}" />
+                                        <c:if test="${!(hour == 8 && quarter < 2) && !(hour == 23 && quarter == 3)}">
+                                            <c:set var="timeValue"
+                                                value="${hour < 10 ? '0' : ''}${hour}:${minute < 10 ? '0' : ''}${minute}" />
+                                            <option value="${timeValue}">${timeValue}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                                <c:set var="timeValue" value="23:30" />
+                                <option value="${timeValue}">${timeValue}</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="appointmentDate">Fecha</label>
-                            <input type="date" class="form-control" id="appointmentDate" name="date" required>
+                        <div class="form-group mt-3">
+                            <label class="inputLabel" for="obrasocial">Obra Social</label>
+                            <select class="form-select" id="obrasocial" name="insurance" onchange="updateDoctors()"
+                                required>
+                                <option value="">Selecciona una Obra Social</option>
+                                <option value="guardia_general">Guardia General</option>
+                                <option value="cardiologia">Cardiología</option>
+                                <option value="dermatologia">Dermatología</option>
+                                <option value="pediatria">Pediatría</option>
+                                <option value="ginecologia">Ginecología</option>
+                                <option value="neurologia">Neurología</option>
+                                <option value="medicina_general">Medicina General</option>
+                                <option value="traumatologia">Traumatología</option>
+                                <option value="oftalmologia">Oftalmología</option>
+                                <option value="otorrinolaringologia">Otorrinolaringología</option>
+                                <option value="endocrinologia">Endocrinología</option>
+                                <option value="psiquiatria">Psiquiatría</option>
+                                <option value="rehabilitacion">Rehabilitación</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="appointmentDescription">Descripción</label>
-                            <textarea class="form-control" id="appointmentDescription" name="description" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Guardar Cita</button>
+                        <button type="submit" class="btn btn-custom mt-3">Agendar Cita</button>
                     </form>
                 </div>
             </div>
@@ -113,64 +146,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCalendar();
-        });
-
-        function updateCalendar() {
-            const monthSelect = document.getElementById('monthSelect');
-            const month = parseInt(monthSelect.value);
-            // const year = ${year}; -----------------------> ERROR A ARREGLAR
-
-            const monthNames = [
-                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-            ];
-            const monthYear = document.getElementById('monthYear');
-            monthYear.textContent = monthNames[month - 1] + ' ' + year;
-
-            const calendarBody = document.getElementById('calendarBody');
-            calendarBody.innerHTML = '';
-
-            const firstDayOfMonth = new Date(year, month - 1, 1);
-            const lastDayOfMonth = new Date(year, month, 0);
-            const firstDayOfWeek = firstDayOfMonth.getDay();
-            const daysInMonth = lastDayOfMonth.getDate();
-
-            let date = 1;
-            for (let i = 0; i < 6; i++) {
-                const row = document.createElement('tr');
-
-                for (let j = 0; j < 7; j++) {
-                    const cell = document.createElement('td');
-                    if (i === 0 && j < firstDayOfWeek) {
-                        cell.innerHTML = '';
-                    } else if (date > daysInMonth) {
-                        break;
-                    } else {
-                        cell.innerHTML = date;
-                        cell.classList.add('day');
-                        if (date === new Date().getDate() && month - 1 === new Date().getMonth() && year === new Date().getFullYear()) {
-                            cell.classList.add('today');
-                        }
-                        cell.onclick = function() {
-                            // Al hacer clic en un día, abrir el modal para agregar una cita
-                            document.getElementById('appointmentDate').value = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
-                            $('#appointmentModal').modal('show');
-                        };
-                        date++;
-                    }
-                    row.appendChild(cell);
-                }
-
-                calendarBody.appendChild(row);
-
-                if (date > daysInMonth) {
-                    break;
-                }
-            }
-        }
-    </script>
+    <script src="/js/calendar.js"></script>
 </body>
+
 </html>
