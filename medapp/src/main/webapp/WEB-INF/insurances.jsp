@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Pacientes</title>
+    <title>Obras Sociales</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
@@ -60,7 +60,7 @@
                             <tr>
                                 <td class="text-center">${insurance.name}</td>
                                 <td class="text-center">
-                                    <input type="remove" class="btn btn-custom btn-sm" value="Dar De Baja">
+                                    <input type="remove" class="btn btn-custom btn-sm" value="Eliminar">
                                 </td>
                             </tr>
                         </c:forEach>
