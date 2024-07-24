@@ -47,7 +47,7 @@
                 </c:if>
                 
             </div>
-            <div class="row d-flex justify-content-center pt-4">
+            <div class="row d-flex justify-content-center pt-4 mb-4">
                 <c:forEach var="doctor" items="${doctors}">
                     <div class="col-md-4 col-lg-3 d-flex justify-content-center">
                         <div class="doctor-card card-wrapper">

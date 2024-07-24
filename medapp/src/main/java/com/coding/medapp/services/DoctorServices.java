@@ -51,6 +51,7 @@ public class DoctorServices {
             if (doctor.getSpecialitiesDoctor().contains(mySpeciality)) {
                 filteredDoctors.add(doctor);
             }
+            
         }
 
         return filteredDoctors;
