@@ -66,7 +66,7 @@
                     </div>
                 </c:if>
                 <div class="mt-3 text-center">
-                    <a href="/patient/edit/${patient.id}" class="btn btn-custom">Editar</a>
+                    <a href="/patient/edit/${user.id}" class="btn btn-custom">Editar</a>
                     <a href="/patient" class="p-2">Volver</a>
                 </div>
             </div>

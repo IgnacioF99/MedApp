@@ -53,7 +53,7 @@
                         <div class="doctor-card card-wrapper">
                             <h5 class=" text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
                             <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.specialitiesDoctor}</p>
-                            <p class="card-text mb-1"><span>Matr�cula:</span> ${doctor.license}</p>
+                            <p class="card-text mb-1"><span>Matricula:</span> ${doctor.license}</p>
                             <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
                             <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurance}</p>
                             <a href="#" class="btn btn-custom d-block">Agendar</a>

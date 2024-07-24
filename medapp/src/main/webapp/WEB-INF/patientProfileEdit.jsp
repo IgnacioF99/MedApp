@@ -62,7 +62,7 @@
                             </div>
                             <div class="mt-3">
                                 <input type="submit" value="Guardar cambios" class="btn btn-custom">
-                                <a href="#" class="m-2">Volver</a>
+                                <a href="/patient" class="m-2">Volver</a>
                             </div>
                         </form:form>
                     </div>
