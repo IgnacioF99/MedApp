@@ -13,6 +13,7 @@
 .calendar th {
     background-color: #f2f2f2;
     font-weight: bold;
+    color:#023536;
 }
 
 .calendar .day {
@@ -66,8 +67,7 @@
 
 /* Estilos para el modal */
 .modal-header {
-    background-color: #007bff;
-    color: white;
+    background-color:#7ce0a0;
 }
 
 .modal-body {
@@ -78,12 +78,69 @@
     margin-bottom: 10px;
 }
 
-.modal-body .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+h1, h2, h3, h4 {
+    color: #008f8d;
 }
 
-.modal-body .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+p {
+    color: #023536;
+}
+
+header {
+    background-color: #e3ffff;
+    height: 100px;
+}
+
+.logo {
+    padding: 0;
+    height: 100px;
+    width: auto;
+}
+
+.btn-custom {
+    background-color: #7ce0a0;
+    color: #e3ffff;
+}
+
+.btn-custom:hover {
+    color:#008f8d;
+    background-color: #7ce0a0;
+
+}
+
+footer {
+    background-color:#008f8d;
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.text-muted {
+    margin: 3px;
+    color: #B2FFEF !important;
+}
+
+a {
+    color: #023536;
+}
+
+a:hover {
+    color:#7ce0a0;
+}
+
+.inputLabel, span {
+    color: #008f8d;
+    font-weight: 500;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+    
+}
+
+.container-fluid {
+    padding: 0;
+    flex:1;
 }
