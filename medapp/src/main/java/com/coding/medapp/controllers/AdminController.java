@@ -138,17 +138,17 @@ public class AdminController {
     public String addInsurance(@Valid @ModelAttribute("newInsurance") HealthInsurance insurance, 
                                 @RequestParam(value="name", required = false) String insuranceName,
                                 BindingResult result, HttpSession session, Model model) {
-        if (insuranceName == null || insuranceName.trim().isEmpty()) {
-            List<HealthInsurance> insurances = healthInsuranceServices.findAllHealthInsurances();
-            model.addAttribute("insurances", insurances);
-            model.addAttribute("errorMessage", "El nombre del seguro es obligatorio."); // Mensaje de error
-            return "insurances.jsp";
+        if (insuranceName.length() == 0) {
+            return "redirect:/admin/insuranceList";
         } else {
             insurance.setName(insuranceName);
             healthInsuranceServices.saveHealthInsurance(insurance);
             return "redirect:/admin/insuranceList";
         }
     }
+    
+    
+
     
     @DeleteMapping("/admin/insuranceList/delete/{id}")
     public String deleteInsurance(@PathVariable("id") Long id, HttpSession session) {
@@ -227,7 +227,7 @@ public class AdminController {
     public String addSpeciality(@Valid @ModelAttribute("newSpeciality") Speciality speciality, 
                                 @RequestParam(value="name", required = false) String specialityName,
                                 BindingResult result, HttpSession session, Model model) {
-        if (specialityName == null) {
+        if (specialityName.length() == 0) {
             return "redirect:/admin/specialitiesList";
         } else {
             speciality.setName(specialityName);

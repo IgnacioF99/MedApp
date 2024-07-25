@@ -41,7 +41,7 @@
 			            <label class="inputLabel" for="name">Nueva Especialidad:</label>
 			        </div>
 			        <div class="col-auto">
-			            <input type="text" id="name" name="specialityName" class="form-control" style="width: 250px;" />
+			            <input type="text" id="name" name="name" class="form-control" style="width: 250px;" />
 			        </div>
 			        <div class="col-auto">
 			            <input type="submit" class="btn btn-custom btn-sm p-1" value="Agregar">

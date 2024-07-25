@@ -20,8 +20,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name="specialties")
@@ -31,8 +30,6 @@ public class Speciality {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="Name is required.")
-	@Size(min=2, message="Name needs at least 2 chars")
 	private String name;
 	
 	@Column(updatable=false)
