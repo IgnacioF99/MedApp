@@ -54,7 +54,7 @@
 				                                Hora: ${appointment.appointmentTime} <br>
 				                                Profesional: ${appointment.doctor}
 				                            </p>
-				                            <form action="/cancelarTurno" method="post">
+				                            <form action="/cancelAppointment/${appointment.id}" method="post">
 				                                <input type="hidden" name="turnoId" value="${appointment.id}">
 				                                <input type="submit" class="btn btn-custom btn-sm" value="Cancelar turno">
 				                            </form>

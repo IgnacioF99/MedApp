@@ -93,6 +93,8 @@ public class Doctor {
 	//---------------------- Constructor Empty --------------
 	public Doctor() {}
 	
+	
+	
 	 public String getSpecialitiesDoctors() {
 	        if (specialitiesDoctor == null || specialitiesDoctor.isEmpty()) {
 	            return "Ninguna especialidad";
@@ -111,6 +113,8 @@ public class Doctor {
 		            .map(HealthInsurance::getName) // Obtener el nombre de cada obra social
 		            .collect(Collectors.joining(", ")); // Unir los nombres con una coma y espacio
 		}
+	 
+	 
 	
 	
 	public Long getId() {
@@ -221,6 +225,13 @@ public class Doctor {
 	public void setInsurance(List<HealthInsurance> insurance) {
 		this.insurance = insurance;
 	}
+	
+	@Override
+	public String toString() {
+	    return doctor != null ? doctor.getFirstName() + " " + doctor.getLastName() : "Doctor desconocido";
+	}
+
+	
 
 	@PrePersist //Before creating a user
 	protected void onCreate() {
@@ -236,3 +247,5 @@ public class Doctor {
 	
 	//------------ PrePersist -------------------
 }
+
+

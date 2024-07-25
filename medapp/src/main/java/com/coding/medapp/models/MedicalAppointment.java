@@ -67,13 +67,33 @@ public class MedicalAppointment {
     
     public MedicalAppointment() {}
     
+    
+    
     //----------------------------------
+    
+    
 
-    public Long getId() {
+   
+    
+    
+
+
+
+	public Long getId() {
         return id;
     }
+   
 
-    public void setId(Long id) {
+
+
+	@Override
+	public String toString() {
+		return "MedicalAppointment [appointmentSpeciality=" + appointmentSpeciality + "]";
+	}
+
+
+
+	public void setId(Long id) {
         this.id = id;
     }
     

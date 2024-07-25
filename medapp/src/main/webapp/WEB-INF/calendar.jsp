@@ -141,7 +141,7 @@
 					        <label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
 					        <select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
 					            <c:forEach items="${specialities}" var="speciality">
-					                <option value="${speciality.id}">${speciality.name}</option>
+					                <option value="${speciality.name}">${speciality.name}</option>
 					            </c:forEach>
 					        </select>
 					    </div>

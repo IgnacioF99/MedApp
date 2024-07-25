@@ -26,6 +26,7 @@ import com.coding.medapp.models.Speciality;
 import com.coding.medapp.models.User;
 import com.coding.medapp.services.DoctorServices;
 import com.coding.medapp.services.HealthInsuranceServices;
+import com.coding.medapp.services.MedicalAppointmentService;
 import com.coding.medapp.services.SpecialityServices;
 import com.coding.medapp.services.UserServices;
 
@@ -46,6 +47,9 @@ public class UserController {
     
     @Autowired
     private DoctorServices doctorServices;
+    
+    @Autowired
+    private MedicalAppointmentService medicalAppointmentServices;
 
     // Entramos a Register
     @GetMapping("/register")
@@ -133,6 +137,7 @@ public class UserController {
                 if (appointments.isEmpty()) {
                     model.addAttribute("noAppointments", true);
                 } else {
+                	
                     model.addAttribute("noAppointments", false);
                     model.addAttribute("appointments", appointments);
                 }
@@ -304,4 +309,27 @@ public class UserController {
         model.addAttribute("users", userServices.findAllUsers());
         return "users.jsp";
     }
+    
+    
+    //Cancelar turno
+    @PostMapping("/cancelAppointment/{id}")
+    public String deleteAppointment(@PathVariable("id")Long id,HttpSession session) {
+    	User userTemp = (User) session.getAttribute("userInSession");
+        
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+
+        // =====REVISAMOS SU ROL========
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+        	MedicalAppointment cancelDate = medicalAppointmentServices.getAppointmentById(id);
+            // Elimina la especialidad con el ID proporcionado
+            medicalAppointmentServices.deleteAppointment(cancelDate);
+            return "redirect:/patient/" + userTemp.getId();
+        } else {
+            return "redirect:/";
+        }
+    }
+    
 }
+
