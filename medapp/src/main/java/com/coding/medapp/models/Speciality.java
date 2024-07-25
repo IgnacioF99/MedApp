@@ -4,6 +4,7 @@ package com.coding.medapp.models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -54,11 +55,26 @@ public class Speciality {
 	public Speciality(){	
 	}
 	
+	
+	
+	
+	
 	//Getters and Setters
+
+	
 
 	public Long getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return  name;
+	}
+
+
+
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -94,10 +110,7 @@ public class Speciality {
 
 	//PrePersist
 	
-	@Override
-	public String toString() {
-		return  name;
-	}
+
 
 	@PrePersist //Before creating a user
 	protected void onCreate() {

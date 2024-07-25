@@ -50,10 +50,10 @@
                     <div class="col-md-3 d-flex justify-content-center">
                         <div class="doctor-card">
                             <h5 class="mb-3 text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
-                            <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.specialitiesDoctor}</p>
+                            <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.specialitiesDoctors}</p>
                             <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
                             <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
-                            <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurance}</p>
+                            <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
                             <a href="/patient/calendar/${doctor.id}" class="btn btn-custom d-block">Agendar</a>
                         </div>
                     </div>

@@ -2,6 +2,7 @@ package com.coding.medapp.models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -68,14 +69,38 @@ public class Doctor {
 		inverseJoinColumns = @JoinColumn(name = "healthInsurance_id")
 	)
 	private List<HealthInsurance> insurance;
+	
+	
+	
 
 	//---------------------- Constructor Empty --------------
 	public Doctor() {}
+	
+	 public String getSpecialitiesDoctors() {
+	        if (specialitiesDoctor == null || specialitiesDoctor.isEmpty()) {
+	            return "Ninguna especialidad";
+	        }
+	        return specialitiesDoctor.stream()
+	                .map(Speciality::getName) // Obtener el nombre de cada especialidad
+	                .collect(Collectors.joining(", ")); // Unir los nombres con una coma y espacio
+	    }
 	//---------------------- Constructor Empty ---------------
 
+	 public String getInsurancesDoctor() {
+		    if (insurance == null || insurance.isEmpty()) {
+		        return "Ninguna obra social";
+		    }
+		    return insurance.stream()
+		            .map(HealthInsurance::getName) // Obtener el nombre de cada obra social
+		            .collect(Collectors.joining(", ")); // Unir los nombres con una coma y espacio
+		}
+	
+	
 	public Long getId() {
 		return id;
 	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;

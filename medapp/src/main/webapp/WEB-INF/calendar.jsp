@@ -24,7 +24,7 @@
                 <img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2" width="50" height="50">
                 <div>
                     <p class="mb-0">${user.firstName} ${user.lastName}</p>
-                    <p class="mb-0">${doctor.specialitiesDoctor}</p>
+                    <p class="mb-0">${doctor.specialitiesDoctors}</p>
                     <p class="mb-0">${doctor.availability}</p>
                 </div>
             </div>
@@ -137,6 +137,14 @@
                             <select class="form-select" id="insurance" name="insurance" onchange="updateDoctors()" required>   
                             	<c:forEach  items="${insurances}" var="insurance">
                             		<option value="${insurance.id}">${insurance.name}</option>
+                            	</c:forEach>               
+                            </select>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="inputLabel" for="speciality">Obra Social</label>
+                            <select class="form-select" id="speciality" name="specialitiesDoctor" onchange="updateDoctors()" required>   
+                            	<c:forEach  items="${specialities}" var="speciality">
+                            		<option value="${speciality.id}">${speciality.name}</option>
                             	</c:forEach>               
                             </select>
                         </div>

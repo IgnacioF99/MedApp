@@ -232,9 +232,11 @@ public class UserController {
         	Doctor myDoctor = doctorServices.getDoctor(id);
             User myUser = myDoctor.getDoctor();
             List<HealthInsurance> insurances = myDoctor.getInsurance();
+            List<Speciality> specialities = myDoctor.getSpecialitiesDoctor();
             model.addAttribute("user", myUser);
             model.addAttribute("doctor", myDoctor); 
             model.addAttribute("insurances", insurances);
+            model.addAttribute("specialities", specialities);
             
         	return "calendar.jsp";
         }else {

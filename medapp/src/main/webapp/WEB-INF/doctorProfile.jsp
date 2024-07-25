@@ -37,8 +37,8 @@
                             <label class="form-label inputLabel">Disponibilidad:</label>
                             <p class="card-text">${doctor.availability}</p>
                         </div>
-                        <p class="card-text"><span>Especialidad:</span> ${doctor.specialitiesDoctor}</p>
-                        <p class="card-text"><span>Obra Social:</span> ${doctor.insurance}</p>
+                        <p class="card-text"><span>Especialidad:</span> ${doctor.specialitiesDoctors}</p>
+                        <p class="card-text"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
                     </div>
                     <div class="card-footer text-center">
                         <a href="/doctor/edit/${doctor.id}" class="btn btn-custom">Editar</a>

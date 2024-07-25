@@ -42,7 +42,6 @@
                                 <form:input path="availability" class="form-control" name="availability" />
                                 <form:errors path="availability" class="text-danger" />
                             </div>
-<<<<<<< HEAD
                             <div class="form-group">
                                 <label class="inputLabel" for="specialitiesDoctor" class="form-label">Especialidad:</label>
                                 <select id="speciality" name="specialitiesDoctor" class="form-select">
