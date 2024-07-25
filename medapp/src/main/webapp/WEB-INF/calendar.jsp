@@ -26,6 +26,7 @@
                     <p class="mb-0">${user.firstName} ${user.lastName}</p>
                     <p class="mb-0">${doctor.specialitiesDoctors}</p>
                     <p class="mb-0">${doctor.availability}</p>
+                    <p class="mb-0">${doctor.startTime} ${doctor.endTime}</p>
                 </div>
             </div>
             <img src="/img/logo2.png" alt="logoprincipal"
@@ -111,37 +112,28 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="appointmentForm" action="${pageContext.request.contextPath}/appointments/create"
-                        method="post">
+                    <form:form id="appointmentForm" modelAttribute="newAppointment" action="${pageContext.request.contextPath}/appointments/create"
+  method="post">
                         <!-- Campo de fecha oculto -->
-                        <input type="hidden" id="appointmentDate" name="date" required>
+						<input type="hidden" id="appointmentDate" name="date" required>
                         <div class="form-group">
                             <label class="inputLabel" for="appointmentTime">Horario</label>
                             <select class="form-select" id="appointmentTime" name="time" required>
-                                <c:forEach begin="8" end="23" var="hour">
-                                    <c:forEach begin="0" end="3" var="quarter">
-                                        <c:set var="minute" value="${quarter * 15}" />
-                                        <c:if test="${!(hour == 8 && quarter < 2) && !(hour == 23 && quarter == 3)}">
-                                            <c:set var="timeValue"
-                                                value="${hour < 10 ? '0' : ''}${hour}:${minute < 10 ? '0' : ''}${minute}" />
-                                            <option value="${timeValue}">${timeValue}</option>
-                                        </c:if>
-                                    </c:forEach>
+                                <c:forEach items="${times}" var="time">
+                                    <option value="${time}">${time}</option>
                                 </c:forEach>
-                                <c:set var="timeValue" value="23:30" />
-                                <option value="${timeValue}">${timeValue}</option>
                             </select>
                         </div>
                         <div class="form-group mt-3">
-                            <label class="inputLabel" for="insurance">Obra Social</label>
-                            <select class="form-select" id="insurance" name="insurance" onchange="updateDoctors()" required>   
+                            <label class="inputLabel" for="appointmentInsurance">Obra Social</label>
+                            <select class="form-select" id="appointmentInsurance" name="appointmentInsurance" onchange="updateDoctors()" required>   
                             	<c:forEach  items="${insurances}" var="insurance">
                             		<option value="${insurance.id}">${insurance.name}</option>
                             	</c:forEach>               
                             </select>
                         </div>
                         <div class="form-group mt-3">
-                            <label class="inputLabel" for="speciality">Obra Social</label>
+                            <label class="inputLabel" for="speciality">Especialidad</label>
                             <select class="form-select" id="speciality" name="specialitiesDoctor" onchange="updateDoctors()" required>   
                             	<c:forEach  items="${specialities}" var="speciality">
                             		<option value="${speciality.id}">${speciality.name}</option>
@@ -149,7 +141,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-custom mt-3">Agendar Cita</button>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

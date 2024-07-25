@@ -60,6 +60,17 @@
                                     </c:forEach>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label class="inputLabel" for="startTime">Hora de Entrada:</label>
+                                <form:input type="time" path="startTime" id="startTime" class="form-control" />
+                                <form:errors path="startTime" class="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <label class="inputLabel" for="endTime">Hora de Salida:</label>
+                                <form:input type="time" path="endTime" id="endTime" class="form-control" />
+                                <form:errors path="endTime" class="text-danger" />
+                            </div>
+                            
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
                             <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
                              <a href="/doctor" class="m-2">Volver</a>

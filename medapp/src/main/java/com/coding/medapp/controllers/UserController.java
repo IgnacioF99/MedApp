@@ -1,5 +1,8 @@
 package com.coding.medapp.controllers;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -237,7 +240,17 @@ public class UserController {
             model.addAttribute("doctor", myDoctor); 
             model.addAttribute("insurances", insurances);
             model.addAttribute("specialities", specialities);
+            List<String> times = new ArrayList<>();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+            LocalTime startTime = myDoctor.getStartTime();
+            LocalTime endTime = myDoctor.getEndTime();
+
+            for (LocalTime time = startTime; time.isBefore(endTime) || time.equals(endTime); time = time.plusMinutes(15)) {
+                times.add(time.format(formatter));
+            }
             
+            model.addAttribute("times", times);
         	return "calendar.jsp";
         }else {
         	return "redirect:/";

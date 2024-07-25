@@ -1,5 +1,6 @@
 package com.coding.medapp.services;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +35,8 @@ public class DoctorServices {
         newDoctor.setDoctor(doctor);
         newDoctor.setLicense(num);
         newDoctor.setAvailability("A");
+        newDoctor.setEndTime(LocalTime.of(00,00));
+        newDoctor.setStartTime(LocalTime.of(00, 00));
         return doctorRepository.save(newDoctor);
     }
     

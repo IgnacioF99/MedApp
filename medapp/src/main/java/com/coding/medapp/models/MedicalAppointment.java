@@ -18,6 +18,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -41,6 +42,12 @@ public class MedicalAppointment {
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
+    
+    @NotEmpty(message="Insurance must be required")
+    private String appointmentInsurance;
+    
+    @NotEmpty(message="Speciality must be required")
+    private String appointmentSpeciality;
     
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;

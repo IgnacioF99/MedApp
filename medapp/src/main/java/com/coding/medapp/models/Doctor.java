@@ -1,5 +1,7 @@
 package com.coding.medapp.models;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +41,16 @@ public class Doctor {
 	
 	@NotEmpty(message="Must be required")
 	private String availability;
+	
+	@DateTimeFormat(pattern = "HH:mm")
+	@NotNull(message="Start time is required")	
+	private LocalTime startTime;
+	
+	@NotNull(message="End time is required")
+	@DateTimeFormat(pattern = "HH:mm")
+	private LocalTime endTime;
+	
+	
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -153,6 +165,26 @@ public class Doctor {
 
 	public void setAvailability(String availability) {
 		this.availability = availability;
+	}
+	
+	
+	
+
+
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
+	}
+
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
 	}
 
 	public List<Speciality> getSpecialitiesDoctor() {

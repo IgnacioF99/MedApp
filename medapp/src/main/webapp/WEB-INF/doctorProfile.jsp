@@ -37,6 +37,8 @@
                             <label class="form-label inputLabel">Disponibilidad:</label>
                             <p class="card-text">${doctor.availability}</p>
                         </div>
+                        <p class="card-text"><span>Hora de Inicio:</span>${doctor.startTime}</p>
+                        <p class="card-text"><span>Hora de Salida:</span>${doctor.endTime}</p>
                         <p class="card-text"><span>Especialidad:</span> ${doctor.specialitiesDoctors}</p>
                         <p class="card-text"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
                     </div>
