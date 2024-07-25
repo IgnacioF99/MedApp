@@ -39,17 +39,22 @@
                         <tr class="custom-tr">
                             <th class="text-center">DNI</th>
                             <th class="text-center">Nombre</th>
-                            <th class="text-center">Licencia</th>
                             <th class="text-center">E-mail</th>
+                            <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${admins}" var="admin">
                             <tr>
-                                <td>${admin.dni}</td>
-                                <td>${admin.firstName} ${admin.lastName}</td>
-                                <td>${admin.insurance.name}</td>
-                                <td>${admin.email}</td>
+                                <td class="text-center">${admin.dni}</td>
+                                <td class="text-center">${admin.firstName} ${admin.lastName}</td>
+                                <td class="text-center">${admin.email}</td>
+                                <td class="text-center">
+                                <form action="#" method="POST">
+								    <input type="hidden" name="_method" value="DELETE"/>
+								    <input type="submit" class="btn btn-custom btn-sm" value="Eliminar">
+								</form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

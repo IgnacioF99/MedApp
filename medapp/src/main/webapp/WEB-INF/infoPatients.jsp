@@ -36,15 +36,13 @@
             <h1 class="text-center">Pacientes</h1>
             <!-- Contenedor del formulario de busqueda -->
             <div class="d-flex justify-content-center w-100 m-4">
-                <div class="d-flex align-items-center">
-                    <form action="/admin/patient">
-                        <div class="form-group me-2">
+                <form action="/admin/patient" class="d-flex align-items-center justify-content-center w-50">
+                    <div class="form-group me-2 w-50">
                         <label for="searchDNI" class="visually-hidden">Buscar por DNI:</label>
                         <input type="text" id="searchDNI" name="dni" class="form-control" placeholder="Ingrese DNI">
-                        </div>
-                        <input class="btn btn-custom" type="submit" value="Buscar">
-                    </form>
-                </div>
+                    </div>
+                    <input class="btn btn-custom" type="submit" value="Buscar">
+                </form>
             </div>
             <div class="d-flex justify-content-center w-100 mt-2">
                 <table class="table table-hover w-75">
@@ -60,22 +58,24 @@
                     <tbody>
                         <c:forEach items="${patients}" var="patient">
                             <tr>
-                                <td>${patient.dni}</td>
-                                <td>${patient.firstName} ${patient.lastName}</td>
-                                <td>${patient.insurance.name}</td>
-                                <td>${patient.email}</td>
-                                <td>
-                                    
-                                    <form action="/patient/editRole/${patient.id}" method="POST">
+                                <td class="text-center">${patient.dni}</td>
+                                <td class="text-center">${patient.firstName} ${patient.lastName}</td>
+                                <td class="text-center">${patient.insurance.name}</td>
+                                <td class="text-center">${patient.email}</td>
+                                <td class="text-center">
+                                    <form action="/patient/editRole/${patient.id}" method="POST" class="d-inline-flex align-items-center justify-content-center">
                                         <input type="hidden" name="_method" value="PUT">
-                                        <label for="roleid">${patient.role}</label>
                                         <select class="form-select" name="role" id="roleid">
                                             <c:forEach items="${roles}" var="role">
                                                 <option value="${role}">${role}</option>
                                             </c:forEach>
                                         </select>
-                                        <input type="submit" class="btn btn-success mt-3" value="Save">
+                                        <input type="submit" class="btn btn-custom me-1" value="Save">
                                     </form>
+                                    <form action="#" method="#" class="d-inline-flex align-items-center">
+								    <input type="hidden" name="_method" value="DELETE"/>
+								    <input type="submit" class="btn btn-custom" value="Eliminar">
+								</form>
                                 </td>
                             </tr>
                         </c:forEach>
