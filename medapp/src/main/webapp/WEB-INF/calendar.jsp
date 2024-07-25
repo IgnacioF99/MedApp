@@ -114,8 +114,8 @@
                 <div class="modal-body">
                    <form:form modelAttribute="newAppointment" action="/appointments/create" method="POST">
                    		<input type="hidden" id="appointmentDate" name="appointmentDate" required>
-					    <input type="hidden" id="doctor" name="doctorId" value="${doctor.id}" required>
-					    <input type="hidden" id="patient" name="patientId" value="${userInSession.id}" required>
+					    <input type="hidden" id="doctor" name="doctor" value="${doctor.id}" required>
+					    <input type="hidden" id="patient" name="patient" value="${userInSession.id}" required>
 					    <input type="hidden" id="status" name="status" value="Scheduled">
 					    
 					    <!-- Otros campos del formulario -->

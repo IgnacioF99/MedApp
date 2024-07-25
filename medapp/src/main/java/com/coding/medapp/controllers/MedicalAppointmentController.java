@@ -53,6 +53,7 @@ public class MedicalAppointmentController {
             // Establece el estado de la cita
             newAppointment.setStatus("Scheduled");
             
+            
             // Crea la cita en la base de datos
             appointmentService.createAppointment(newAppointment);
             

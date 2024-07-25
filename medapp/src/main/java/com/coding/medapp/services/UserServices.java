@@ -138,4 +138,10 @@ public class UserServices {
         }
         return userdni;
     }
+    
+    public void deleteUser(Long id) {
+    	userRepository.deleteById(id);
+    }
+    
+    
 }

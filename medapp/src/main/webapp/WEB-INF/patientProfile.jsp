@@ -36,39 +36,35 @@
                     <p><span>E-mail:</span> ${user.email}</p>
                     <p><span>Obra Social:</span> ${user.insurance.name}</p>
                 </div>
-                <form action="/perfil" method="get">
-                    <input type="hidden" name="mostrarTurnos" value="true">
-                    <input type="submit" class="btn btn-custom btn-block mt-3" value="Mis turnos">
-                </form>
-                <c:if test="${not empty turnosPendientes}">
-                    <div class="mt-3">
-                        <div class="row">
-                            <c:forEach var="turno" items="${turnosPendientes}">
-                                <div class="col-md-5">
-                                    <div class="card card-turno">
-                                        <div class="card-body">
-                                            <h5>Especialidad: ${turno.especialidad}</h5>
-                                            <p class="card-text">
-                                                Fecha: ${turno.fecha} <br>
-                                                Hora: ${turno.hora} <br>
-                                                Profesional: ${turno.doctor}
-                                            </p>
-                                            <form action="/cancelarTurno" method="post">
-                                                <input type="hidden" name="turnoId" value="${turno.id}">
-                                                <input type="submit" class="btn btn-custom btn-sm"
-                                                    value="Cancelar turno">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </div>
-                    </div>
-                </c:if>
                 <div class="mt-3 text-center">
                     <a href="/patient/edit/${user.id}" class="btn btn-custom">Editar</a>
                     <a href="/patient" class="p-2">Volver</a>
                 </div>
+                <h3 class="text-center">Mis turnos</h3>
+               	<c:if test="${!noAppointments}">
+				    <div class="mt-3">
+				        <div class="row">
+				            <c:forEach var="appointment" items="${appointments}">
+				                <div class="col-md-5">
+				                    <div class="card card-turno">
+				                        <div class="card-body">
+				                            <h5>Especialidad: ${appointment.appointmentSpeciality}</h5>
+				                            <p class="card-text">
+				                                Fecha: ${appointment.appointmentDate} <br>
+				                                Hora: ${appointment.appointmentTime} <br>
+				                                Profesional: ${appointment.doctor}
+				                            </p>
+				                            <form action="/cancelarTurno" method="post">
+				                                <input type="hidden" name="turnoId" value="${appointment.id}">
+				                                <input type="submit" class="btn btn-custom btn-sm" value="Cancelar turno">
+				                            </form>
+				                        </div>
+				                    </div>
+				                </div>
+				            </c:forEach>
+				        </div>
+				    </div>
+				</c:if>
             </div>
         </div>
     </div>

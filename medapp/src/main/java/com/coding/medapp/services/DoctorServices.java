@@ -76,6 +76,10 @@ public class DoctorServices {
     public void removeDoctor(Doctor doctorRemove){
         doctorRepository.delete(doctorRemove);
     }
+    
+    public void removeDoctorById(Long id) {
+    	doctorRepository.deleteById(id);
+    }
 }
 	
 	

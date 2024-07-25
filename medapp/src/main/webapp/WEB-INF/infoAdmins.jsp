@@ -50,7 +50,7 @@
                                 <td class="text-center">${admin.firstName} ${admin.lastName}</td>
                                 <td class="text-center">${admin.email}</td>
                                 <td class="text-center">
-                                <form action="#" method="POST">
+                                <form action="/adminDelete/${admin.id}" method="POST">
 								    <input type="hidden" name="_method" value="DELETE"/>
 								    <input type="submit" class="btn btn-custom btn-sm" value="Eliminar">
 								</form>

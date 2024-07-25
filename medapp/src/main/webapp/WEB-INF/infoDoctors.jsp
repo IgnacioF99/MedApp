@@ -68,7 +68,7 @@
                                         </select>
                                         <input type="submit" class="btn btn-custom me-1" value="Save">
                                     </form>
-                                <form action="#" method="#" class="d-inline-flex align-items-center">
+                                <form action="/doctorDelete/${doctor.id}" method="POST" class="d-inline-flex align-items-center">
 								    <input type="hidden" name="_method" value="DELETE"/>
 								    <input type="submit" class="btn btn-custom" value="Eliminar">
 								</form>

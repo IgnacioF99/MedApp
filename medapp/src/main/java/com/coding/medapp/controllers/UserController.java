@@ -119,8 +119,6 @@ public class UserController {
         }
     }
     
-	
-    
     @GetMapping("/patient/{id}")
     public String profilePatient(@PathVariable("id") Long id, HttpSession session, Model model) {
         User userTemp = (User) session.getAttribute("userInSession"); 
@@ -128,19 +126,25 @@ public class UserController {
             return "redirect:/login";
         }
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-        	if(userTemp.getId() == id) {
-	            User myPatient = userServices.getUser(id);
-	            model.addAttribute("user", myPatient); // Asegúrate de añadir el usuario al modelo
-	            return "patientProfile.jsp";
-        	 } else {
-                 return "redirect:/";
-             }
-             
-         } else {
-             return "redirect:/";
-         }
-     
-     }
+            if (userTemp.getId() == id) {
+                User myPatient = userServices.getUser(id);
+                model.addAttribute("user", myPatient); // Asegúrate de añadir el usuario al modelo
+                List<MedicalAppointment> appointments = myPatient.getMedicalAppointments();
+                if (appointments.isEmpty()) {
+                    model.addAttribute("noAppointments", true);
+                } else {
+                    model.addAttribute("noAppointments", false);
+                    model.addAttribute("appointments", appointments);
+                }
+                return "patientProfile.jsp";     
+            } else {
+                return "redirect:/";
+            }
+        }
+        return "redirect:/";
+    }
+    
+    
     
     @GetMapping("/patient/search")
     public String SearchBySpeciality(@RequestParam(value="speciality", required= false) Long specialityId,

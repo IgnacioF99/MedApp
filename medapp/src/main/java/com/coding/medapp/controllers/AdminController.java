@@ -186,6 +186,43 @@ public class AdminController {
         }
    }
     
+   @DeleteMapping("/adminDelete/{id}") 
+   public String adminDelete(@PathVariable("id")Long id, HttpSession session) {
+	   User userTemp = (User) session.getAttribute("userInSession");
+       
+       if (userTemp == null) {
+           return "redirect:/login";
+       }
+
+       // =====REVISAMOS SU ROL========
+       if (userTemp.getRole().equals(Rol.Roles[0])) {
+           // Elimina la especialidad con el ID proporcionado
+           userServices.deleteUser(id);
+           return "redirect:/admin/adminList";
+       } else {
+           return "redirect:/";
+       }
+   }
+
+   @DeleteMapping("/doctorDelete/{id}")
+   public String doctorDelete(@PathVariable("id")Long id, HttpSession session) {
+	   User userTemp = (User) session.getAttribute("userInSession");
+       
+       if (userTemp == null) {
+           return "redirect:/login";
+       }
+
+       // =====REVISAMOS SU ROL========
+       if (userTemp.getRole().equals(Rol.Roles[0])) {
+           // Elimina la especialidad con el ID proporcionado
+           doctorServices.removeDoctorById(id);
+           return "redirect:/admin/doctorList";
+       } else {
+           return "redirect:/";
+       }
+   }
+  
+    
     @PostMapping("/addSpeciality")
     public String addSpeciality(@Valid @ModelAttribute("newSpeciality") Speciality speciality, 
                                 @RequestParam(value="name", required = false) String specialityName,
