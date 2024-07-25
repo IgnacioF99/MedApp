@@ -1,5 +1,7 @@
 package com.coding.medapp.controllers;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ public class AppointmentController {
 	@PostMapping("/appointments/create")
 	public String newAppointment(@Valid @ModelAttribute("newAppointment")MedicalAppointment newAppointment,
 								
+								
 								HttpSession session, Model model) {
 		User userTemp = (User) session.getAttribute("userInSession");
         if (userTemp == null) {
@@ -32,6 +35,7 @@ public class AppointmentController {
         	appointmentServices.createAppointment(newAppointment);
         	return "redirect:/patient" + userTemp.getId();
         }else {
+
         	return "redirect:/";
         }
 

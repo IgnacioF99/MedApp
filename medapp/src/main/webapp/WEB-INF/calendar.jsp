@@ -123,12 +123,13 @@
                     <form:form  modelAttribute="newAppointment" action="${pageContext.request.contextPath}/appointments/create"
   method="post">
                         <!-- Campo de fecha oculto -->
-						<input type="hidden" id="appointmentDate" name="date" required>
+						<input type="hidden" id="appointmentDate" name="appointmentDate" value="2024-08-01">
 						 <!-- Campo de doctor oculto -->
 					    <input type="hidden" id="doctor" name="doctorId" value="${doctor.id}" required>
 					    
 					    <!-- Campo de usuario (paciente) oculto -->
 					    <input type="hidden" id="patient" name="patientId" value="${userInSession.id}" required>
+					    <input type="hidden" id="status" name="status" value="Scheduled">
                         <div class="form-group">
                             <label class="inputLabel" for="appointmentTime">Horario</label>
                             <select class="form-select" id="appointmentTime" name="time" required>
@@ -163,6 +164,31 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="/js/calendar.js"></script>
+    <script>
+	    document.addEventListener('DOMContentLoaded', function() {
+	        // Función para actualizar el campo oculto con la fecha seleccionada
+	        function setDateToHiddenField(date) {
+	            document.getElementById('appointmentDate').value = date;
+	        }
+	
+	        // Selecciona todas las celdas del calendario
+	        const calendarCells = document.querySelectorAll('#calendarBody td');
+	
+	        calendarCells.forEach(cell => {
+	            // Asigna un manejador de eventos a cada celda
+	            cell.addEventListener('click', function() {
+	                // Obtén la fecha del atributo data-date
+	                const date = cell.getAttribute('data-date');
+	                
+	                // Actualiza el campo oculto
+	                setDateToHiddenField(date);
+	                
+	                // Muestra el modal para agendar la cita
+	                $('#appointmentModal').modal('show');
+	            });
+	        });
+	    });
+	</script>
     
 </body>
 
