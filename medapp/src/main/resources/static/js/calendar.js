@@ -39,19 +39,23 @@ function updateCalendar() {
                 if (date === new Date().getDate() && month - 1 === new Date().getMonth() && year === new Date().getFullYear()) {
                     cell.classList.add('today');
                 }
+
+                // Capturar el valor correcto de `date` usando `let`
+                let currentDate = date;
                 cell.onclick = function() {
                     // Al hacer clic en un día, abrir el modal para agregar una cita
-                    document.getElementById('appointmentDate').value = `${year}-${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+                    document.getElementById('appointmentDate').value = `${year}-${String(month).padStart(2, '0')}-${String(currentDate).padStart(2, '0')}`;
                     $('#appointmentModal').modal('show');
 
                     // Agregar la clase 'clicked' para el efecto visual
                     cell.classList.add('clicked');
 
-                    // quitar la clase después de un tiempo
+                    // Quitar la clase después de un tiempo
                     setTimeout(() => {
                         cell.classList.remove('clicked');
                     }, 300); // Tiempo en milisegundos
                 };
+
                 date++;
             }
             row.appendChild(cell);
@@ -67,7 +71,7 @@ function updateCalendar() {
 
 // Actualiza los doctores disponibles según la especialidad seleccionada
 function updateDoctors() {
-    const specialtySelect = document.getElementById('appointmentSpecialty');
+    const specialtySelect = document.getElementById('appointmentSpeciality');
     const doctorSelect = document.getElementById('appointmentDoctor');
 
     // Limpiar opciones de doctores

@@ -91,15 +91,7 @@
                     </tr>
                 </thead>
                 <tbody id="calendarBody">
-				    <c:forEach var="week" items="${calendarWeeks}">
-				        <tr>
-				            <c:forEach var="day" items="${week}">
-				                <td data-date="${day.date}">
-				                    <c:out value="${day.day}" />
-				                </td>
-				            </c:forEach>
-				        </tr>
-				    </c:forEach>
+
 				</tbody>
             </table>
         </main>
@@ -120,42 +112,42 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form:form  modelAttribute="newAppointment" action="${pageContext.request.contextPath}/appointments/create"
-  method="post">
-                        <!-- Campo de fecha oculto -->
-						<input type="hidden" id="appointmentDate" name="appointmentDate" value="2024-08-01">
-						 <!-- Campo de doctor oculto -->
+                   <form:form modelAttribute="newAppointment" action="/appointments/create" method="POST">
+                   		<input type="hidden" id="appointmentDate" name="appointmentDate" required>
 					    <input type="hidden" id="doctor" name="doctorId" value="${doctor.id}" required>
-					    
-					    <!-- Campo de usuario (paciente) oculto -->
 					    <input type="hidden" id="patient" name="patientId" value="${userInSession.id}" required>
 					    <input type="hidden" id="status" name="status" value="Scheduled">
-                        <div class="form-group">
-                            <label class="inputLabel" for="appointmentTime">Horario</label>
-                            <select class="form-select" id="appointmentTime" name="time" required>
-                                <c:forEach items="${times}" var="time">
-                                    <option value="${time}">${time}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label class="inputLabel" for="appointmentInsurance">Obra Social</label>
-                            <select class="form-select" id="appointmentInsurance" name="appointmentInsurance" onchange="updateDoctors()" required>   
-                            	<c:forEach  items="${insurances}" var="insurance">
-                            		<option value="${insurance.id}">${insurance.name}</option>
-                            	</c:forEach>               
-                            </select>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
-                            <select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" onchange="updateDoctors()" required>   
-                            	<c:forEach  items="${specialities}" var="speciality">
-                            		<option value="${speciality.id}">${speciality.name}</option>
-                            	</c:forEach>               
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-custom mt-3">Agendar Cita</button>
-                    </form:form>
+					    
+					    <!-- Otros campos del formulario -->
+					    <div class="form-group">
+					        <label class="inputLabel" for="appointmentTime">Horario</label>
+					        <select class="form-select" id="appointmentTime" name="appointmentTime" required>
+					            <c:forEach items="${times}" var="time">
+					                <option value="${time}">${time}</option>
+					            </c:forEach>
+					        </select>
+					    </div>
+					
+					    <div class="form-group mt-3">
+					        <label class="inputLabel" for="appointmentInsurance">Obra Social</label>
+					        <select class="form-select" id="appointmentInsurance" name="appointmentInsurance" required>
+					            <c:forEach items="${insurances}" var="insurance">
+					                <option value="${insurance.id}">${insurance.name}</option>
+					            </c:forEach>
+					        </select>
+					    </div>
+					
+					    <div class="form-group mt-3">
+					        <label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
+					        <select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
+					            <c:forEach items="${specialities}" var="speciality">
+					                <option value="${speciality.id}">${speciality.name}</option>
+					            </c:forEach>
+					        </select>
+					    </div>
+					
+					    <input type="submit" class="btn btn-custom mt-3" value="Agendar cita">
+					</form:form>
                 </div>
             </div>
         </div>
@@ -164,31 +156,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="/js/calendar.js"></script>
-    <script>
-	    document.addEventListener('DOMContentLoaded', function() {
-	        // Función para actualizar el campo oculto con la fecha seleccionada
-	        function setDateToHiddenField(date) {
-	            document.getElementById('appointmentDate').value = date;
-	        }
-	
-	        // Selecciona todas las celdas del calendario
-	        const calendarCells = document.querySelectorAll('#calendarBody td');
-	
-	        calendarCells.forEach(cell => {
-	            // Asigna un manejador de eventos a cada celda
-	            cell.addEventListener('click', function() {
-	                // Obtén la fecha del atributo data-date
-	                const date = cell.getAttribute('data-date');
-	                
-	                // Actualiza el campo oculto
-	                setDateToHiddenField(date);
-	                
-	                // Muestra el modal para agendar la cita
-	                $('#appointmentModal').modal('show');
-	            });
-	        });
-	    });
-	</script>
+    
     
 </body>
 

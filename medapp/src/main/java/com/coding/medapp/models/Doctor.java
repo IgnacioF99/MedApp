@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -81,6 +82,10 @@ public class Doctor {
 		inverseJoinColumns = @JoinColumn(name = "healthInsurance_id")
 	)
 	private List<HealthInsurance> insurance;
+
+	
+	
+
 	
 	
 	
@@ -117,6 +122,12 @@ public class Doctor {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
+
+	
+
+	
 
 	
 

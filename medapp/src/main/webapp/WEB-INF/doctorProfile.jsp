@@ -41,6 +41,7 @@
                         <p class="card-text"><span>Hora de Salida:</span>${doctor.endTime}</p>
                         <p class="card-text"><span>Especialidad:</span> ${doctor.specialitiesDoctors}</p>
                         <p class="card-text"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
+                      
                     </div>
                     <div class="card-footer text-center">
                         <a href="/doctor/edit/${doctor.id}" class="btn btn-custom">Editar</a>

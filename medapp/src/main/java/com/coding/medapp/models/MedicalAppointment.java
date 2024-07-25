@@ -29,12 +29,13 @@ public class MedicalAppointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Future
+    
     @NotNull(message="Appointment Time is required")
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime appointmentTime;
     
-    
+    @Future
+    @NotNull(message="Appointment Time is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate appointmentDate;
     
@@ -94,8 +95,6 @@ public class MedicalAppointment {
 		this.appointmentSpeciality = appointmentSpeciality;
 	}
 
-	@Future
-    @NotNull(message = "Appointment Time is required")
     public LocalTime getAppointmentTime() {
         return appointmentTime;
     }
@@ -104,8 +103,7 @@ public class MedicalAppointment {
         this.appointmentTime = localTime;
     }
 
-    @Future
-    @NotNull(message = "Appointment Date is required")
+    
     public LocalDate getAppointmentDate() {
         return appointmentDate;
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding.medapp.models.MedicalAppointment;
+import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
 import com.coding.medapp.services.MedicalAppointmentService;
 import com.coding.medapp.services.UserServices;
@@ -22,7 +23,8 @@ import jakarta.validation.Valid;
 
 @Controller
 public class MedicalAppointmentController {
-    @Autowired
+    
+	@Autowired
     private MedicalAppointmentService appointmentService;
 
     @Autowired
@@ -35,6 +37,35 @@ public class MedicalAppointmentController {
         model.addAttribute("appointments", appointments);
         return "appointments.jsp";
     }
+    
+    @PostMapping("/appointments/create")
+    public String newAppointment(@Valid @ModelAttribute("newAppointment") MedicalAppointment newAppointment,		
+    							 HttpSession session, Model model) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        
+        // Verifica si el usuario está en sesión
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+        
+        // Verifica el rol del usuario
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+            // Establece el estado de la cita
+            newAppointment.setStatus("Scheduled");
+            
+            // Crea la cita en la base de datos
+            appointmentService.createAppointment(newAppointment);
+            
+            // Redirige a la página de perfil del paciente
+            return "redirect:/patient";
+        } else {
+            // Redirige a la página de inicio si el rol no coincide
+            return "redirect:/";
+        }
+    }
+
+	
+
 
     @GetMapping("/newAppointment")
     public String newAppointment(@ModelAttribute("appointment") MedicalAppointment appointment, Model model, HttpSession session) {

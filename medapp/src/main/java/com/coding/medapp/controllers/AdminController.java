@@ -191,10 +191,8 @@ public class AdminController {
                                 @RequestParam(value="name", required = false) String specialityName,
                                 BindingResult result, HttpSession session, Model model) {
         if (specialityName == null) {
-        	System.out.println("hola");
             return "redirect:/admin/specialitiesList";
         } else {
-        	
             speciality.setName(specialityName);
             specialityServices.saveSpeciality(speciality);
             return "redirect:/admin/specialitiesList";

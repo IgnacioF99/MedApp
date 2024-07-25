@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.HealthInsurance;
+import com.coding.medapp.models.MedicalAppointment;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.Speciality;
 import com.coding.medapp.models.User;
@@ -226,23 +227,31 @@ public class UserController {
     }
     
     @GetMapping("/patient/calendar/{id}")
-    public String patientCalendarDoctor(@PathVariable("id")Long id, HttpSession session, Model model) {
+    public String patientCalendarDoctor(@PathVariable("id") Long id, HttpSession session, Model model) {
         User userTemp = (User) session.getAttribute("userInSession");
+        
+        // Verifica si el usuario está en sesión
         if (userTemp == null) {
             return "redirect:/login";
         }
+
+        // Verifica el rol del usuario
         if (userTemp.getRole().equals(Rol.Roles[1])) {
-        	Doctor myDoctor = doctorServices.getDoctor(id);
+            // Obtén el doctor según el ID
+            Doctor myDoctor = doctorServices.getDoctor(id);
             User myUser = myDoctor.getDoctor();
             List<HealthInsurance> insurances = myDoctor.getInsurance();
             List<Speciality> specialities = myDoctor.getSpecialitiesDoctor();
+
+            // Agrega atributos al modelo para usarlos en la vista
             model.addAttribute("user", myUser);
             model.addAttribute("doctor", myDoctor); 
             model.addAttribute("insurances", insurances);
             model.addAttribute("specialities", specialities);
+
+            // Genera una lista de horarios
             List<String> times = new ArrayList<>();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
             LocalTime startTime = myDoctor.getStartTime();
             LocalTime endTime = myDoctor.getEndTime();
 
@@ -251,9 +260,10 @@ public class UserController {
             }
             
             model.addAttribute("times", times);
-        	return "calendar.jsp";
-        }else {
-        	return "redirect:/";
+            return "calendar.jsp";
+        } else {
+            // Redirige a la página de inicio si el rol no coincide
+            return "redirect:/";
         }
     }
 
