@@ -35,7 +35,7 @@ public class MedicalAppointment {
     private LocalTime appointmentTime;
     
     @Future
-    @NotNull(message="Appointment Time is required")
+    @NotNull(message="Appointment Date is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate appointmentDate;
     
