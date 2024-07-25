@@ -221,6 +221,26 @@ public class UserController {
             return "redirect:/";
         }
     }
+    
+    @GetMapping("/patient/calendar/{id}")
+    public String patientCalendarDoctor(@PathVariable("id")Long id, HttpSession session, Model model) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+        if (userTemp.getRole().equals(Rol.Roles[1])) {
+        	Doctor myDoctor = doctorServices.getDoctor(id);
+            User myUser = myDoctor.getDoctor();
+            List<HealthInsurance> insurances = myDoctor.getInsurance();
+            model.addAttribute("user", myUser);
+            model.addAttribute("doctor", myDoctor); 
+            model.addAttribute("insurances", insurances);
+            
+        	return "calendar.jsp";
+        }else {
+        	return "redirect:/";
+        }
+    }
 
     @PostMapping("/update-profile")
     public String updateProfile(@RequestParam("profileImage") MultipartFile profileImage, HttpSession session, RedirectAttributes redirectAttributes) {

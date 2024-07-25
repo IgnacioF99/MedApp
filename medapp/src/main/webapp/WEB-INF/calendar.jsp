@@ -23,9 +23,9 @@
             <div class="d-flex align-items-center">
                 <img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2" width="50" height="50">
                 <div>
-                    <p class="mb-0">${doctor.firstName} ${doctor.lastName}</p>
-                    <p class="mb-0">${doctor.speciality}</p>
-                    <p class="mb-0">${doctor.aviality}</p>
+                    <p class="mb-0">${user.firstName} ${user.lastName}</p>
+                    <p class="mb-0">${doctor.specialitiesDoctor}</p>
+                    <p class="mb-0">${doctor.availability}</p>
                 </div>
             </div>
             <img src="/img/logo2.png" alt="logoprincipal"
@@ -42,9 +42,24 @@
                     <div class="d-flex align-items-center me-3">
                         <label class="inputLabel me-2" for="monthSelect">Mes:</label>
                         <select id="monthSelect" class="form-control" onchange="updateCalendar()">
-                            <c:forEach var="month" items="${months}">
-                                <option value="${month}" <c:if test="${month eq param.month}">selected</c:if>
-                                    >${monthNames[month - 1]}</option>
+                            <c:forEach var="month" begin="1" end="12">
+                                <c:set var="monthName">
+                                    <c:choose>
+                                        <c:when test="${month == 1}">Enero</c:when>
+                                        <c:when test="${month == 2}">Febrero</c:when>
+                                        <c:when test="${month == 3}">Marzo</c:when>
+                                        <c:when test="${month == 4}">Abril</c:when>
+                                        <c:when test="${month == 5}">Mayo</c:when>
+                                        <c:when test="${month == 6}">Junio</c:when>
+                                        <c:when test="${month == 7}">Julio</c:when>
+                                        <c:when test="${month == 8}">Agosto</c:when>
+                                        <c:when test="${month == 9}">Septiembre</c:when>
+                                        <c:when test="${month == 10}">Octubre</c:when>
+                                        <c:when test="${month == 11}">Noviembre</c:when>
+                                        <c:when test="${month == 12}">Diciembre</c:when>
+                                    </c:choose>
+                                </c:set>
+                                <option value="${month}" <c:if test="${month eq param.month}">selected</c:if>>${monthName}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -118,23 +133,11 @@
                             </select>
                         </div>
                         <div class="form-group mt-3">
-                            <label class="inputLabel" for="obrasocial">Obra Social</label>
-                            <select class="form-select" id="obrasocial" name="insurance" onchange="updateDoctors()"
-                                required>
-                                <option value="">Selecciona una Obra Social</option>
-                                <option value="guardia_general">Guardia General</option>
-                                <option value="cardiologia">Cardiología</option>
-                                <option value="dermatologia">Dermatología</option>
-                                <option value="pediatria">Pediatría</option>
-                                <option value="ginecologia">Ginecología</option>
-                                <option value="neurologia">Neurología</option>
-                                <option value="medicina_general">Medicina General</option>
-                                <option value="traumatologia">Traumatología</option>
-                                <option value="oftalmologia">Oftalmología</option>
-                                <option value="otorrinolaringologia">Otorrinolaringología</option>
-                                <option value="endocrinologia">Endocrinología</option>
-                                <option value="psiquiatria">Psiquiatría</option>
-                                <option value="rehabilitacion">Rehabilitación</option>
+                            <label class="inputLabel" for="insurance">Obra Social</label>
+                            <select class="form-select" id="insurance" name="insurance" onchange="updateDoctors()" required>   
+                            	<c:forEach  items="${insurances}" var="insurance">
+                            		<option value="${insurance.id}">${insurance.name}</option>
+                            	</c:forEach>               
                             </select>
                         </div>
                         <button type="submit" class="btn btn-custom mt-3">Agendar Cita</button>
@@ -147,6 +150,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="/js/calendar.js"></script>
+    
 </body>
 
 </html>

@@ -54,7 +54,7 @@
                             <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
                             <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
                             <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurance}</p>
-                            <a href="#" class="btn btn-custom d-block">Agendar</a>
+                            <a href="/patient/calendar/${doctor.id}" class="btn btn-custom d-block">Agendar</a>
                         </div>
                     </div>
                 </c:forEach>
