@@ -16,7 +16,7 @@
     <title>Obras Sociales</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -26,7 +26,7 @@
 <body class="bg-light">
     <div class="container-custom d-flex flex-column container-fluid">
         <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
-            <img src="img/logo2.png" alt="logoPrincipal" class="logo p-2" />
+            <img src="/img/logo2.png" alt="logoPrincipal" class="logo p-2" />
             <span>Bienvenidx Admin ${userInSession.firstName}!</span>
             <div>
                 <a href="/admin" class="btn btn-custom">Gestion De Usuarios</a>
@@ -35,18 +35,22 @@
         <main class="d-flex flex-column align-items-center main-custom">
             <h1 class="text-center">Obras Sociales</h1>
             <form:form action="/addInsurance" method="POST" modelAttribute="newInsurance" class="w-75 mt-3">
-                <div class="row justify-content-center align-items-center mb-3">
-                    <div class="col-auto">
-                        <form:label class="inputLabel" path="firstName">Nueva Obra Social:</form:label>
-                    </div>
-                    <div class="col-auto">
-                        <form:input path="firstName" class="form-control" style="width: 250px;" />
-                    </div>
-                    <div class="col-auto">
-                        <input type="submit" class="btn btn-custom btn-sm p-1" value="Agregar">
-                    </div>
-                </div>
-            </form:form>
+			    <div class="row justify-content-center align-items-center mb-3">
+			        <div class="col-auto">
+			            <label class="inputLabel" for="name">Nueva Obra Social:</label>
+			        </div>
+			        <div class="col-auto">
+			            <input id="name" name="name" class="form-control" style="width: 250px;" />
+			        </div>
+			        <div class="col-auto">
+			            <input type="submit" class="btn btn-custom btn-sm p-1" value="Agregar">
+			        </div>
+			    </div>
+			</form:form>
+            <c:if test="${errorMessage != null}">
+			    <div class="alert alert-danger mt-4">${errorMessage}</div>
+			</c:if>
+            
             <div class="d-flex justify-content-center w-100 mt-2">
                 <table class="table table-hover w-75">
                     <thead>
@@ -60,7 +64,10 @@
                             <tr>
                                 <td class="text-center">${insurance.name}</td>
                                 <td class="text-center">
-                                    <input type="remove" class="btn btn-custom btn-sm" value="Eliminar">
+                                <form action="/admin/insuranceList/delete/${insurance.id}" method="POST">
+								    <input type="hidden" name="_method" value="DELETE"/>
+								    <input type="submit" class="btn btn-custom btn-sm" value="Eliminar">
+								</form>
                                 </td>
                             </tr>
                         </c:forEach>

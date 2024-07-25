@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,39 +21,37 @@
             <span>Bienvenidx ${userInSession.firstName}!</span>
             <div>
                 <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
-                <a href="/patient/${userInSession.id}" class="p-4"><img src="/img/profile.png" alt="Perfil"
-                        class="rounded-circle" width="50" height="50"></a>
+                <a href="/patient/${userInSession.id}" class="p-4">
+                    <img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50">
+                </a>
             </div>
         </header>
         <main class="p-4">
             <div class="container">
                 <h1 class="text-center mt-3">Agenda tu cita medica</h1>
-                <form action="/search" method="get" class="mt-5">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="flex-grow-1">
-                            <label for="speciality" class="form-label inputLabel">Selecciona una especialidad:</label>
-                            <select id="speciality" name="speciality" class="form-select">
-                                <option value="">Todas las especialidades</option>
-                                <c:forEach items="${specialities}" var="speciality">
-                                    <option value="${speciality.id}">${speciality.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
+                <form action="/patient/search" method="get">
+                    <div class="form-group mt-5">
+                        <label for="speciality" class="form-label">Selecciona una especialidad:</label>
+                        <select id="speciality" name="speciality" class="form-select">
+                            <option value="">Todas las especialidades</option>
+                            <c:forEach items="${specialities}" var="speciality">
+                                <option value="${speciality.id}">${speciality.name}</option>
+                            </c:forEach>
+                        </select>
+                        <input type="submit" value="Buscar" class="btn btn-custom mt-4">
                     </div>
-                    <button type="submit" class="btn btn-custom mt-3">Buscar</button>
                 </form>
                 <c:if test="${noDoctorsFound}">
                     <div class="alert alert-danger mt-4">No se encontraron doctores con la especialidad seleccionada.</div>
                 </c:if>
-                
             </div>
-            <div class="row d-flex justify-content-center pt-4 mb-4">
+            <div class="row d-flex justify-content-center flex-wrap pt-4">
                 <c:forEach var="doctor" items="${doctors}">
-                    <div class="col-md-4 col-lg-3 d-flex justify-content-center">
-                        <div class="doctor-card card-wrapper">
-                            <h5 class=" text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
+                    <div class="col-md-3 d-flex justify-content-center">
+                        <div class="doctor-card">
+                            <h5 class="mb-3 text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
                             <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.specialitiesDoctor}</p>
-                            <p class="card-text mb-1"><span>Matricula:</span> ${doctor.license}</p>
+                            <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
                             <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
                             <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurance}</p>
                             <a href="#" class="btn btn-custom d-block">Agendar</a>

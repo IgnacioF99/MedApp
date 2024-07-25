@@ -17,6 +17,10 @@ public class SpecialityServices {
 	
 	@Autowired
 	private DoctorServices doctorServices;
+	
+	public Speciality saveSpeciality(Speciality speciality) {
+		return specialityRepository.save(speciality);
+	}
     
     public List<Speciality> findAllSpecialties(){
     	return specialityRepository.findAll();
@@ -40,7 +44,9 @@ public class SpecialityServices {
     	doctorServices.saveDoctor(myDoctor);
     }
     
-    
+    public void deleteSpeciality(Long id) {
+        specialityRepository.deleteById(id);
+    }
 
     
 }

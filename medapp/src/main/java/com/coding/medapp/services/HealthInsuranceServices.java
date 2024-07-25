@@ -18,6 +18,10 @@ public class HealthInsuranceServices {
 	@Autowired
 	private DoctorServices doctorServices;
 	
+	public HealthInsurance saveHealthInsurance(HealthInsurance insurance) {
+		return healthInsuranceRepository.save(insurance);
+	}
+	
 	public HealthInsurance getHealthInsurance(Long id) {
 		return healthInsuranceRepository.findById(id).orElse(null);
 	}
@@ -38,6 +42,10 @@ public class HealthInsuranceServices {
     	
     	myDoctor.getInsurance().add(myInsurance);
     	doctorServices.saveDoctor(myDoctor);
+    }
+    
+    public void deleteHealthInsurance(Long id) {
+        healthInsuranceRepository.deleteById(id);
     }
 
 }
