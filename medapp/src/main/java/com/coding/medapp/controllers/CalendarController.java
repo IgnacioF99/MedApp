@@ -43,23 +43,5 @@ public class CalendarController {
         return "calendar.jsp"; 
     }
 
-    @PostMapping("/appointments/create")
-    public String createAppointment(@RequestParam String title, 
-                                    @RequestParam String date, 
-                                    @RequestParam String description,
-                                    @RequestParam Long doctorId, // id del doctor
-                                    @RequestParam Long patientId) { // id del paciente
-        // Crear una nueva cita médica
-        MedicalAppointment appointment = new MedicalAppointment();
-        appointment.setStatus("Scheduled"); // Establece el estado inicial
-        appointment.setAppointmentDate(LocalDate.parse(date)); 
-        appointment.setAppointmentTime(LocalTime.now()); 
-        appointment.setDoctor(new Doctor()); // usar de parameter el doctorId
-        appointment.setPatient(new User()); // usar de parameter el patientId
-        
-        // Guardar la cita usando el service
-        appointmentService.createAppointment(appointment);
-        
-        return "redirect:/calendar"; 
-    }
+    
 }

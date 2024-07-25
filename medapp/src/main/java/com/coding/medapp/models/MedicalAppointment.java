@@ -76,8 +76,26 @@ public class MedicalAppointment {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
 
-    @Future
+    public String getAppointmentInsurance() {
+		return appointmentInsurance;
+	}
+
+	public void setAppointmentInsurance(String appointmentInsurance) {
+		this.appointmentInsurance = appointmentInsurance;
+	}
+
+	public String getAppointmentSpeciality() {
+		return appointmentSpeciality;
+	}
+
+	public void setAppointmentSpeciality(String appointmentSpeciality) {
+		this.appointmentSpeciality = appointmentSpeciality;
+	}
+
+	@Future
     @NotNull(message = "Appointment Time is required")
     public LocalTime getAppointmentTime() {
         return appointmentTime;
@@ -136,6 +154,8 @@ public class MedicalAppointment {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    
 
     @PrePersist 
     protected void onCreate() {

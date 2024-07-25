@@ -91,8 +91,16 @@
                     </tr>
                 </thead>
                 <tbody id="calendarBody">
-                    <!-- Calendar rows will be inserted here -->
-                </tbody>
+				    <c:forEach var="week" items="${calendarWeeks}">
+				        <tr>
+				            <c:forEach var="day" items="${week}">
+				                <td data-date="${day.date}">
+				                    <c:out value="${day.day}" />
+				                </td>
+				            </c:forEach>
+				        </tr>
+				    </c:forEach>
+				</tbody>
             </table>
         </main>
 
@@ -112,10 +120,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form:form id="appointmentForm" modelAttribute="newAppointment" action="${pageContext.request.contextPath}/appointments/create"
+                    <form:form  modelAttribute="newAppointment" action="${pageContext.request.contextPath}/appointments/create"
   method="post">
                         <!-- Campo de fecha oculto -->
 						<input type="hidden" id="appointmentDate" name="date" required>
+						 <!-- Campo de doctor oculto -->
+					    <input type="hidden" id="doctor" name="doctorId" value="${doctor.id}" required>
+					    
+					    <!-- Campo de usuario (paciente) oculto -->
+					    <input type="hidden" id="patient" name="patientId" value="${userInSession.id}" required>
                         <div class="form-group">
                             <label class="inputLabel" for="appointmentTime">Horario</label>
                             <select class="form-select" id="appointmentTime" name="time" required>
@@ -133,8 +146,8 @@
                             </select>
                         </div>
                         <div class="form-group mt-3">
-                            <label class="inputLabel" for="speciality">Especialidad</label>
-                            <select class="form-select" id="speciality" name="specialitiesDoctor" onchange="updateDoctors()" required>   
+                            <label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
+                            <select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" onchange="updateDoctors()" required>   
                             	<c:forEach  items="${specialities}" var="speciality">
                             		<option value="${speciality.id}">${speciality.name}</option>
                             	</c:forEach>               

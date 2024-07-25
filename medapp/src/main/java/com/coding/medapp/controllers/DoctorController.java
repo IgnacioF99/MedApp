@@ -26,8 +26,7 @@ import java.util.List;
 @Controller
 public class DoctorController {
 	
-	@Autowired
-	private UserServices userServices;
+	
 
     @Autowired
     private DoctorServices doctorServices;
