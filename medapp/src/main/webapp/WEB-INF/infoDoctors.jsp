@@ -32,15 +32,13 @@
             <h1 class="text-center">Doctores</h1>
             <!-- Contenedor del formulario de b�squeda -->
             <div class="d-flex justify-content-center w-100 m-4">
-                <div class="d-flex align-items-center">
-                    <form action="/admin/doctor">
-                        <div class="form-group me-2">
+                <form action="/admin/doctor" class="d-flex align-items-center justify-content-center w-50">
+                    <div class="form-group me-2 w-50">
                         <label for="searchDNI" class="visually-hidden">Buscar por DNI:</label>
                         <input type="text" id="searchDNI" name="dni" class="form-control" placeholder="Ingrese DNI">
-                        </div>
-                        <input class="btn btn-custom" type="submit" value="Buscar">
-                    </form>
-                </div>
+                    </div>
+                    <input class="btn btn-custom" type="submit" value="Buscar">
+                </form>
             </div>
             <div class="d-flex justify-content-center w-100 mt-2">
                 <table class="table table-hover w-75">
@@ -56,21 +54,24 @@
                     <tbody>
                         <c:forEach items="${doctors}" var="doctor">
                             <tr>
-                                <td>${doctor.doctor.dni}</td>
-                                <td>${doctor.doctor.firstName} ${doctor.doctor.lastName}</td>
-                                <td>${doctor.license}</td>
-                                <td>${doctor.doctor.email}</td>
-                                <td>
-                                    <form action="/doctor/editRole/${doctor.doctor.id}" method="POST">
+                                <td class="text-center">${doctor.doctor.dni}</td>
+                                <td class="text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</td>
+                                <td class="text-center">${doctor.license}</td>
+                                <td class="text-center">${doctor.doctor.email}</td>
+                                <td class="text-center">
+                                    <form action="/doctor/editRole/${doctor.doctor.id}" method="POST" class="d-inline-flex align-items-center justify-content-center">
                                         <input type="hidden" name="_method" value="PUT">
-                                        <label for="roleid">${doctor.doctor.role}</label>
                                         <select class="form-select" name="role" id="roleid">
                                             <c:forEach items="${roles}" var="role">
                                                 <option value="${role}">${role}</option>
                                             </c:forEach>
                                         </select>
-                                        <input type="submit" class="btn btn-success mt-3" value="Save">
+                                        <input type="submit" class="btn btn-custom me-1" value="Save">
                                     </form>
+                                <form action="#" method="#" class="d-inline-flex align-items-center">
+								    <input type="hidden" name="_method" value="DELETE"/>
+								    <input type="submit" class="btn btn-custom" value="Eliminar">
+								</form>
                                 </td>
                             </tr>
                         </c:forEach>
