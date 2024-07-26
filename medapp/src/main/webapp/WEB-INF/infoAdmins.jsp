@@ -40,7 +40,7 @@
                             <th class="text-center">DNI</th>
                             <th class="text-center">Nombre</th>
                             <th class="text-center">E-mail</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>
