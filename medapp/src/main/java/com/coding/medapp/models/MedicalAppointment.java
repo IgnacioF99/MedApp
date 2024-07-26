@@ -17,7 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -34,7 +34,7 @@ public class MedicalAppointment {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime appointmentTime;
     
-    @Future
+    @FutureOrPresent(message="La fecha debe ser futura")
     @NotNull(message="Appointment Date is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate appointmentDate;

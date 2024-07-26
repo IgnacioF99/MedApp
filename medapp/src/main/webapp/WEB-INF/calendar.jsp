@@ -68,14 +68,11 @@
                         <label class="inputLabel me-2" for="yearSelect">Año:</label>
                         <select id="yearSelect" class="form-control" onchange="updateCalendar()">
                             <c:forEach begin="2024" end="2030" var="year">
-                                <option value="${year}" <c:if test="${year == param.year}">selected</c:if>>${year}
-                                </option>
+                                <option value="${year}" <c:if test="${year == param.year}">selected</c:if>>${year}</option>
                             </c:forEach>
                         </select>
                     </div>
                 </div>
-
-
             </div>
             <h3 class="text-center mt-4" id="monthYear"></h3>
             <table class="calendar table table-bordered mt-4 mb-5">
@@ -91,8 +88,8 @@
                     </tr>
                 </thead>
                 <tbody id="calendarBody">
-
-				</tbody>
+                    <!-- Aquí se generarán las filas del calendario -->
+                </tbody>
             </table>
         </main>
 
@@ -107,47 +104,49 @@
             <div class="modal-content">
                 <div class="modal-header text-white">
                     <h5 class="modal-title" id="appointmentModalLabel">Nueva Cita</h5>
-                    <button type="button" class="btn-close btn-close-white " data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><!-- &times;- --></span>
-                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                   <form:form modelAttribute="newAppointment" action="/appointments/create" method="POST">
-                   		<input type="hidden" id="appointmentDate" name="appointmentDate" required>
-					    <input type="hidden" id="doctor" name="doctor" value="${doctor.id}" required>
-					    <input type="hidden" id="patient" name="patient" value="${userInSession.id}" required>
-					    <input type="hidden" id="status" name="status" value="Scheduled">
-					    
-					    <!-- Otros campos del formulario -->
-					    <div class="form-group">
-					        <label class="inputLabel" for="appointmentTime">Horario</label>
-					        <select class="form-select" id="appointmentTime" name="appointmentTime" required>
-					            <c:forEach items="${times}" var="time">
-					                <option value="${time}">${time}</option>
-					            </c:forEach>
-					        </select>
-					    </div>
-					
-					    <div class="form-group mt-3">
-					        <label class="inputLabel" for="appointmentInsurance">Obra Social</label>
-					        <select class="form-select" id="appointmentInsurance" name="appointmentInsurance" required>
-					            <c:forEach items="${insurances}" var="insurance">
-					                <option value="${insurance.id}">${insurance.name}</option>
-					            </c:forEach>
-					        </select>
-					    </div>
-					
-					    <div class="form-group mt-3">
-					        <label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
-					        <select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
-					            <c:forEach items="${specialities}" var="speciality">
-					                <option value="${speciality.name}">${speciality.name}</option>
-					            </c:forEach>
-					        </select>
-					    </div>
-					
-					    <input type="submit" class="btn btn-custom mt-3" value="Agendar cita">
-					</form:form>
+                    <form action="${pageContext.request.contextPath}/appointments/create" method="post">
+                        <input type="hidden" id="appointmentDate" name="appointmentDate" required>
+                        <input type="hidden" id="doctor" name="doctor" value="${doctor.id}" required>
+                        <input type="hidden" id="patient" name="patient" value="${userInSession.id}" required>
+                        <input type="hidden" id="status" name="status" value="Scheduled">
+
+                        <div class="form-group">
+                            <label class="inputLabel" for="appointmentTime">Horario</label>
+                            <select class="form-select" id="appointmentTime" name="appointmentTime" required>
+                                <c:forEach items="${times}" var="time">
+                                    <option value="${time}">${time}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="inputLabel" for="appointmentInsurance">Obra Social</label>
+                            <select class="form-select" id="appointmentInsurance" name="appointmentInsurance" required>
+                                <c:forEach items="${insurances}" var="insurance">
+                                    <option value="${insurance.id}">${insurance.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
+                            <select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
+                                <c:forEach items="${specialities}" var="speciality">
+                                    <option value="${speciality.name}">${speciality.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <!-- Mensajes de error -->
+                        <c:if test="${not empty errorMessage}">
+                            <div class="alert alert-danger">${errorMessage}</div>
+                        </c:if>
+
+                        <input type="submit" class="btn btn-custom mt-3" value="Agendar cita">
+                    </form>
                 </div>
             </div>
         </div>
@@ -156,8 +155,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="/js/calendar.js"></script>
-    
-    
 </body>
-
 </html>

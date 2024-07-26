@@ -40,12 +40,18 @@ public class MedicalAppointmentController {
     
     @PostMapping("/appointments/create")
     public String newAppointment(@Valid @ModelAttribute("newAppointment") MedicalAppointment newAppointment,		
-    							 HttpSession session, Model model) {
+    							 HttpSession session, Model model, BindingResult result) {
         User userTemp = (User) session.getAttribute("userInSession");
         
         // Verifica si el usuario está en sesión
         if (userTemp == null) {
             return "redirect:/login";
+        }
+        
+     // Verifica si hay errores de validación
+        if (result.hasErrors()) {
+            model.addAttribute("doctors", userServices.findAllUsers());
+            return "newAppointment.jsp"; // Regresa al formulario con errores
         }
         
         // Verifica el rol del usuario
