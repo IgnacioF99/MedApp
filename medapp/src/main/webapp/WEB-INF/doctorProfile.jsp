@@ -1,11 +1,6 @@
-<!-- Importacion para hacer html con jsp en spring -->
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!-- Importacion para usar recursos logicos de java -->    
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- Me permite mostrar errores en las ediciones -->
 <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +14,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
 </head>
 
 <body class="body-custom">
@@ -32,17 +26,41 @@
                         <h1 class="pb-3">Mi Perfil</h1>
                         <p class="card-text"><span>Nombre:</span> ${user.firstName}</p>
                         <p class="card-text"><span>Apellido:</span> ${user.lastName}</p>
-                        <p class="card-text"><span>Matricula:</span> ${doctor.license}</p>
+                        <p class="card-text"><span>Matrícula:</span> ${doctor.license}</p>
                         <div class="mb-3">
                             <label class="form-label inputLabel">Disponibilidad:</label>
                             <p class="card-text">${doctor.availability}</p>
                         </div>
-                        <p class="card-text"><span>Hora de Inicio:</span>${doctor.startTime}</p>
-                        <p class="card-text"><span>Hora de Salida:</span>${doctor.endTime}</p>
-                        <p class="card-text"><span>Especialidad:</span> ${doctor.specialitiesDoctors}</p>
-                        <p class="card-text"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
-                      
+                        <p class="card-text"><span>Hora de Inicio:</span> ${doctor.startTime}</p>
+                        <p class="card-text"><span>Hora de Salida:</span> ${doctor.endTime}</p>
+                        <p class="card-text"><span>Especialidad:</span> ${doctor.getSpecialitiesDoctors()}</p>
+                        <p class="card-text"><span>Obra Social:</span> ${doctor.getInsurancesDoctor()}</p>
                     </div>
+
+                    <div>
+                        <h3 class="pb-3">Citas Médicas asociadas</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Día</th>
+                                    <th>Horario</th>
+                                    <th>Especialidad</th>
+                                    <th>Paciente</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="appointment" items="${doctor.medicalAppointments}">
+                                    <tr>
+                                        <td>${appointment.appointmentDate}</td>
+                                        <td>${appointment.appointmentTime}</td>
+                                        <td>${appointment.appointmentSpeciality}</td>
+                                        <td>${appointment.patient.firstName} ${appointment.patient.lastName}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+
                     <div class="card-footer text-center">
                         <a href="/doctor/edit/${doctor.id}" class="btn btn-custom">Editar</a>
                         <a href="/doctor" class="p-2">Volver</a>
@@ -52,7 +70,8 @@
         </div>
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
