@@ -101,7 +101,6 @@
 			<p class="text-muted">&copy; 2024</p>
 		</footer>
 	</div>
-	<script src="js/script.js"></script>
 </body>
 
 </html>
