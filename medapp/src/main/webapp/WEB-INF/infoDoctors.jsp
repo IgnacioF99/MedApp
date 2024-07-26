@@ -29,7 +29,7 @@
             </div>
         </header>
         <main class="d-flex flex-column align-items-center main-custom">
-            <h1 class="text-center">Doctores</h1>
+            <h1 class="text-center mt-4">Doctores</h1>
             <!-- Contenedor del formulario de b�squeda -->
             <div class="d-flex justify-content-center w-100 m-4">
                 <form action="/admin/doctor" class="d-flex align-items-center justify-content-center w-50">
@@ -59,18 +59,18 @@
                                 <td class="text-center">${doctor.license}</td>
                                 <td class="text-center">${doctor.doctor.email}</td>
                                 <td class="text-center">
-                                    <form action="/doctor/editRole/${doctor.doctor.id}" method="POST" class="d-inline-flex align-items-center justify-content-center">
+                                    <form action="/doctor/editRole/${doctor.doctor.id}" method="POST" class="d-inline-flex align-items-center justify-content-center  me-1 form-inline">
                                         <input type="hidden" name="_method" value="PUT">
                                         <select class="form-select" name="role" id="roleid">
                                             <c:forEach items="${roles}" var="role">
                                                 <option value="${role}">${role}</option>
                                             </c:forEach>
                                         </select>
-                                        <input type="submit" class="btn btn-custom me-1" value="Save">
+                                        <input type="submit" class="btn btn-custom" value="Guardar">
                                     </form>
                                 <form action="/doctorDelete/${doctor.id}" method="POST" class="d-inline-flex align-items-center">
 								    <input type="hidden" name="_method" value="DELETE"/>
-								    <input type="submit" class="btn btn-custom" value="Eliminar">
+								    <input type="submit" class="btn btn-custom" value="Dar De Baja">
 								</form>
                                 </td>
                             </tr>

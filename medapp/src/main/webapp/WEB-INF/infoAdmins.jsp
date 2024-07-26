@@ -52,7 +52,7 @@
                                 <td class="text-center">
                                 <form action="/adminDelete/${admin.id}" method="POST">
 								    <input type="hidden" name="_method" value="DELETE"/>
-								    <input type="submit" class="btn btn-custom btn-sm" value="Eliminar">
+								    <input type="submit" class="btn btn-custom" value="Dar De Baja">
 								</form>
                                 </td>
                             </tr>

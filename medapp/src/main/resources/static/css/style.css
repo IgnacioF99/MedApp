@@ -117,3 +117,7 @@ a:hover {
 .card {
     border: none;
 }
+
+.form-inline {
+    gap: 5px;
+}
