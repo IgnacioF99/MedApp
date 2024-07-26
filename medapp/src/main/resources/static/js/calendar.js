@@ -100,51 +100,60 @@ function updateDoctors() {
 }
 
 function showAppointments(date) {
-	$.ajax({
-		url: "/appointments/" + date,
-		method: "GET",
-		success: function(appointments) {
-			$('#appointmentList').empty(); // Limpiar la lista
-			if (appointments.length > 0) {
-				appointments.forEach(function(appointment) {
-					$('#appointmentList').append('<p>' + appointment.appointmentSpeciality + ' - ' + appointment.appointmentTime + ' - ' + appointment.patient.firstName + ' ' + appointment.patient.lastName + '</p>');
-				});
-			} else {
-				$('#appointmentList').html('<p>No hay citas agendadas para el ' + date + '.</p>');
-			}
-			$('#appointmentModal').modal('show'); // Mostrar el modal
-		}
-	});
-}
+            $.ajax({
+                url: "/appointments/" + date,
+                method: "GET",
+                success: function(appointments) {
+                    $('#appointmentList').empty(); // Limpiar la lista
+                    if (appointments.length > 0) {
+                        appointments.forEach(function(appointment) {
+                            $('#appointmentList').append('<p>' + appointment.appointmentSpeciality + ' - ' + appointment.appointmentTime + ' - ' + appointment.patient.firstName + ' ' + appointment.patient.lastName + '</p>');
+                        });
+                    } else {
+                        $('#appointmentList').html('<p>No hay citas agendadas para el ' + date + '.</p><a href="/newAppointment?date=' + date + '" class="btn btn-primary">Agendar Nueva Cita</a>');
+                    }
+                    $('#appointmentModal').modal('show'); // Mostrar el modal
+                },
+                error: function(xhr, status, error) {
+                    alert("Error al obtener las citas: " + error);
+                }
+            });
+        }
+
+        function openAppointmentModal(date) {
+            $('#appointmentDate').val(date);
+            $('#appointmentModal').modal('show');
+        }
+
+        // Función para mostrar una alerta al agendar una cita
+        const alertTrigger = document.getElementById('liveAlertBtn');
+        if (alertTrigger) {
+            alertTrigger.addEventListener('click', () => {
+                const appointmentDate = document.getElementById('appointmentDate').value;
+                const appointmentTime = document.getElementById('appointmentTime').value;
+                const doctorName = document.querySelector('#appointmentDoctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
+
+                const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime} con ${doctorName}.`;
+                appendAlert(message, 'success');
+            });
+        }
+
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+
+        const appendAlert = (message, type) => {
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `   <div>${message}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('');
+
+            alertPlaceholder.append(wrapper);
+        };
 
 
 // Agregar un evento para actualizar el calendario cuando se cambie el mes o el año
 document.getElementById('monthSelect').addEventListener('change', updateCalendar);
 document.getElementById('yearSelect').addEventListener('change', updateCalendar);
-
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-
-const appendAlert = (message, type) => {
-	const wrapper = document.createElement('div')
-	wrapper.innerHTML = [
-		`<div class="alert alert-${type} alert-dismissible" role="alert">`,
-		`   <div>${message}</div>`,
-		'   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-		'</div>'
-	].join('')
-
-	alertPlaceholder.append(wrapper)
-}
-
-const alertTrigger = document.getElementById('liveAlertBtn')
-if (alertTrigger) {
-	alertTrigger.addEventListener('click', () => {
-		const appointmentDate = document.getElementById('appointmentDate').value
-		const appointmentTime = document.getElementById('appointmentTime').value
-		const doctorName = document.querySelector('#doctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
-
-		const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime} con ${doctorName}.`;
-		appendAlert(message, 'success');
-	})
-}
 
