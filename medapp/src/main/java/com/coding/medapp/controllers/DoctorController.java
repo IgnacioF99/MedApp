@@ -1,5 +1,6 @@
 package com.coding.medapp.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,19 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.coding.medapp.models.Content;
 import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.HealthInsurance;
+import com.coding.medapp.models.MedicalAppointment;
+import com.coding.medapp.models.MedicalHistory;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.Speciality;
 import com.coding.medapp.models.User;
+import com.coding.medapp.services.ContentServices;
 import com.coding.medapp.services.DoctorServices;
 import com.coding.medapp.services.HealthInsuranceServices;
+import com.coding.medapp.services.MedicalAppointmentService;
+import com.coding.medapp.services.MedicalHistoryServices;
 import com.coding.medapp.services.SpecialityServices;
 import com.coding.medapp.services.UserServices;
 
@@ -26,6 +33,11 @@ import java.util.List;
 @Controller
 public class DoctorController {
 	
+	@Autowired
+	private ContentServices contentServices;
+	
+	@Autowired
+	private MedicalHistoryServices medicalHistoryServices;
 	
 
     @Autowired
@@ -36,22 +48,37 @@ public class DoctorController {
 
     @Autowired
     private HealthInsuranceServices insuranceServices;
+    
+    @Autowired
+    private MedicalAppointmentService appointmentServices;
+    
+    @Autowired
+    private UserServices userServices;
 
     
     @GetMapping("/doctor")
     public String doctor(HttpSession session, Model model) {
-	    // =====REVISAMOS SESION=========
-	    User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
-		if(userTemp == null) {
-			return "redirect:/login";
-		}
-		// =====REVISAMOS SU ROL========
-        if (userTemp.getRole().equals(Rol.Roles[2])) {
-            return "welcomeDoctor.jsp";
-        } else {
-            return "redirect:/";
+        // ===== REVISAMOS SESIÓN =====
+        User userTemp = (User) session.getAttribute("userInSession"); // Objeto User o null
+        if (userTemp == null) {
+            return "redirect:/login";
         }
 
+        // ===== REVISAMOS SU ROL =====
+        if (userTemp.getRole().equals(Rol.Roles[2])) { // Verifica si el usuario tiene el rol de doctor
+            // Obtiene el ID del doctor desde el objeto User
+            Long doctorId = userTemp.getDoctor2().getId();
+
+            // Llama al servicio para obtener las citas del día actual para el doctor
+            List<MedicalAppointment> appointments = appointmentServices.getAppointmentsForToday(doctorId);
+
+            // Agrega las citas al modelo para que se muestren en la vista
+            model.addAttribute("appointments", appointments);
+            
+            return "welcomeDoctor.jsp"; // 
+        } else {
+            return "redirect:/"; // Redirige si el rol no es el esperado
+        }
     }
 			
     @GetMapping("/doctor/{id}")
@@ -125,7 +152,6 @@ public class DoctorController {
             //Setea las obras sociales al doc- recibiendo las que tiene el existing doctor
             doctorUpdated.setInsurance(existingDoctor.getInsurance());
             // Setea las especialidades existentes en el doctor actualizado
-            doctorUpdated.setSpecialitiesDoctor(existingDoctor.getSpecialitiesDoctor());
             doctorServices.saveDoctor(doctorUpdated);
             System.out.println(doctorUpdated.getId());
             return "redirect:/doctor/" + doctorUpdated.getId();
@@ -133,5 +159,58 @@ public class DoctorController {
             return "redirect:/";
         }
     }
+    
 
+    
+    
+    @GetMapping("/doctor/createMedicalHistory/{id}")
+    public String createMedicalHistory(@ModelAttribute("newContent") Content newContent, @PathVariable("id")Long id, Model model) {
+    	User myPatient = userServices.getUser(id);
+    	model.addAttribute("user", myPatient);
+    	
+    	return "newMedicalHistory.jsp";
+    	
+    	
+    }
+    
+    @PostMapping("/createMedicalHistory/{id}")
+    public String createMedicalHistoryPatient(@Valid @ModelAttribute("newContent") Content newContent,
+                                               @PathVariable("id") Long id,
+                                               BindingResult result,
+                                               HttpSession session) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+        
+        if (result.hasErrors()) {
+            return "newMedicalHistory.jsp";
+        } else {
+            // Obtener el paciente
+            User myPatient = userServices.getUser(id);
+            MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistory(id);
+            if(medicalHistory == null) {
+            	medicalHistory = new MedicalHistory();
+            	
+                medicalHistoryServices.saveMedicalHistory(medicalHistory);
+            }
+            // Asociar el contenido con el historial médico
+            newContent.setMedHistory(medicalHistory);
+            newContent.setPatient(myPatient);
+            
+            // Guardar el contenido 
+            contentServices.saveContent(newContent);
+
+            // Agregar el contenido a la lista de contenidos del historial médico
+            medicalHistory.getContents().add(newContent);
+            medicalHistoryServices.saveMedicalHistory(medicalHistory);
+
+            
+            return "redirect:/doctor";
+        }
+    }
+
+
+    
 }
+    

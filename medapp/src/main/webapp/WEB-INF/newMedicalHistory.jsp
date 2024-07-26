@@ -30,36 +30,31 @@
 				<div class="card shadow">
 					<div class="card-body">
 						<h2 class="text-center mb-4">Nuevo historial medico</h2>
-						<form:form action="/create" method="POST" modelAttribute="newMedicalHistory">
+						<form:form action="/createMedicalHistory/${user.id}" method="POST" modelAttribute="newContent">			
 							<div class="mb-3">
-								<form:label class="inputLabel" path="dni">DNI:</form:label>
-								<form:input path="dni"  class="form-control" />
-								<form:errors path="dni" class="text-danger" />
+								<form:label class="inputLabel" path="familyHistory">Patologias:</form:label>
+								<form:input path="familyHistory" class="form-control" />
+								<form:errors path="familyHistory" class="text-danger" />
 							</div>
 							<div class="mb-3">
-								<form:label class="inputLabel" path="email">Patologias:</form:label>
-								<form:input path="email" class="form-control" />
-								<form:errors path="email" class="text-danger" />
+								<form:label class="inputLabel" path="allergies">Alergias:</form:label>
+								<form:input path="allergies" class="form-control" />
+								<form:errors path="allergies" class="text-danger" />
 							</div>
 							<div class="mb-3">
-								<form:label class="inputLabel" path="password">Alergias:</form:label>
-								<form:password path="password" class="form-control" />
-								<form:errors path="password" class="text-danger" />
-							</div>
-							<div class="mb-3">
-								<form:label class="inputLabel" path="confirm">Tratamiento:</form:label>
-								<form:password path="confirm" class="form-control" />
-								<form:errors path="confirm" class="text-danger" />
+								<form:label class="inputLabel" path="treatment">Tratamiento:</form:label>
+								<form:input path="treatment" class="form-control" />
+								<form:errors path="treatment" class="text-danger" />
 							</div>
                             <div class="mb-3">
-                                <form:label class="inputLabel" path="additionalComments">Observaciones:</form:label>
-                                <form:textarea path="additionalComments" class="form-control" rows="5" cols="30"/>
-                                <form:errors path="additionalComments" class="text-danger" />
+                                <form:label class="inputLabel" path="observations">Observaciones:</form:label>
+                                <form:textarea path="observations" class="form-control" rows="5" cols="30"/>
+                                <form:errors path="observations" class="text-danger" />
                             </div>
+                            <input type="submit" value="Crear historial medico" class="btn btn-custom mt-3">
 						</form:form>
                         <div class="text-center">
-                            <a href="#" class="btn btn-custom">Crear Historial</a>
-                            <a href="#" class="p-2">Volver</a>
+                            <a href="/doctor" class="p-2">Volver</a>
                         </div>
 					</div>
 				</div>

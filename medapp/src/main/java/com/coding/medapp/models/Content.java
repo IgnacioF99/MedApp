@@ -26,12 +26,13 @@ public class Content {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date date;
 
+    
     private String treatment;
 
     private String observations;
 
     private String familyHistory;
-
+        
     private String allergies;
 
     @Column(updatable=false)

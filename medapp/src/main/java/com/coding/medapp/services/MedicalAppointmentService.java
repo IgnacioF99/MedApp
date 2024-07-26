@@ -60,4 +60,15 @@ public class MedicalAppointmentService {
         // Buscar citas entre el primer y último día del mes
         return appointmentRepository.findByAppointmentDateBetween(startDate, endDate);
     }
+    
+    public List<MedicalAppointment> getAppointmentsForDoctor(Long doctorId) {
+        return appointmentRepository.findByDoctorIdOrderByAppointmentDateAscAppointmentTimeAsc(doctorId);
+    }
+    
+    public List<MedicalAppointment> getAppointmentsForToday(Long doctorId) {
+        LocalDate today = LocalDate.now();
+        return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, today);
+    }
+    
+    
 }

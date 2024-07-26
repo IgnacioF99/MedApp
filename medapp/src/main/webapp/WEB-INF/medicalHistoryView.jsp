@@ -1,19 +1,13 @@
-<!-- Importacion para hacer html con jsp en spring -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!-- Importacion para usar recursos logicos de java -->    
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!-- Importacion para crear instancias vacias de entidades, se usa para formularios -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<!-- Me permite mostrar errores en las ediciones -->
-<%@ page isErrorPage="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial Medico</title>
+    <title>Historial Médico</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
@@ -29,34 +23,38 @@
             <div class="col-md-8">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="text-center mb-4">Historial Medico</h2>
+                        <h2 class="text-center mb-4">Historial Médico de ${patient.firstName} ${patient.lastName}</h2>
                         <div class="mb-3">
-                            <label class="inputLabel">DNI:</label>
-                            <p>${medicalHistory.dni}</p>
-                        </div>
-                        <div class="mb-3">
-                            <label class="inputLabel">Patologias:</label>
-                            <p>${medicalHistory.patologias}</p>
-                        </div>
-                        <div class="mb-3">
-                            <label class="inputLabel">Alergias:</label>
-                            <p>${medicalHistory.alergias}</p>
-                        </div>
-                        <div class="mb-3">
-                            <label class="inputLabel">Tratamiento:</label>
-                            <p>${medicalHistory.tratamiento}</p>
-                        </div>
-                        <div class="mb-3">
-                            <label class="inputLabel">Observaciones:</label>
-                            <p>${medicalHistory.additionalComments}</p>
-                        </div>
-                        <div class="text-center">
-                            <a href="#" class="p-2">Volver</a>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Patologías</th>
+                                        <th>Alergias</th>
+                                        <th>Tratamientos</th>
+                                        <th>Observaciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="content" items="${contents}">
+                                        <tr>
+                                            <td>${content.date}</td>
+                                            <td>${content.familyHistory}</td>
+                                            <td>${content.allergies}</td>
+                                            <td>${content.treatment}</td>
+                                            <td>${content.observations}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <div class="text-center">
+                                <a href="/doctor" class="p-2">Volver</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body> 
+</body>
 </html>

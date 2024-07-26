@@ -1,10 +1,12 @@
 package com.coding.medapp.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,8 +32,8 @@ public class MedicalHistory {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "medHistory", fetch = FetchType.LAZY)
-    private List<Content> contents;
+    @OneToMany(mappedBy = "medHistory", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Content> contents = new ArrayList<>(); // Inicialización aquí
 
     //=========================================================
 

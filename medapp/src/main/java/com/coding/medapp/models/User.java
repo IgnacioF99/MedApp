@@ -1,5 +1,6 @@
 package com.coding.medapp.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -72,7 +73,8 @@ public class User {
     private Date updatedAt;
 
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
-    private List<Content> contents;
+    private List<Content> contents = new ArrayList<>();
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "healthInsurance_id")
