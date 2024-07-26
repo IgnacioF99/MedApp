@@ -36,12 +36,12 @@ pageEncoding="ISO-8859-1"%>
       <section class="mb-4">
         <h1 class="mb-4 mt-3">Quienes somos?</h1>
         <p class="m-2">
-          Med App facilita la programaciï¿½n de citas en lï¿½nea, optimiza la administraciï¿½n de turnos y centraliza los
-          historiales mï¿½dicos, permitiendo una experiencia mï¿½s rï¿½pida y sencilla tanto para pacientes como para el
-          personal mï¿½dico. <br>
-          Con nuestro enfoque en la accesibilidad, la gestiï¿½n eficiente y la simplificaciï¿½n
-          administrativa, Med App asegura una atenciï¿½n mï¿½dica mï¿½s efectiva y organizada, reduciendo tiempos de espera y
-          mejorando la coordinaciï¿½n entre todos los involucrados en el cuidado de la salud.
+          Med App facilita la programación de citas en línea, optimiza la administración de turnos y centraliza los
+          historiales médicos, permitiendo una experiencia más rápida y sencilla tanto para pacientes como para el
+          personal médico. <br>
+          Con nuestro enfoque en la accesibilidad, la gestión eficiente y la simplificación
+          administrativa, Med App asegura una atención médica más efectiva y organizada, reduciendo tiempos de espera y
+          mejorando la coordinación entre todos los involucrados en el cuidado de la salud.
         </p>
       </section>
       <section class="mb-5">
