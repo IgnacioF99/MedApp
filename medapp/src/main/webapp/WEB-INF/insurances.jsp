@@ -33,7 +33,7 @@
             </div>
         </header>
         <main class="d-flex flex-column align-items-center main-custom">
-            <h1 class="text-center">Obras Sociales</h1>
+            <h1 class="text-center  mt-4">Obras Sociales</h1>
             <form:form action="/addInsurance" method="POST" modelAttribute="newInsurance" class="w-75 mt-3">
 			    <div class="row justify-content-center align-items-center mb-3">
 			        <div class="col-auto">

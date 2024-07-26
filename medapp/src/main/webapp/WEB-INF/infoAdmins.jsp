@@ -40,7 +40,7 @@
                             <th class="text-center">DNI</th>
                             <th class="text-center">Nombre</th>
                             <th class="text-center">E-mail</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
                                 <td class="text-center">
                                 <form action="/adminDelete/${admin.id}" method="POST">
 								    <input type="hidden" name="_method" value="DELETE"/>
-								    <input type="submit" class="btn btn-custom btn-sm" value="Eliminar">
+								    <input type="submit" class="btn btn-custom" value="Dar de baja">
 								</form>
                                 </td>
                             </tr>
@@ -65,6 +65,5 @@
             <p class="text-muted">&copy; 2024</p>
         </footer>
     </div>
-    <script src="/static/js/script.js"></script>
 </body>
 </html>
