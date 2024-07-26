@@ -66,7 +66,7 @@
                                 <td class="text-center">
                                 <form action="/admin/insuranceList/delete/${insurance.id}" method="POST">
 								    <input type="hidden" name="_method" value="DELETE"/>
-								    <input type="submit" class="btn btn-custom btn-sm" value="Dar De Baja">
+								    <input type="submit" class="btn btn-custom btn-sm" value="Eliminar">
 								</form>
                                 </td>
                             </tr>

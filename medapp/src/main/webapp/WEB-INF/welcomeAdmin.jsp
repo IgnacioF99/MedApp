@@ -42,7 +42,7 @@
                 <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
             </div>
             
-            <h1 class="text-center mt-3">Gestion De Clinica</h1>
+            <h1 class="text-center mt-3 mb-3">Gestion De Clinica</h1>
         <div class="row justify-content-center w-100 mt-4">
             <div class="col-md-4 mb-3 d-flex justify-content-center">
                 <a href="/admin/insuranceList" class="btn btn-custom btn-lg w-100 text-center p-4">Obras Sociales</a>

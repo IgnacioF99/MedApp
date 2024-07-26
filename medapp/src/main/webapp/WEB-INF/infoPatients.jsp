@@ -74,7 +74,7 @@
                                     </form>
                                     <form action="#" method="#" class="d-inline-flex align-items-center">
 								    <input type="hidden" name="_method" value="DELETE"/>
-								    <input type="submit" class="btn btn-custom" value="Dar De Baja">
+								    <input type="submit" class="btn btn-custom" value="Dar de baja">
 								</form>
                                 </td>
                             </tr>

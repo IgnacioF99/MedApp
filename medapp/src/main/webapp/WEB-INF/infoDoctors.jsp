@@ -70,7 +70,7 @@
                                     </form>
                                 <form action="/doctorDelete/${doctor.id}" method="POST" class="d-inline-flex align-items-center">
 								    <input type="hidden" name="_method" value="DELETE"/>
-								    <input type="submit" class="btn btn-custom" value="Dar De Baja">
+								    <input type="submit" class="btn btn-custom" value="Dar de baja">
 								</form>
                                 </td>
                             </tr>
@@ -83,6 +83,5 @@
             <p class="text-muted">&copy; 2024</p>
         </footer>
     </div>
-    <script src="/static/js/script.js"></script>
 </body>
 </html>
