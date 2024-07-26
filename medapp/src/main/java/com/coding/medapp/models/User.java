@@ -86,6 +86,8 @@ public class User {
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private List<MedicalAppointment> medicalAppointments; 
 
+   
+
     //=========================================================
 
     public User() {
@@ -183,10 +185,14 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+    
+    
 
     //=========================================================
 
-    public List<Content> getContents() {
+
+
+	public List<Content> getContents() {
         return contents;
     }
 

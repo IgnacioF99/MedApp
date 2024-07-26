@@ -13,7 +13,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -35,6 +37,8 @@ public class MedicalHistory {
     @OneToMany(mappedBy = "medHistory", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Content> contents = new ArrayList<>(); // Inicialización aquí
 
+    
+ 
     //=========================================================
 
     public MedicalHistory() {
@@ -67,10 +71,12 @@ public class MedicalHistory {
     }
 
     
+    
 
     //=========================================================
 
-    @PrePersist
+   
+	@PrePersist
     protected void onCreate() {
         this.createdAt = new Date();
     }

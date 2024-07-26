@@ -2,6 +2,8 @@ package com.coding.medapp.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -172,6 +174,24 @@ public class DoctorController {
     	
     	
     }
+    
+    /* @GetMapping("/doctor/medicalHistory/{id}")
+    public String viewMedicalHistory(@PathVariable("id") Long id, Model model) {
+        User patient = userServices.getUser(id);
+        MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistoryByPatient(patient);
+
+        if (medicalHistory != null) {
+            model.addAttribute("medicalHistory", medicalHistory);
+            model.addAttribute("contents", medicalHistory.getContents());
+        } else {
+            model.addAttribute("contents", new ArrayList<>()); // Si no hay historial médico, pasar una lista vacía
+        }
+
+        model.addAttribute("patient", patient);
+        return "medicalHistoryView.jsp";
+    }
+    */
+
     
     @PostMapping("/createMedicalHistory/{id}")
     public String createMedicalHistoryPatient(@Valid @ModelAttribute("newContent") Content newContent,

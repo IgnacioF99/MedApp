@@ -20,10 +20,6 @@ public class MedicalHistoryServices {
     	return medicalHistoryRepository.findById(id).orElse(null);
     }
     
-    
-    
-   
-    
     public List<MedicalHistory> findAllHistory(){
     	return medicalHistoryRepository.findAll();
     }
