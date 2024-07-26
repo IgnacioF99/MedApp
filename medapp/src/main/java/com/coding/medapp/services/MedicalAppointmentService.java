@@ -32,6 +32,11 @@ public class MedicalAppointmentService {
     public MedicalAppointment getAppointmentById(Long id) {
         return appointmentRepository.findById(id).orElse(null);
     }
+    
+    public List<MedicalAppointment> getAppointmentsByDate(LocalDate date) {
+        return appointmentRepository.findByAppointmentDate(date);
+    }
+
 
     public void deleteAppointment(MedicalAppointment appointment) {
         appointmentRepository.delete(appointment);

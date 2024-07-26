@@ -6,7 +6,7 @@ function updateCalendar() {
     const monthSelect = document.getElementById('monthSelect');
     const yearSelect = document.getElementById('yearSelect');
     const month = parseInt(monthSelect.value);
-    const year = parseInt(yearSelect.value); // Obtener el año del selector
+    const year = parseInt(yearSelect.value);
 
     const monthNames = [
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -40,17 +40,17 @@ function updateCalendar() {
                     cell.classList.add('today');
                 }
 
-                // Capturar el valor correcto de `date` usando `let`
                 let currentDate = date;
                 cell.onclick = function() {
                     // Al hacer clic en un día, abrir el modal para agregar una cita
-                    document.getElementById('appointmentDate').value = `${year}-${String(month).padStart(2, '0')}-${String(currentDate).padStart(2, '0')}`;
+                    const selectedDate = `${year}-${String(month).padStart(2, '0')}-${String(currentDate).padStart(2, '0')}`;
+                    document.getElementById('appointmentDate').value = selectedDate;
                     $('#appointmentModal').modal('show');
 
                     // Agregar la clase 'clicked' para el efecto visual
                     cell.classList.add('clicked');
 
-                    // Quitar la clase después de un tiempo
+                    // Opcional: quitar la clase después de un tiempo
                     setTimeout(() => {
                         cell.classList.remove('clicked');
                     }, 300); // Tiempo en milisegundos
@@ -98,6 +98,25 @@ function updateDoctors() {
         doctorSelect.appendChild(option);
     });
 }
+
+function showAppointments(date) {
+    $.ajax({
+        url: "/appointments/" + date,
+        method: "GET",
+        success: function(appointments) {
+            $('#appointmentList').empty(); // Limpiar la lista
+            if (appointments.length > 0) {
+                appointments.forEach(function(appointment) {
+                    $('#appointmentList').append('<p>' + appointment.appointmentSpeciality + ' - ' + appointment.appointmentTime + ' - ' + appointment.patient.firstName + ' ' + appointment.patient.lastName + '</p>');
+                });
+            } else {
+                $('#appointmentList').html('<p>No hay citas agendadas para el ' + date + '.</p>');
+            }
+            $('#appointmentModal').modal('show'); // Mostrar el modal
+        }
+    });
+}
+
 
 // Agregar un evento para actualizar el calendario cuando se cambie el mes o el año
 document.getElementById('monthSelect').addEventListener('change', updateCalendar);

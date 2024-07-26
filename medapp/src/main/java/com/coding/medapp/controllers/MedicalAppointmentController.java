@@ -1,5 +1,6 @@
 package com.coding.medapp.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,4 +118,12 @@ public class MedicalAppointmentController {
         redirectAttributes.addFlashAttribute("successMessage", "Appointment cancelled successfully!");
         return "redirect:/appointments";
     }
+    
+    @GetMapping("/appointments/{date}")
+    public String getAppointmentsByDate(@PathVariable("date") LocalDate date, Model model) {
+        List<MedicalAppointment> appointments = appointmentService.getAppointmentsByDate(date);
+        model.addAttribute("appointments", appointments);
+        return "appointmentList :: appointmentList"; // Retorna solo la sección del modal
+    }
+
 }
