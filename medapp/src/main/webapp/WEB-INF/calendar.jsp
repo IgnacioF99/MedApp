@@ -99,16 +99,17 @@
 					</tr>
 				</thead>
 				<tbody id="calendarBody">
-					<c:forEach var="week" items="${calendar}">
-						<tr>
-							<c:forEach var="day" items="${week}">
-								<td class="${day.hasAppointment ? 'has-appointment' : ''}"
-									onclick="${day.hasAppointment ? 'showAppointments(\'' + day.date + '\')' : 'openAppointmentModal(\'' + day.date + '\')'}">
-									${day.date}</td>
-							</c:forEach>
-						</tr>
-					</c:forEach>
-				</tbody>
+                    <c:forEach var="week" items="${calendar}">
+                        <tr>
+                            <c:forEach var="day" items="${week}">
+                                <td class="${scheduledDates.contains(day.date) ? 'highlight' : ''}"
+                                    onclick="${day.hasAppointment ? 'showAppointments(\'' + day.date + '\')' : 'openAppointmentModal(\'' + day.date + '\')'}">
+                                    ${day.date}
+                                </td>
+                            </c:forEach>
+                        </tr>
+                    </c:forEach>
+                </tbody>
 			</table>
 		</main>
 
