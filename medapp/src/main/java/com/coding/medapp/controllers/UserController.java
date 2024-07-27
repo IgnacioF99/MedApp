@@ -250,13 +250,13 @@ public class UserController {
             Doctor myDoctor = doctorServices.getDoctor(id);
             User myUser = myDoctor.getDoctor();
             List<HealthInsurance> insurances = myDoctor.getInsurance();
-            List<Speciality> specialities = myDoctor.getSpecialitiesDoctor();
+            Speciality speciality = myDoctor.getDoctorSpeciality();
 
             // Agrega atributos al modelo para usarlos en la vista
             model.addAttribute("user", myUser);
             model.addAttribute("doctor", myDoctor); 
             model.addAttribute("insurances", insurances);
-            model.addAttribute("specialities", specialities);
+            model.addAttribute("speciality", speciality);
 
             // Genera una lista de horarios
             List<String> times = new ArrayList<>();

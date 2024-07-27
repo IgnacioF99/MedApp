@@ -33,7 +33,7 @@
                         </div>
                         <p class="card-text"><span>Hora de Inicio:</span> ${doctor.startTime}</p>
                         <p class="card-text"><span>Hora de Salida:</span> ${doctor.endTime}</p>
-                        <p class="card-text"><span>Especialidad:</span> ${doctor.getSpecialitiesDoctors()}</p>
+                        <p class="card-text"><span>Especialidad:</span> ${doctor.doctorSpeciality}</p>
                         <p class="card-text"><span>Obra Social:</span> ${doctor.getInsurancesDoctor()}</p>
                     </div>
 
@@ -54,7 +54,7 @@
                                         <td>${appointment.appointmentDate}</td>
                                         <td>${appointment.appointmentTime}</td>
                                         <td>${appointment.appointmentSpeciality}</td>
-                                        <td>${appointment.patient.firstName} ${appointment.patient.lastName}</td>
+                                        <td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName} ${appointment.patient.lastName}</a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

@@ -1,5 +1,7 @@
 package com.coding.medapp.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -126,7 +128,7 @@ public class DoctorController {
 
     @PutMapping("/doctor/update/{id}")
     public String updateProfile(@Valid @ModelAttribute("doctor") Doctor doctorUpdated, BindingResult result, HttpSession session, Model model,
-                                @RequestParam(value = "specialitiesDoctor", required = false) Long specialityId,
+                                @RequestParam(value = "doctorSpeciality", required = false) Long specialityId,
                                 @RequestParam(value = "insurance", required = false) Long insuranceId) {
         User userTemp = (User) session.getAttribute("userInSession");
         if (userTemp == null) {
@@ -166,7 +168,11 @@ public class DoctorController {
     
     
     @GetMapping("/doctor/createMedicalHistory/{id}")
-    public String createMedicalHistory(@ModelAttribute("newContent") Content newContent, @PathVariable("id")Long id, Model model) {
+    public String createMedicalHistory(@ModelAttribute("newContent") Content newContent, @PathVariable("id")Long id, Model model,HttpSession session) {
+    	User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
     	User myPatient = userServices.getUser(id);
     	model.addAttribute("user", myPatient);
     	
@@ -176,7 +182,11 @@ public class DoctorController {
     }
     
     @GetMapping("/doctor/medicalHistory/{id}")
-    public String viewMedicalHistory(@PathVariable("id") Long id, Model model) {
+    public String viewMedicalHistory(@PathVariable("id") Long id, Model model,HttpSession session) {
+    	User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
         User patient = userServices.getUser(id);
 
         // Obtener contenidos del usuario
@@ -188,6 +198,9 @@ public class DoctorController {
         model.addAttribute("patient", patient);
         model.addAttribute("contents", contents);
         model.addAttribute("medicalHistory", medicalHistory);
+       	Doctor doctor = userTemp.getDoctor2();
+    	model.addAttribute("doctor", doctor);
+        
 
         return "medicalHistoryView.jsp";
     }
@@ -198,37 +211,41 @@ public class DoctorController {
     
     @PostMapping("/createMedicalHistory/{id}")
     public String createMedicalHistoryPatient(@Valid @ModelAttribute("newContent") Content newContent,
-                                               @PathVariable("id") Long id,
-                                               BindingResult result,
-                                               HttpSession session) {
+                                              @PathVariable("id") Long id,
+                                              BindingResult result,
+                                              HttpSession session) {
         User userTemp = (User) session.getAttribute("userInSession");
         if (userTemp == null) {
             return "redirect:/login";
         }
-        
-        if (result.hasErrors()) {
-            return "newMedicalHistory.jsp";
-        } else {
+         else {
             // Obtener el paciente
+            Doctor doctor = userTemp.getDoctor2();
+            Speciality speciality = doctor.getDoctorSpeciality();
             User myPatient = userServices.getUser(id);
             MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistory(id);
-            if(medicalHistory == null) {
-            	medicalHistory = new MedicalHistory();
-            	
+
+            if (medicalHistory == null) {
+                medicalHistory = new MedicalHistory();
                 medicalHistoryServices.saveMedicalHistory(medicalHistory);
             }
+
             // Asociar el contenido con el historial médico
+            newContent.setContentSpeciality(speciality);
+            newContent.setDate(LocalDate.now());           
             newContent.setMedHistory(medicalHistory);
             newContent.setPatient(myPatient);
             
-            // Guardar el contenido 
+            // Guardar el contenido
             contentServices.saveContent(newContent);
 
             // Agregar el contenido a la lista de contenidos del historial médico
             medicalHistory.getContents().add(newContent);
-            medicalHistoryServices.saveMedicalHistory(medicalHistory);
 
-            
+            // No es necesario volver a guardar medicalHistory aquí ya que saveContent debería haber hecho un flush
+            // y porque la relación es gestionada por el lado del Content
+            // medicalHistoryServices.saveMedicalHistory(medicalHistory);
+
             return "redirect:/doctor";
         }
     }

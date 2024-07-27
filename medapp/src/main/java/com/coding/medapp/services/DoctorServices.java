@@ -51,7 +51,7 @@ public class DoctorServices {
         List<Doctor> filteredDoctors = new ArrayList<>();
 
         for (Doctor doctor : allDoctors) {
-            if (doctor.getSpecialitiesDoctor().contains(mySpeciality)) {
+            if (doctor.getDoctorSpeciality() == mySpeciality) {
                 filteredDoctors.add(doctor);
             }
             

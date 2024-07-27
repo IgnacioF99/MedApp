@@ -35,12 +35,12 @@ public class SpecialityServices {
     	Speciality mySpeciality = getSpeciality(specialityId);
     	
     	// Verifica si la especialidad ya está presente
-        if (myDoctor.getSpecialitiesDoctor().contains(mySpeciality)) {
+        if (myDoctor.getDoctorSpeciality() == mySpeciality) {
             // Si ya la tiene, no la agrega
             return;
         }
     	
-    	myDoctor.getSpecialitiesDoctor().add(mySpeciality);
+    	
     	doctorServices.saveDoctor(myDoctor);
     }
     
