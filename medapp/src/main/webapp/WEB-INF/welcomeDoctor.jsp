@@ -63,6 +63,7 @@
                         </table>
                     </div>
         </main>
+        <h1 class="pb-3 text-center mt-3"><a href="/doctor/nextAppointments">Ver proximos turnos</a></h1>
         <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>
         </footer>

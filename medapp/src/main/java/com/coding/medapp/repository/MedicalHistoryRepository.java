@@ -13,4 +13,6 @@ public interface MedicalHistoryRepository extends CrudRepository<MedicalHistory,
 
 	public List<MedicalHistory> findAll();
 	
+
+	
 }

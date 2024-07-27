@@ -46,22 +46,18 @@
                         seleccionada.</div>
                 </c:if>
             </div>
+
             <div class="container mt-5">
                 <div class="row d-flex justify-content-center">
                     <c:forEach var="doctor" items="${doctors}">
                         <div class="col-md-4 mb-4 d-flex justify-content-center">
                             <div class="card doctor-card">
                                 <div class="card-body">
-                                    <h5 class="mb-3">${doctor.doctor.firstName}
-                                        ${doctor.doctor.lastName}</h5>
-                                    <p class="card-text mb-1"><span>Especialidad:</span>
-                                        ${doctor.specialitiesDoctors}</p>
-                                    <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}
-                                    </p>
-                                    <p class="card-text mb-1"><span>Disponibilidad:</span>
-                                        ${doctor.availability}</p>
-                                    <p class="card-text mb-3"><span>Obra Social:</span>
-                                        ${doctor.insurancesDoctor}</p>
+                                    <h5 class="mb-3">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
+                                    <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.doctorSpeciality}</p>
+                                    <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
+                                    <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
+                                    <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
                                     <a href="/patient/calendar/${doctor.id}" class="btn btn-custom d-block">Agendar</a>
                                 </div>
                             </div>
@@ -69,7 +65,6 @@
                     </c:forEach>
                 </div>
             </div>
-
         </main>
         <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>

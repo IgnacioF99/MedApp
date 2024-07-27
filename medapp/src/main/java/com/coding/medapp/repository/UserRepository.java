@@ -20,6 +20,6 @@ public interface UserRepository extends CrudRepository<User,Long>{
 	User findByEmail(String email);
 	
 	//buscar usuario por dni
-	User findByDni(Integer dni);
+	User findByDni(String dni);
 	//List<User> findAllDni(Integer dni);
 }

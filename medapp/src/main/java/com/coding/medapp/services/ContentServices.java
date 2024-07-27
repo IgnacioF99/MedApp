@@ -15,5 +15,13 @@ public class ContentServices {
         return contentRepository.save(content);
     }
     
+    public Content getContent(Long id) {
+    	return contentRepository.findById(id).orElse(null);
+    }
+    
+    public Content updateContent(Content content) {
+        // Guardar el contenido actualizado en la base de datos
+        return contentRepository.save(content);
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.coding.medapp.models;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,11 +25,15 @@ public class Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date date;
-
+    @DateTimeFormat(pattern="MM-dd")
+    private LocalDate date;
     
     private String treatment;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "speciality_id")
+    private Speciality contentSpeciality;
+    
 
     private String observations;
 
@@ -66,18 +72,36 @@ public class Content {
         this.id = id;
     }
 
-
-    public Date getDate() {
-        return date;
-    }
-
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    
+    
+    
 
 
-    public String getTreatment() {
+    
+
+
+	
+	
+
+	
+
+	public Speciality getContentSpeciality() {
+		return contentSpeciality;
+	}
+
+	public void setContentSpeciality(Speciality contentSpeciality) {
+		this.contentSpeciality = contentSpeciality;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public String getTreatment() {
         return treatment;
     }
 

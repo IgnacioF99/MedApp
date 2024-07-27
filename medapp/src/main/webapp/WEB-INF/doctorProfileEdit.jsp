@@ -43,8 +43,8 @@
                                 <form:errors path="availability" class="text-danger" />
                             </div>
                             <div class="form-group">
-                                <label class="inputLabel" for="specialitiesDoctor" class="form-label">Especialidad:</label>
-                                <select id="speciality" name="specialitiesDoctor" class="form-select">
+                                <label class="inputLabel" for="doctorSpeciality" class="form-label">Especialidad:</label>
+                                <select id="speciality" name="doctorSpeciality" class="form-select">
                                     <option value="">Todas las especialidades</option>
                                     <c:forEach items="${specialities}" var="speciality">
                                         <option value="${speciality.id}">${speciality.name}</option>

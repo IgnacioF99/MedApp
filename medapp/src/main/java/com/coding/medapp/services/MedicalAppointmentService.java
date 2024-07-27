@@ -1,5 +1,6 @@
 package com.coding.medapp.services;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
@@ -75,4 +76,19 @@ public class MedicalAppointmentService {
         LocalDate today = LocalDate.now();
         return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, today);
     }
+
+    
+    public List<MedicalAppointment> getAppointmentsForWeek(Long doctorId) {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
+        LocalDate endOfWeek = today.with(DayOfWeek.SUNDAY);
+        
+        return appointmentRepository.findByDoctorIdAndAppointmentDateBetween(doctorId, startOfWeek, endOfWeek);
+    }
+
+    
+    
 }
+
+
+

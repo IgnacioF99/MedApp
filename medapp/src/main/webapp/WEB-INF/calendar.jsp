@@ -31,17 +31,17 @@
 				<img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2"
 					width="50" height="50">
 				<div>
-					<p class="mb-0">${user.firstName}${user.lastName}</p>
-					<p class="mb-0">${doctor.specialitiesDoctors}</p>
+					<p class="mb-0">${user.firstName} ${user.lastName}</p>
+					<p class="mb-0">${doctor.doctorSpeciality}</p>
 					<p class="mb-0">${doctor.availability}</p>
-					<p class="mb-0">${doctor.startTime}${doctor.endTime}</p>
+					<p class="mb-0">${doctor.startTime} - ${doctor.endTime}</p>
 				</div>
 			</div>
 			<img src="/img/logo2.png" alt="logoprincipal"
 				class="logo position-absolute start-50 translate-middle-x p-2">
 			<div>
 				<a href="/logout" class="btn btn-custom">Cerrar Sesion</a> <a
-					href="/patient/${userInSession.id}" class=" btn btn-custom">Ir
+					href="/patient/${userInSession.id}" class="btn btn-custom">Ir
 					a mi perfil</a>
 			</div>
 		</header>
@@ -50,8 +50,8 @@
 				<h1>Calendario de Citas Médicas</h1>
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="d-flex align-items-center me-3">
-						<label class="inputLabel me-2" for="monthSelect">Mes:</label> <select
-							id="monthSelect" class="form-control" onchange="updateCalendar()">
+						<label class="inputLabel me-2" for="monthSelect">Mes:</label> 
+						<select id="monthSelect" class="form-control" onchange="updateCalendar()">
 							<c:forEach var="month" begin="1" end="12">
 								<c:set var="monthName">
 									<c:choose>
@@ -70,23 +70,20 @@
 									</c:choose>
 								</c:set>
 								<option value="${month}"
-									<c:if test="${month eq param.month}">selected</c:if>>${monthName}</option>
+									<c:if test="${month eq currentMonth}">selected</c:if>>${monthName}</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="d-flex align-items-center">
-						<label class="inputLabel me-2" for="yearSelect">Año:</label> <select
-							id="yearSelect" class="form-control" onchange="updateCalendar()">
+						<label class="inputLabel me-2" for="yearSelect">Año:</label> 
+						<select id="yearSelect" class="form-control" onchange="updateCalendar()">
 							<c:forEach begin="2024" end="2030" var="year">
 								<option value="${year}"
-									<c:if test="${year == param.year}">selected</c:if>>${year}
-								</option>
+									<c:if test="${year eq currentYear}">selected</c:if>>${year}</option>
 							</c:forEach>
 						</select>
 					</div>
 				</div>
-
-
 			</div>
 			<h3 class="text-center mt-4" id="monthYear"></h3>
 			<table class="calendar table table-bordered mt-4 mb-5">
@@ -101,7 +98,6 @@
 						<th>Sáb</th>
 					</tr>
 				</thead>
-				<tbody id="calendarBody">
 				<tbody id="calendarBody">
 					<c:forEach var="week" items="${calendar}">
 						<tr>
@@ -120,7 +116,6 @@
 			<p class="text-muted">&copy; 2024</p>
 		</footer>
 	</div>
-
 	<div class="modal fade" id="appointmentModal" tabindex="-1"
 		role="dialog" aria-labelledby="appointmentModalLabel"
 		aria-hidden="true">
@@ -137,7 +132,7 @@
 				</div>
 				<div class="modal-body">
 					<form:form modelAttribute="newAppointment"
-						action="/appointments/create" method="POST">
+						action="/createAppointment" method="POST">
 						<input type="hidden" id="appointmentDate" name="appointmentDate"
 							required>
 						<input type="hidden" id="doctor" name="doctor"
@@ -169,11 +164,8 @@
 
 						<div class="form-group mt-3">
 							<label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
-							<select class="form-select" id="appointmentSpeciality"
-								name="appointmentSpeciality" required>
-								<c:forEach items="${specialities}" var="speciality">
-									<option value="${speciality.name}">${speciality.name}</option>
-								</c:forEach>
+							<select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
+									<option value="${speciality.id}">${speciality.name}</option>
 							</select>
 						</div>
 						<div id="liveAlertPlaceholder"></div>
@@ -188,7 +180,6 @@
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 	<script src="/js/calendar.js"></script>
-
 
 </body>
 

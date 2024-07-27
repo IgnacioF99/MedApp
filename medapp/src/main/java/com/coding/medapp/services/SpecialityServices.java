@@ -1,5 +1,7 @@
 package com.coding.medapp.services;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +37,12 @@ public class SpecialityServices {
     	Speciality mySpeciality = getSpeciality(specialityId);
     	
     	// Verifica si la especialidad ya está presente
-        if (myDoctor.getSpecialitiesDoctor().contains(mySpeciality)) {
+        if (myDoctor.getDoctorSpeciality() == mySpeciality) {
             // Si ya la tiene, no la agrega
             return;
         }
     	
-    	myDoctor.getSpecialitiesDoctor().add(mySpeciality);
+    	
     	doctorServices.saveDoctor(myDoctor);
     }
     
@@ -48,5 +50,11 @@ public class SpecialityServices {
         specialityRepository.deleteById(id);
     }
 
+    
+    public List<Speciality> findAllSpecialitiesSorted() {
+        List<Speciality> specialities = specialityRepository.findAll();
+        Collections.sort(specialities, Comparator.comparing(Speciality::getName));
+        return specialities;
+    }
     
 }

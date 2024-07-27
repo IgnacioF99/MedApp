@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,7 +61,7 @@ public class UserServices {
         }
 
         // Revisar que el DNI no este registrado
-        Integer dni = newUser.getDni();
+        String dni = newUser.getDni();
         User userExistDni = userRepository.findByDni(dni); 
         if (userExistDni != null) {
             result.rejectValue("dni", "Unique", "DNI already exists");
@@ -130,7 +132,7 @@ public class UserServices {
         return userRepository.save(user);
     }
 
-    public List<User> usrDni(Integer dni){
+    public List<User> usrDni(String dni){
         List<User> userdni = new ArrayList<>();
         User user = userRepository.findByDni(dni);
         if (user != null) {
@@ -142,6 +144,14 @@ public class UserServices {
     public void deleteUser(Long id) {
     	userRepository.deleteById(id);
     }
+    
+    public List<User> findAllUsersAlphabetically() {
+        List<User> users = userRepository.findAll();
+        Collections.sort(users, Comparator.comparing(User::getFirstName)); // Suponiendo que el método getName() obtiene el nombre del usuario
+        return users;
+    }
+    
+    
     
     
 }

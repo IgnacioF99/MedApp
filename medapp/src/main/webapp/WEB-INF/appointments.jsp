@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="appointment" items="${doctor.medicalAppointments}">
+                    <c:forEach var="appointment" items="${appointments}">
                         <tr>
                             <td class="text-center">${appointment.appointmentDate}</td>
                             <td class="text-center">${appointment.appointmentTime}</td>

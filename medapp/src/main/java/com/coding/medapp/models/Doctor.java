@@ -19,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
@@ -65,13 +66,10 @@ public class Doctor {
 	@JoinColumn(name = "user_id")
 	private User doctor;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-		name = "doctor_has_specialities",
-		joinColumns = @JoinColumn(name = "doctor_id"),
-		inverseJoinColumns = @JoinColumn(name = "speciality_id")
-	)
-	private List<Speciality> specialitiesDoctor;
+	@ManyToOne
+    @JoinColumn(name = "speciality_id")
+    private Speciality doctorSpeciality;
+
 
 	@OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
 	private List<MedicalAppointment> medicalAppointments;
@@ -92,14 +90,8 @@ public class Doctor {
 	
 	
 	
-	 public String getSpecialitiesDoctors() {
-	        if (specialitiesDoctor == null || specialitiesDoctor.isEmpty()) {
-	            return "Ninguna especialidad";
-	        }
-	        return specialitiesDoctor.stream()
-	                .map(Speciality::getName) // Obtener el nombre de cada especialidad
-	                .collect(Collectors.joining(", ")); // Unir los nombres con una coma y espacio
-	    }
+	
+	
 	//---------------------- Constructor Empty ---------------
 
 	 public String getInsurancesDoctor() {
@@ -199,13 +191,24 @@ public class Doctor {
 		this.endTime = endTime;
 	}
 
-	public List<Speciality> getSpecialitiesDoctor() {
-		return specialitiesDoctor;
+	
+	
+
+
+
+	public Speciality getDoctorSpeciality() {
+		return doctorSpeciality;
 	}
 
-	public void setSpecialitiesDoctor(List<Speciality> specialitiesDoctor) {
-		this.specialitiesDoctor = specialitiesDoctor;
+
+
+
+	public void setDoctorSpeciality(Speciality doctorSpeciality) {
+		this.doctorSpeciality = doctorSpeciality;
 	}
+
+
+
 
 	public List<MedicalAppointment> getMedicalAppointments() {
 		return medicalAppointments;

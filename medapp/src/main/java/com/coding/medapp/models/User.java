@@ -27,6 +27,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -44,10 +45,12 @@ public class User {
     @Size(min = 2, message = "Last name needs at least 2 chars")
     private String lastName;
 
-    @NotNull(message = "DNI is required.")
+    @NotEmpty(message = "DNI is required.")
     @Min(value = 999999, message = "DNI invalid")
     @Max(value = 99999999, message = "DNI invalid")
-    private Integer dni;
+    @Pattern(regexp = "\\d+", message = "El DNI debe ser un número")
+
+    private String dni;
 
     @NotEmpty(message = "Email is required.")
     @Email(message = "Invalid email") //Validar que sea un correo electronico valido
@@ -122,15 +125,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Integer getDni() {
-        return dni;
-    }
+    
+    
+    public String getDni() {
+		return dni;
+	}
 
-    public void setDni(Integer dni) {
-        this.dni = dni;
-    }
 
-    public String getEmail() {
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+
+	public String getEmail() {
         return email;
     }
 
