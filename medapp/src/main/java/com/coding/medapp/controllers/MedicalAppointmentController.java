@@ -85,26 +85,6 @@ public class MedicalAppointmentController {
         }
     }
 
-    @PostMapping("/createAppointment")
-    public String createAppointment(@Valid @ModelAttribute("appointment") MedicalAppointment appointment, 
-                                    BindingResult result, HttpSession session, RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) {
-            return "newAppointment.jsp";
-        }
-        User userInSession = (User) session.getAttribute("userInSession");
-        appointment.setPatient(userInSession);
-
-        // Verifica disponibilidad antes de crear la cita
-        if (!appointmentService.isAppointmentAvailable(appointment.getAppointmentDate(), appointment.getAppointmentTime())) {
-            redirectAttributes.addFlashAttribute("errorMessage", "La cita ya ha sido agendada para esta fecha y hora.");
-            return "redirect:/newAppointment"; // Regresa al formulario con error
-        }
-
-        appointmentService.createAppointment(appointment);
-        redirectAttributes.addFlashAttribute("successMessage", "Cita creada exitosamente!");
-        return "redirect:/appointments";
-    }
-
     @GetMapping("/appointment/edit/{id}")
     public String editAppointment(@PathVariable("id") Long id, Model model) {
         MedicalAppointment appointment = appointmentService.getAppointmentById(id);
