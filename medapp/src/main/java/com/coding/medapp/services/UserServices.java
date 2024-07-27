@@ -61,7 +61,7 @@ public class UserServices {
         }
 
         // Revisar que el DNI no este registrado
-        Integer dni = newUser.getDni();
+        String dni = newUser.getDni();
         User userExistDni = userRepository.findByDni(dni); 
         if (userExistDni != null) {
             result.rejectValue("dni", "Unique", "DNI already exists");
@@ -132,7 +132,7 @@ public class UserServices {
         return userRepository.save(user);
     }
 
-    public List<User> usrDni(Integer dni){
+    public List<User> usrDni(String dni){
         List<User> userdni = new ArrayList<>();
         User user = userRepository.findByDni(dni);
         if (user != null) {
@@ -150,6 +150,8 @@ public class UserServices {
         Collections.sort(users, Comparator.comparing(User::getFirstName)); // Suponiendo que el método getName() obtiene el nombre del usuario
         return users;
     }
+    
+    
     
     
 }

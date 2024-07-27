@@ -41,15 +41,14 @@
 			<h1 class="text-center mt-4">Pacientes</h1>
 			<!-- Contenedor del formulario de busqueda -->
 			<div class="d-flex justify-content-center w-100 m-4">
-				<form action="/admin/patient"
-					class="d-flex align-items-center justify-content-center w-50">
-					<div class="form-group me-2 w-50">
-						<label for="searchDNI" class="visually-hidden">Buscar por
-							DNI:</label> <input type="text" id="searchDNI" name="dni"
-							class="form-control" placeholder="Ingrese DNI">
-					</div>
-					<input class="btn btn-custom" type="submit" value="Buscar">
+				<form action="/admin/patient" method="get" class="d-flex align-items-center justify-content-center w-50">
+				    <div class="form-group me-2 w-50">
+				        <label for="searchDNI" class="visually-hidden">Buscar por DNI:</label>
+				        <input type="text" id="searchDNI" name="dni" class="form-control" placeholder="Ingrese DNI" min="999999" max="99999999" required>
+				    </div>
+				    <input class="btn btn-custom" type="submit" value="Buscar">
 				</form>
+				
 			</div>
 			<div class="d-flex justify-content-center w-100 mt-2">
 				<table class="table table-hover w-75">
@@ -66,8 +65,7 @@
 						<c:forEach items="${patients}" var="patient">
 							<tr>
 								<td class="text-center">${patient.dni}</td>
-								<td class="text-center">${patient.firstName}
-									${patient.lastName}</td>
+								<td class="text-center"><a href="/doctor/medicalHistory/${patient.id}">${patient.firstName}${patient.lastName}</a></td>
 								<td class="text-center">${patient.insurance.name}</td>
 								<td class="text-center">${patient.email}</td>
 								<td class="text-center">
@@ -83,7 +81,7 @@
 											</select> <input type="submit" class="btn btn-custom btn-sm" value="Guardar">
 										</form>
 
-										<form action="#" method="#"
+										<form action="/patientDelete/${patient.id}" method="POST"
 											class="d-inline-flex align-items-center">
 											<input type="hidden" name="_method" value="DELETE"> 
 											<input type="submit" class="btn btn-custom btn-sm" value="Dar de baja">

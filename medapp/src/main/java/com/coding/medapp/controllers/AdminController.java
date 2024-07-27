@@ -222,6 +222,24 @@ public class AdminController {
            return "redirect:/";
        }
    }
+   
+   @DeleteMapping("/patientDelete/{id}")
+   public String patientDelete(@PathVariable("id")Long id, HttpSession session) {
+	   User userTemp = (User) session.getAttribute("userInSession");
+       
+       if (userTemp == null) {
+           return "redirect:/login";
+       }
+    // =====REVISAMOS SU ROL========
+       if (userTemp.getRole().equals(Rol.Roles[0])) {
+           // Elimina la especialidad con el ID proporcionado
+           userServices.deleteUser(id);
+           return "redirect:/admin/userList";
+       } else {
+           return "redirect:/";
+       }
+   }
+       
   
     
     @PostMapping("/addSpeciality")
@@ -305,7 +323,7 @@ public class AdminController {
 
     //Buscar usuario por dni
     @GetMapping("/admin/patient")
-    public String adminUser(HttpSession session, @RequestParam(value = "dni") Integer dni, Model model){
+    public String adminUser(HttpSession session, @RequestParam(value = "dni") String dni, Model model){
         User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
 		if(userTemp == null) {
 			return "redirect:/login";
@@ -313,6 +331,11 @@ public class AdminController {
         // =====REVISAMOS SU ROL========
         if (userTemp.getRole().equals(Rol.Roles[0])) {
             //Obtener Lista de pacientes
+        	// Verificar si el DNI es nulo o inválido
+            if (dni.length() == 0) {
+                return "redirect:/admin/userList";
+            }
+
             List<User> userList = userServices.usrDni(dni);
             if (!userList.isEmpty()) {
                 User user = userList.get(0);
@@ -330,4 +353,5 @@ public class AdminController {
             return "redirect:/";
         }  
     }
+    
 }

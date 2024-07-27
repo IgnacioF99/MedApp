@@ -60,8 +60,13 @@
                                 </tbody>
                             </table>
                             <div class="text-center">
-                                <a href="/doctor" class="p-2 btn btn-custom mt-4">Volver</a>
-                            </div>
+                            <c:if test="${userInSession.role == 'DOCTOR'}">
+							    <a href="/doctor" class="p-2 btn btn-custom mt-4">Volver</a>
+							</c:if>
+							<c:if test="${userInSession.role == 'ADMIN'}">
+							    <a href="/admin" class="p-2 btn btn-custom mt-4">Volver</a>
+							</c:if>
+							
                         </div>
                     </div>
                 </div>

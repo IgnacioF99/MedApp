@@ -191,9 +191,9 @@ public class DoctorController {
         if (userTemp == null) {
             return "redirect:/login";
         }
-        // Verificar si el usuario es un doctor antes de permitir el acceso
-        if (!userTemp.getRole().equals(Rol.Roles[2])) { // Ajustar el índice según la posición del rol Doctor
-            return "redirect:/"; // Redirige a la página raíz si no es doctor
+        // Verifica si el rol del usuario es ni admin ni doctor
+        if (!userTemp.getRole().equals(Rol.Roles[0]) && !userTemp.getRole().equals(Rol.Roles[2])) {
+            return "redirect:/";
         }
 
         User patient = userServices.getUser(id);
