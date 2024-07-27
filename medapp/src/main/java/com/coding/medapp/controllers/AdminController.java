@@ -126,13 +126,14 @@ public class AdminController {
             return "redirect:/login";
         }
         if (userTemp.getRole().equals(Rol.Roles[0])) {
-            List<HealthInsurance> insurances = healthInsuranceServices.findAllHealthInsurances();
+            List<HealthInsurance> insurances = healthInsuranceServices.findAllHealthInsurancesSorted();
             model.addAttribute("insurances", insurances);
             return "insurances.jsp"; // Verifica que este archivo JSP esté en el lugar correcto
         } else {
             return "redirect:/";
         }
     }
+
     
     @PostMapping("/addInsurance")
     public String addInsurance(@Valid @ModelAttribute("newInsurance") HealthInsurance insurance, 
@@ -169,22 +170,22 @@ public class AdminController {
     }
     
     
-    
     @GetMapping("/admin/specialitiesList")
-    public String adminSpecialitiesList(@ModelAttribute("newSpeciality")Speciality speciality, HttpSession session, Model model) {
-   	 User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
-		if(userTemp == null) {
-			return "redirect:/login";
-		}
+    public String adminSpecialitiesList(@ModelAttribute("newSpeciality") Speciality speciality, 
+                                        HttpSession session, Model model) {
+        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
         // =====REVISAMOS SU ROL========
         if (userTemp.getRole().equals(Rol.Roles[0])) {
-       	 List<Speciality> specialities = specialityServices.findAllSpecialties();
-       	 model.addAttribute("specialities", specialities);
-       	 return "specialties.jsp";
-        }else {
-       	 return "redirect:/";
+            List<Speciality> specialities = specialityServices.findAllSpecialitiesSorted();
+            model.addAttribute("specialities", specialities);
+            return "specialties.jsp";
+        } else {
+            return "redirect:/";
         }
-   }
+    }
     
    @DeleteMapping("/adminDelete/{id}") 
    public String adminDelete(@PathVariable("id")Long id, HttpSession session) {

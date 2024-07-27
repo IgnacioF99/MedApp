@@ -1,5 +1,7 @@
 package com.coding.medapp.services;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +50,11 @@ public class SpecialityServices {
         specialityRepository.deleteById(id);
     }
 
+    
+    public List<Speciality> findAllSpecialitiesSorted() {
+        List<Speciality> specialities = specialityRepository.findAll();
+        Collections.sort(specialities, Comparator.comparing(Speciality::getName));
+        return specialities;
+    }
     
 }

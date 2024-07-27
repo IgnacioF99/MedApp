@@ -1,5 +1,7 @@
 package com.coding.medapp.services;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +49,12 @@ public class HealthInsuranceServices {
     public void deleteHealthInsurance(Long id) {
         healthInsuranceRepository.deleteById(id);
     }
+    
+    public List<HealthInsurance> findAllHealthInsurancesSorted() {
+        List<HealthInsurance> insurances = findAllHealthInsurances();
+        Collections.sort(insurances, Comparator.comparing(HealthInsurance::getName));
+        return insurances;
+    }
+
 
 }

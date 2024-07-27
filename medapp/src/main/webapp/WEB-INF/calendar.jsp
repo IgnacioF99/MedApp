@@ -132,7 +132,7 @@
 				</div>
 				<div class="modal-body">
 					<form:form modelAttribute="newAppointment"
-						action="/appointments/create" method="POST">
+						action="/createAppointment" method="POST">
 						<input type="hidden" id="appointmentDate" name="appointmentDate"
 							required>
 						<input type="hidden" id="doctor" name="doctor"
@@ -166,7 +166,6 @@
 							<label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
 							<select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
 									<option value="${speciality.id}">${speciality.name}</option>
-								
 							</select>
 						</div>
 						<div id="liveAlertPlaceholder"></div>

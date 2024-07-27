@@ -76,7 +76,7 @@ public class MedicalAppointmentService {
         LocalDate today = LocalDate.now();
         return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, today);
     }
-<<<<<<< HEAD
+
     
     public List<MedicalAppointment> getAppointmentsForWeek(Long doctorId) {
         LocalDate today = LocalDate.now();
@@ -89,6 +89,6 @@ public class MedicalAppointmentService {
     
     
 }
-=======
-}
->>>>>>> 3bf7d91bb82970abc2f2f139561c6c867af0076f
+
+
+
