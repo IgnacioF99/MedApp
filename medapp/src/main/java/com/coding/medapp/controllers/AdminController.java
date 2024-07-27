@@ -59,17 +59,16 @@ public class AdminController {
         }
     }
 
-    //listar usuarios
     @GetMapping("/admin/userList")
-    public String adminUserList(HttpSession session, Model model){
-        User userTemp = (User) session.getAttribute("userInSession"); //Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
-        if(userTemp == null) {
+    public String adminUserList(HttpSession session, Model model) {
+        User userTemp = (User) session.getAttribute("userInSession"); // Obj User o null. userInSession es el nombre del atributo en el servicio de sesion
+        if (userTemp == null) {
             return "redirect:/login";
         }
         // =====REVISAMOS SU ROL========
         if (userTemp.getRole().equals(Rol.Roles[0])) {
-            //Obtener Lista de pacientes
-            List<User> userList = userServices.findAllUserRol("USER");
+            // Obtener Lista de usuarios ordenados alfabéticamente
+            List<User> userList = userServices.findAllUsersAlphabetically();
             model.addAttribute("patients", userList); 
             model.addAttribute("roles", Rol.Roles);
             return "infoPatients.jsp";
@@ -77,6 +76,7 @@ public class AdminController {
             return "redirect:/";
         }
     }
+
 
     @PutMapping("/patient/editRole/{id}")
     public String updatePatientRole(@PathVariable("id") Long id, @RequestParam(value = "role")String role, HttpSession session, Model model){

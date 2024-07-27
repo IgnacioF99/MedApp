@@ -80,6 +80,9 @@ public class DoctorServices {
     public void removeDoctorById(Long id) {
     	doctorRepository.deleteById(id);
     }
+    
+    
+    
 }
 	
 	

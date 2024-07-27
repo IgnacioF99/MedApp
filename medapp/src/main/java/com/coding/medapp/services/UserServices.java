@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -141,6 +143,12 @@ public class UserServices {
     
     public void deleteUser(Long id) {
     	userRepository.deleteById(id);
+    }
+    
+    public List<User> findAllUsersAlphabetically() {
+        List<User> users = userRepository.findAll();
+        Collections.sort(users, Comparator.comparing(User::getFirstName)); // Suponiendo que el método getName() obtiene el nombre del usuario
+        return users;
     }
     
     
