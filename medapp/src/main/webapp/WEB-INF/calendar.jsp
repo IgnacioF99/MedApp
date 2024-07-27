@@ -69,8 +69,7 @@
 										<c:when test="${month == 12}">Diciembre</c:when>
 									</c:choose>
 								</c:set>
-								<option value="${month}"
-									<c:if test="${month eq currentMonth}">selected</c:if>>${monthName}</option>
+								<option value="${month}" <c:if test="${month eq currentMonth}">selected</c:if>>${monthName}</option>
 							</c:forEach>
 						</select>
 					</div>
