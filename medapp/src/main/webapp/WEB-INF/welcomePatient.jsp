@@ -42,23 +42,34 @@
                     </div>
                 </form>
                 <c:if test="${noDoctorsFound}">
-                    <div class="alert alert-danger mt-4">No se encontraron doctores con la especialidad seleccionada.</div>
+                    <div class="alert alert-danger mt-4">No se encontraron doctores con la especialidad
+                        seleccionada.</div>
                 </c:if>
             </div>
-            <div class="row d-flex justify-content-center flex-wrap pt-4">
-                <c:forEach var="doctor" items="${doctors}">
-                    <div class="col-md-3 d-flex justify-content-center">
-                        <div class="doctor-card">
-                            <h5 class="mb-3 text-center">${doctor.doctor.firstName} ${doctor.doctor.lastName}</h5>
-                            <p class="card-text mb-1"><span>Especialidad:</span> ${doctor.specialitiesDoctors}</p>
-                            <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}</p>
-                            <p class="card-text mb-1"><span>Disponibilidad:</span> ${doctor.availability}</p>
-                            <p class="card-text mb-3"><span>Obra Social:</span> ${doctor.insurancesDoctor}</p>
-                            <a href="/patient/calendar/${doctor.id}" class="btn btn-custom d-block">Agendar</a>
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center">
+                    <c:forEach var="doctor" items="${doctors}">
+                        <div class="col-md-4 mb-4 d-flex justify-content-center">
+                            <div class="card doctor-card">
+                                <div class="card-body">
+                                    <h5 class="mb-3">${doctor.doctor.firstName}
+                                        ${doctor.doctor.lastName}</h5>
+                                    <p class="card-text mb-1"><span>Especialidad:</span>
+                                        ${doctor.specialitiesDoctors}</p>
+                                    <p class="card-text mb-1"><span>Matrícula:</span> ${doctor.license}
+                                    </p>
+                                    <p class="card-text mb-1"><span>Disponibilidad:</span>
+                                        ${doctor.availability}</p>
+                                    <p class="card-text mb-3"><span>Obra Social:</span>
+                                        ${doctor.insurancesDoctor}</p>
+                                    <a href="/patient/calendar/${doctor.id}" class="btn btn-custom d-block">Agendar</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </div>
             </div>
+
         </main>
         <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>
