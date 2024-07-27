@@ -78,6 +78,7 @@ public class MedicalAppointmentController {
             return "redirect:/";
         }
     }
+
 	
 
 
