@@ -47,7 +47,7 @@
 		</header>
 		<main class="flex-grow-1 p-4">
 			<div class="header-container mt-4 text-center">
-				<h1>Calendario de Citas Médicas</h1>
+				<h1>Calendario de Citas Mï¿½dicas</h1>
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="d-flex align-items-center me-3">
 						<label class="inputLabel me-2" for="monthSelect">Mes:</label> 
@@ -74,7 +74,7 @@
 						</select>
 					</div>
 					<div class="d-flex align-items-center">
-						<label class="inputLabel me-2" for="yearSelect">Año:</label> 
+						<label class="inputLabel me-2" for="yearSelect">Aï¿½o:</label> 
 						<select id="yearSelect" class="form-control" onchange="updateCalendar()">
 							<c:forEach begin="2024" end="2030" var="year">
 								<option value="${year}"
@@ -91,10 +91,10 @@
 						<th>Dom</th>
 						<th>Lun</th>
 						<th>Mar</th>
-						<th>Mié</th>
+						<th>Miï¿½</th>
 						<th>Jue</th>
 						<th>Vie</th>
-						<th>Sáb</th>
+						<th>Sï¿½b</th>
 					</tr>
 				</thead>
 				<tbody id="calendarBody">
@@ -132,7 +132,7 @@
 				</div>
 				<div class="modal-body">
 					<form:form modelAttribute="newAppointment"
-						action="/createAppointment" method="POST">
+						action="/appointments/create" method="POST">
 						<input type="hidden" id="appointmentDate" name="appointmentDate"
 							required>
 						<input type="hidden" id="doctor" name="doctor"
