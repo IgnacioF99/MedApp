@@ -156,7 +156,7 @@
 					        </select>
 					    </div>
 					
-					    <input type="submit" id="liveAlertPlaceholder" class="btn btn-custom mt-3" value="Agendar cita">
+					    <input type="submit" class="btn btn-custom mt-3" value="Agendar cita">
 					</form:form>
                 </div>
             </div>

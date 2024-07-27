@@ -175,22 +175,25 @@ public class DoctorController {
     	
     }
     
-    /* @GetMapping("/doctor/medicalHistory/{id}")
+    @GetMapping("/doctor/medicalHistory/{id}")
     public String viewMedicalHistory(@PathVariable("id") Long id, Model model) {
         User patient = userServices.getUser(id);
-        MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistoryByPatient(patient);
 
-        if (medicalHistory != null) {
-            model.addAttribute("medicalHistory", medicalHistory);
-            model.addAttribute("contents", medicalHistory.getContents());
-        } else {
-            model.addAttribute("contents", new ArrayList<>()); // Si no hay historial médico, pasar una lista vacía
-        }
+        // Obtener contenidos del usuario
+        List<Content> contents = medicalHistoryServices.getContentsByUserId(id);
+
+        // Obtener historial médico a partir de los contenidos
+        MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistoryFromContents(contents);
 
         model.addAttribute("patient", patient);
+        model.addAttribute("contents", contents);
+        model.addAttribute("medicalHistory", medicalHistory);
+
         return "medicalHistoryView.jsp";
     }
-    */
+
+
+
 
     
     @PostMapping("/createMedicalHistory/{id}")
