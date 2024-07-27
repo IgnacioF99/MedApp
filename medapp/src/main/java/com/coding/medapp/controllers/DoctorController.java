@@ -168,25 +168,34 @@ public class DoctorController {
     
     
     @GetMapping("/doctor/createMedicalHistory/{id}")
-    public String createMedicalHistory(@ModelAttribute("newContent") Content newContent, @PathVariable("id")Long id, Model model,HttpSession session) {
-    	User userTemp = (User) session.getAttribute("userInSession");
+    public String createMedicalHistory(@ModelAttribute("newContent") Content newContent, @PathVariable("id") Long id, Model model, HttpSession session) {
+        User userTemp = (User) session.getAttribute("userInSession");
         if (userTemp == null) {
             return "redirect:/login";
         }
-    	User myPatient = userServices.getUser(id);
-    	model.addAttribute("user", myPatient);
-    	
-    	return "newMedicalHistory.jsp";
-    	
-    	
+        // Verificar si el usuario es un doctor antes de permitir el acceso
+        if (!userTemp.getRole().equals(Rol.Roles[2])) { // Ajustar el índice según la posición del rol Doctor
+            return "redirect:/"; // Redirige a la página raíz si no es doctor
+        }
+
+        User myPatient = userServices.getUser(id);
+        model.addAttribute("user", myPatient);
+
+        return "newMedicalHistory.jsp";
     }
+
     
     @GetMapping("/doctor/medicalHistory/{id}")
-    public String viewMedicalHistory(@PathVariable("id") Long id, Model model,HttpSession session) {
-    	User userTemp = (User) session.getAttribute("userInSession");
+    public String viewMedicalHistory(@PathVariable("id") Long id, Model model, HttpSession session) {
+        User userTemp = (User) session.getAttribute("userInSession");
         if (userTemp == null) {
             return "redirect:/login";
         }
+        // Verificar si el usuario es un doctor antes de permitir el acceso
+        if (!userTemp.getRole().equals(Rol.Roles[2])) { // Ajustar el índice según la posición del rol Doctor
+            return "redirect:/"; // Redirige a la página raíz si no es doctor
+        }
+
         User patient = userServices.getUser(id);
 
         // Obtener contenidos del usuario
@@ -198,17 +207,14 @@ public class DoctorController {
         model.addAttribute("patient", patient);
         model.addAttribute("contents", contents);
         model.addAttribute("medicalHistory", medicalHistory);
-       	Doctor doctor = userTemp.getDoctor2();
-    	model.addAttribute("doctor", doctor);
-        
+        Doctor doctor = userTemp.getDoctor2();
+        model.addAttribute("doctor", doctor);
 
         return "medicalHistoryView.jsp";
     }
 
 
 
-
-    
     @PostMapping("/createMedicalHistory/{id}")
     public String createMedicalHistoryPatient(@Valid @ModelAttribute("newContent") Content newContent,
                                               @PathVariable("id") Long id,
@@ -218,39 +224,119 @@ public class DoctorController {
         if (userTemp == null) {
             return "redirect:/login";
         }
-         else {
-            // Obtener el paciente
-            Doctor doctor = userTemp.getDoctor2();
-            Speciality speciality = doctor.getDoctorSpeciality();
-            User myPatient = userServices.getUser(id);
-            MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistory(id);
-
-            if (medicalHistory == null) {
-                medicalHistory = new MedicalHistory();
-                medicalHistoryServices.saveMedicalHistory(medicalHistory);
-            }
-
-            // Asociar el contenido con el historial médico
-            newContent.setContentSpeciality(speciality);
-            newContent.setDate(LocalDate.now());           
-            newContent.setMedHistory(medicalHistory);
-            newContent.setPatient(myPatient);
-            
-            // Guardar el contenido
-            contentServices.saveContent(newContent);
-
-            // Agregar el contenido a la lista de contenidos del historial médico
-            medicalHistory.getContents().add(newContent);
-
-            // No es necesario volver a guardar medicalHistory aquí ya que saveContent debería haber hecho un flush
-            // y porque la relación es gestionada por el lado del Content
-            // medicalHistoryServices.saveMedicalHistory(medicalHistory);
-
-            return "redirect:/doctor";
+        // Verificar si el usuario es un doctor antes de permitir la creación del historial médico
+        if (!userTemp.getRole().equals(Rol.Roles[2])) { // Ajustar el índice según la posición del rol Doctor
+            return "redirect:/"; // Redirige a la página raíz si no es doctor
         }
+
+        Doctor doctor = userTemp.getDoctor2();
+        Speciality speciality = doctor.getDoctorSpeciality();
+        User myPatient = userServices.getUser(id);
+        MedicalHistory medicalHistory = medicalHistoryServices.getMedicalHistory(id);
+
+        if (medicalHistory == null) {
+            medicalHistory = new MedicalHistory();
+            medicalHistoryServices.saveMedicalHistory(medicalHistory);
+        }
+
+        // Asociar el contenido con el historial médico
+        newContent.setContentSpeciality(speciality);
+        newContent.setDate(LocalDate.now());
+        newContent.setMedHistory(medicalHistory);
+        newContent.setPatient(myPatient);
+
+        // Guardar el contenido
+        contentServices.saveContent(newContent);
+
+        // Agregar el contenido a la lista de contenidos del historial médico
+        medicalHistory.getContents().add(newContent);
+
+        return "redirect:/doctor";
     }
 
+    
+    @GetMapping("/doctor/medicalHistory/{patientId}/edit/{contentId}")
+    public String editContent(@PathVariable("patientId") Long patientId,
+                              @PathVariable("contentId") Long contentId,
+                              Model model,
+                              HttpSession session) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+        // Verificar si el usuario es un doctor antes de permitir la edición del contenido
+        if (!userTemp.getRole().equals(Rol.Roles[2])) { // Ajustar el índice según la posición del rol Doctor
+            return "redirect:/"; // Redirige a la página raíz si no es doctor
+        }
+
+        Content content = contentServices.getContent(contentId);
+        if (content == null) {
+            return "redirect:/error"; // Manejo de errores si el contenido no existe
+        }
+
+        User patient = content.getPatient();
+        Speciality speciality = content.getContentSpeciality();
+        LocalDate date = content.getDate();
+        MedicalHistory medicalHistory = content.getMedHistory();
+
+        model.addAttribute("medicalHistory", medicalHistory);
+        model.addAttribute("date", date);
+        model.addAttribute("patient", patient);
+        model.addAttribute("speciality", speciality);
+        model.addAttribute("editedContent", content);
+
+        return "medicalHistoryEdit.jsp";
+    }
+    
+    
+    @PutMapping("/editMedicalHistory")
+    public String updateContent(@ModelAttribute("editedContent") Content updatedContent, HttpSession session) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+        // Verificar si el usuario es un doctor antes de permitir la actualización del contenido
+        if (!userTemp.getRole().equals(Rol.Roles[2])) { // Ajustar el índice según la posición del rol Doctor
+            return "redirect:/"; // Redirige a la página raíz si no es doctor
+        }
+
+        // Recuperar el contenido existente usando el ID del contenido proporcionado en el formulario
+        Content existingContent = contentServices.getContent(updatedContent.getId());
+        if (existingContent == null) {
+            return "redirect:/error"; // Manejo de errores si el contenido no existe
+        }
+
+        // Actualizar el contenido existente con los nuevos datos
+        existingContent.setFamilyHistory(updatedContent.getFamilyHistory());
+        existingContent.setAllergies(updatedContent.getAllergies());
+        existingContent.setTreatment(updatedContent.getTreatment());
+        existingContent.setObservations(updatedContent.getObservations());
+
+        contentServices.updateContent(existingContent);
+        return "redirect:/doctor"; // Redirige al historial del paciente
+    }
+
+    @GetMapping("/doctor/nextAppointments")
+    public String nextAppointments(Model model, HttpSession session) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+
+        Doctor doctor = userTemp.getDoctor2();
+
+        // Llama al servicio para obtener las citas de la semana para el doctor
+        List<MedicalAppointment> appointments = appointmentServices.getAppointmentsForWeek(doctor.getId());
+
+        // Agrega las citas al modelo para que se muestren en la vista
+        model.addAttribute("appointments", appointments);
+        return "appointments.jsp";
+    }
+
+}
+
+   
 
     
-}
+
     

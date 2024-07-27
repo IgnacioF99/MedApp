@@ -2,12 +2,14 @@ package com.coding.medapp.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coding.medapp.models.Content;
 import com.coding.medapp.models.MedicalHistory;
+import com.coding.medapp.models.Speciality;
 import com.coding.medapp.models.User;
 import com.coding.medapp.repository.ContentRepository;
 import com.coding.medapp.repository.MedicalHistoryRepository;
@@ -34,6 +36,12 @@ public class MedicalHistoryServices {
         return contents.get(0).getMedHistory();
     }
 
+    public List<Content> getContentsByUserIdAndSpeciality(Long userId, Speciality speciality) {
+        List<Content> allContents = getContentsByUserId(userId);
+        return allContents.stream()
+                           .filter(content -> content.getContentSpeciality().equals(speciality))
+                           .collect(Collectors.toList());
+    }
 
 
 

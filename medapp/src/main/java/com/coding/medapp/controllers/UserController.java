@@ -1,5 +1,6 @@
 package com.coding.medapp.controllers;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -258,6 +259,16 @@ public class UserController {
             model.addAttribute("insurances", insurances);
             model.addAttribute("speciality", speciality);
 
+            // Obtener la fecha actual
+            LocalDate now = LocalDate.now();
+            int currentMonth = now.getMonthValue();
+            int currentYear = now.getYear();
+
+            // Pasar el mes y el año actuales al modelo
+            model.addAttribute("currentMonth", currentMonth);
+            model.addAttribute("currentYear", currentYear);
+
+            
             // Genera una lista de horarios
             List<String> times = new ArrayList<>();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");

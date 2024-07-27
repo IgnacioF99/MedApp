@@ -36,31 +36,6 @@
                         <p class="card-text"><span>Especialidad:</span> ${doctor.doctorSpeciality}</p>
                         <p class="card-text"><span>Obra Social:</span> ${doctor.getInsurancesDoctor()}</p>
                     </div>
-
-                    <div>
-                        <h3 class="pb-3">Citas Médicas asociadas</h3>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Día</th>
-                                    <th>Horario</th>
-                                    <th>Especialidad</th>
-                                    <th>Paciente</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="appointment" items="${doctor.medicalAppointments}">
-                                    <tr>
-                                        <td>${appointment.appointmentDate}</td>
-                                        <td>${appointment.appointmentTime}</td>
-                                        <td>${appointment.appointmentSpeciality}</td>
-                                        <td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName} ${appointment.patient.lastName}</a></td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-
                     <div class="card-footer text-center">
                         <a href="/doctor/edit/${doctor.id}" class="btn btn-custom">Editar</a>
                         <a href="/doctor" class="p-2">Volver</a>

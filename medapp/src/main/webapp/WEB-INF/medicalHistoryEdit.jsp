@@ -30,36 +30,40 @@
 				<div class="card shadow">
 					<div class="card-body">
 						<h2 class="text-center mb-4">Editar historial medico</h2>
-						<form:form action="/create" method="POST" modelAttribute="newMedicalHistory">
-							<div class="mb-3">
-								<form:label class="inputLabel" path="dni">DNI:</form:label>
-								<form:input path="dni"  class="form-control" />
-								<form:errors path="dni" class="text-danger" />
-							</div>
-							<div class="mb-3">
-								<form:label class="inputLabel" path="email">Patologias:</form:label>
-								<form:input path="email" class="form-control" />
-								<form:errors path="email" class="text-danger" />
-							</div>
-							<div class="mb-3">
-								<form:label class="inputLabel" path="password">Alergias:</form:label>
-								<form:password path="password" class="form-control" />
-								<form:errors path="password" class="text-danger" />
-							</div>
-							<div class="mb-3">
-								<form:label class="inputLabel" path="confirm">Tratamiento:</form:label>
-								<form:password path="confirm" class="form-control" />
-								<form:errors path="confirm" class="text-danger" />
-							</div>
-                            <div class="mb-3">
-                                <form:label class="inputLabel" path="additionalComments">Observaciones:</form:label>
-                                <form:textarea path="additionalComments" class="form-control" rows="5" cols="30"/>
-                                <form:errors path="additionalComments" class="text-danger" />
-                            </div>
-						</form:form>
+							<form:form action="/editMedicalHistory" method="POST" modelAttribute="editedContent">
+							    <input type="hidden" name="_method" value="PUT">
+							    <input type="hidden" name="id" value="${editedContent.id}">
+							    <input type="hidden" name="patient" value="${user.id}">
+							    <input type="hidden" name="contentSpeciality" value="${speciality.id}">
+							    <input type="hidden" name="date" value="${date}">
+							    <input type="hidden" name="medicalHistory" value="${medicalHistory.id}">
+							
+							    <div class="mb-3">
+							        <form:label class="inputLabel" path="familyHistory">Patologias:</form:label>
+							        <form:input path="familyHistory" class="form-control" />
+							        <form:errors path="familyHistory" class="text-danger" />
+							    </div>
+							    <div class="mb-3">
+							        <form:label class="inputLabel" path="allergies">Alergias:</form:label>
+							        <form:input path="allergies" class="form-control" />
+							        <form:errors path="allergies" class="text-danger" />
+							    </div>
+							    <div class="mb-3">
+							        <form:label class="inputLabel" path="treatment">Tratamiento:</form:label>
+							        <form:input path="treatment" class="form-control" />
+							        <form:errors path="treatment" class="text-danger" />
+							    </div>
+							    <div class="mb-3">
+							        <form:label class="inputLabel" path="observations">Observaciones:</form:label>
+							        <form:textarea path="observations" class="form-control" rows="5" cols="30"/>
+							        <form:errors path="observations" class="text-danger" />
+							    </div>
+							    <input type="submit" value="Guardar cambios" class="btn btn-custom mt-3">
+							</form:form>
+							
                         <div class="text-center">
-                            <a href="#" class="btn btn-custom">Editar</a>
-                            <a href="#" class="p-2">Volver</a>
+                            
+                            <a href="/doctor/medicalHistory/{id}" class="p-2">Volver</a>
                         </div>
 					</div>
 				</div>

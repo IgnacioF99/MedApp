@@ -48,10 +48,11 @@
                                             <td class="text-center">${content.observations}</td>
                                             <td class="text-center">
                                                 <c:if test="${content.contentSpeciality.name == doctor.doctorSpeciality.name}">
-                                                    <form action="/editContent" method="post">
-                                                        <input type="hidden" name="contentId" value="${content.id}">
-                                                        <input type="submit" class="btn btn-custom btn-sm" value="Edit">
-                                                    </form>
+													<form action="/doctor/medicalHistory/${patient.id}/edit/${content.id}" method="GET">
+													    <input type="hidden" name="contentId" value="${content.id}">
+													    <input type="submit" class="btn btn-custom btn-sm" value="Edit">
+													</form>		
+                                                    	
                                                 </c:if>
                                             </td>
                                         </tr>
