@@ -48,7 +48,7 @@ public class MedicalAppointment {
     
     @NotEmpty(message="Speciality must be required")
     private String appointmentSpeciality;
-    
+    	
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
 

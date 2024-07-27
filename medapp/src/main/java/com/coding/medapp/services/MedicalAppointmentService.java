@@ -1,6 +1,7 @@
 package com.coding.medapp.services;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.List;
 
@@ -16,8 +17,14 @@ public class MedicalAppointmentService {
     @Autowired
     private MedicalAppointmentRepository appointmentRepository;
 
+    public boolean isAppointmentAvailable(LocalDate date, LocalTime time) {
+        return appointmentRepository.findByAppointmentDateAndAppointmentTime(date, time).isEmpty();
+    }
+
     public MedicalAppointment createAppointment(MedicalAppointment appointment) {
-    	System.out.println("Received appointment: ");
+        if (!isAppointmentAvailable(appointment.getAppointmentDate(), appointment.getAppointmentTime())) {
+            throw new IllegalArgumentException("La cita ya ha sido agendada para esta fecha y hora.");
+        }
         return appointmentRepository.save(appointment);
     }
 
@@ -32,11 +39,10 @@ public class MedicalAppointmentService {
     public MedicalAppointment getAppointmentById(Long id) {
         return appointmentRepository.findById(id).orElse(null);
     }
-    
+
     public List<MedicalAppointment> getAppointmentsByDate(LocalDate date) {
         return appointmentRepository.findByAppointmentDate(date);
     }
-
 
     public void deleteAppointment(MedicalAppointment appointment) {
         appointmentRepository.delete(appointment);
@@ -56,19 +62,17 @@ public class MedicalAppointmentService {
         YearMonth yearMonth = YearMonth.of(year, month);
         LocalDate startDate = yearMonth.atDay(1);
         LocalDate endDate = yearMonth.atEndOfMonth();
-        
+
         // Buscar citas entre el primer y último día del mes
         return appointmentRepository.findByAppointmentDateBetween(startDate, endDate);
     }
-    
+
     public List<MedicalAppointment> getAppointmentsForDoctor(Long doctorId) {
         return appointmentRepository.findByDoctorIdOrderByAppointmentDateAscAppointmentTimeAsc(doctorId);
     }
-    
+
     public List<MedicalAppointment> getAppointmentsForToday(Long doctorId) {
         LocalDate today = LocalDate.now();
         return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, today);
     }
-    
-    
 }

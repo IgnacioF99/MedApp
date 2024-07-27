@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Repository
@@ -19,4 +20,5 @@ public interface MedicalAppointmentRepository extends JpaRepository<MedicalAppoi
 
     List<MedicalAppointment> findByDoctorIdAndAppointmentDate(Long doctorId, LocalDate appointmentDate);
 
+    List<MedicalAppointment> findByAppointmentDateAndAppointmentTime(LocalDate date, LocalTime time);
 }
