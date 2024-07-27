@@ -26,10 +26,12 @@
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
+                                        <th>Especialidad</th>
                                         <th>Patologías</th>
                                         <th>Alergias</th>
                                         <th>Tratamientos</th>
                                         <th>Observaciones</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
