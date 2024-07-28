@@ -165,7 +165,7 @@
 						<div class="form-group mt-3">
 							<label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
 							<select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
-									<option value="${speciality.id}">${speciality.name}</option>
+									<option value="${speciality.name}">${speciality.name}</option>
 							</select>
 						</div>
 						<input type="submit" id="liveAlertBtn" class="btn btn-custom mt-3" value="Agendar cita">
