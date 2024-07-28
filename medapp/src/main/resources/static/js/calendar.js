@@ -127,7 +127,7 @@ function showAppointments(date) {
 // Configuración de alertas
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
-const appendAlert = (message, type) => {
+const appendAlert = (message, type,duration=5000) => {
 	const wrapper = document.createElement('div')
 	wrapper.innerHTML = [
 		`<div class="alert alert-${type} alert-dismissible" role="alert">`,
@@ -137,16 +137,22 @@ const appendAlert = (message, type) => {
 	].join('')
 
 	alertPlaceholder.append(wrapper)
+	
+	
+    // Set timeout to remove alert after the specified duration
+    setTimeout(() => {
+        wrapper.remove();
+    }, duration);
 }
 
 const alertTrigger = document.getElementById('liveAlertBtn')
 if (alertTrigger) {
-	alertTrigger.addEventListener('click', (event) => {
-		event.preventDefault()
+	alertTrigger.addEventListener('click', () => {
+		
 		const appointmentDate = document.getElementById('appointmentDate').value
 		const appointmentTime = document.getElementById('appointmentTime').value
 	
-		const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime}.`;
-		appendAlert(message, 'success');
+		const message = `Agendaste tu cita con exito para el ${appointmentDate} a las ${appointmentTime}.`;
+		appendAlert(message, 'success',10000);
 	})
 }

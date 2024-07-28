@@ -39,8 +39,8 @@
                 <h1 class="text-center mt-4 mb-4">Gestion de turnos</h1>
                 <h4 class="mb-4">Citas médicas de hoy:</h4>
 
-                <div class="table-container mb-4">
-                    <table class="table table-striped table-bordered w-auto">
+                <div class="table-container mb-4 col-md-12">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr class="custom-tr">
                                 <th class="text-center">Día</th>

@@ -27,8 +27,8 @@
             <h1>Próximas Citas Médicas</h1>
         </div>
 
-        <div class="d-flex justify-content-center">
-            <table class="table table-striped table-bordered w-auto">
+        <div class="d-flex justify-content-center col-md-12">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr class="custom-tr">
                         <th class="text-center">Fecha</th>
