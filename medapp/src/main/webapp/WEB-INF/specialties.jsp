@@ -53,7 +53,7 @@
                     <thead>
                         <tr class="custom-tr">
                             <th class="text-center">Especialidades</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>

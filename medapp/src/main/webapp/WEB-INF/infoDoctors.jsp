@@ -59,6 +59,9 @@
                                 <td class="text-center">${doctor.license}</td>
                                 <td class="text-center">${doctor.doctor.email}</td>
                                 <td class="text-center">
+                                
+                                <div class="d-inline-flex align-items-center">
+           
                                     <form action="/doctor/editRole/${doctor.doctor.id}" method="POST" class="d-inline-flex align-items-center justify-content-center  me-1 form-inline">
                                         <input type="hidden" name="_method" value="PUT">
                                         <select class="form-select" name="role" id="roleid">
@@ -72,6 +75,7 @@
 								    <input type="hidden" name="_method" value="DELETE"/>
 								    <input type="submit" class="btn btn-custom" value="Dar de baja">
 								</form>
+							</div>
                                 </td>
                             </tr>
                         </c:forEach>

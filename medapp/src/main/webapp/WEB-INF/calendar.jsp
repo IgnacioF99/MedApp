@@ -47,7 +47,7 @@
 		</header>
 		<main class="flex-grow-1 p-4">
 			<div class="header-container mt-4 text-center">
-				<h1>Calendario de Citas M�dicas</h1>
+				<h1>Calendario de Citas Medicas</h1>
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="d-flex align-items-center me-3">
 						<label class="inputLabel me-2" for="monthSelect">Mes:</label> 

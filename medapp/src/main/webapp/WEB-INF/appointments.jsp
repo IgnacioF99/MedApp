@@ -21,7 +21,12 @@
 
 <body class="body-custom">
     <div class="container mt-5">
-        <h1 class="text-center m-5">Próximas Citas Médicas</h1>
+
+        <div class="d-flex align-items-center mb-4">
+            <a href="/doctor" class="btn btn-custom me-3">Volver</a>
+            <h1>Próximas Citas Médicas</h1>
+        </div>
+
         <div class="d-flex justify-content-center">
             <table class="table table-striped table-bordered w-auto">
                 <thead>
@@ -44,9 +49,6 @@
             </table>
         </div>
     </div>
-    <footer class="text-center mt-auto">
-			<p class="text-muted">&copy; 2024</p>
-		</footer>
 </body>
 
 </html>
