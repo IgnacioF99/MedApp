@@ -18,71 +18,49 @@
         rel="stylesheet" />
 </head>
 
-</head>
 <body>
-<div class="container-custom d-flex flex-column">
-    <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
-        <img src="img/logo2.png" alt="logoPrincipal" class="logo p-2" />
-        <span class="text-center">Bienvenidx Admin ${userInSession.firstName}!</span>
-        <div>
-            <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
-        </div>
-    </header>
-    <main class="p-4 flex-grow-1 d-flex justify-content-center align-items-center flex-column main-custom">
-        
-        <h1 class="text-center mt-2">Gestion de usuarios</h1>
-        <div class="row justify-content-center w-100 mt-4">
-            <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="/admin/userList" class="btn btn-custom btn-lg w-100 text-center p-4">Pacientes</a>
+    <div class="container-fluid d-flex flex-column min-vh-100">
+        <header class="d-flex justify-content-between align-items-center">
+            <img src="img/logo2.png" alt="logoPrincipal" class="logo p-2" />
+            <span class="text-center">Bienvenidx Admin ${userInSession.firstName}!</span>
+            <a href="/logout" class="btn btn-custom m-4">Cerrar Sesión</a>
+        </header>
+
+        <main class="flex-grow-1 p-4">
+            <div class="container">
+                <h1 class="text-center mb-4 mt-4">Gestión de Usuarios</h1>
+
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                        <a href="/admin/userList" class="btn btn-custom btn-lg w-100 text-center">Pacientes</a>
+                    </div>
+                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                        <a href="/admin/doctorList" class="btn btn-custom btn-lg w-100 text-center">Doctores</a>
+                    </div>
+                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                        <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center">Administradores</a>
+                    </div>
+                </div>
+
+                <h1 class="text-center mb-4">Gestión de Clínica</h1>
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                        <a href="/admin/insuranceList" class="btn btn-custom btn-lg w-100 text-center">Obras
+                            Sociales</a>
+                    </div>
+                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                        <a href="/admin/specialitiesList"
+                            class="btn btn-custom btn-lg w-100 text-center">Especialidades</a>
+                    </div>
+                </div>
+
             </div>
-            <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="/admin/doctorList" class="btn btn-custom btn-lg w-100 text-center p-4">Doctores</a>
-            </div>
-            <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="/admin/adminList" class="btn btn-custom btn-lg w-100 text-center p-4">Administradores</a>
-            </div>
-            
-            <h1 class="text-center mt-2 mb-3">Gestion de clinica</h1>
-        <div class="row justify-content-center w-100 mt-4 mb-4">
-            <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="/admin/insuranceList" class="btn btn-custom btn-lg w-100 text-center p-4">Obras Sociales</a>
-            </div>
-            <div class="col-md-4 mb-3 d-flex justify-content-center">
-                <a href="/admin/specialitiesList" class="btn btn-custom btn-lg w-100 text-center p-4">Especialidades</a>
-            </div>
-        </div>
-             <div class="row">
-                <c:if test="${rol == 'patient'}">
-                    <h2 class="text-center mt-3">Pacientes</h2>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>DNI</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>         
-                                <th>email</th>
-                                <th>Obra Social</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${patients}" var="patient">
-                                <tr>
-                                    <td>${patient.dni}</td>
-                                    <td>${patient.firstName}</td>
-                                    <td>${patient.lastName}</td>
-                                    <td>${patient.email}</td>
-                                    <td>${patient.insurance.name}</td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </c:if>
-            </div> 
-        </div>
-    </main>
-    <footer class="text-center mt-auto">
-        <p class="text-muted">&copy; 2024</p>
-    </footer>
-</div>
+        </main>
+
+        <footer class="text-center mt-0 auto">
+            <p class="text-muted mb-0">&copy; 2024</p>
+        </footer>
+    </div>
 </body>
+
 </html>
