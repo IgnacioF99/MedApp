@@ -23,7 +23,7 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-light">
+<body class="body-custom">
     <div class="container-custom d-flex flex-column container-fluid">
         <div class="row justify-content-center m-5">
 			<div class="col-md-8">

@@ -126,7 +126,7 @@ document.getElementById('yearSelect').addEventListener('change', updateCalendar)
 // Función para mostrar alertas
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
-const appendAlert = (message, type) => {
+const appendAlert = (message, type, duration = 5000) => {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = [
         `<div class="alert alert-${type} alert-dismissible" role="alert">`,
@@ -136,16 +136,21 @@ const appendAlert = (message, type) => {
     ].join('');
 
     alertPlaceholder.append(wrapper);
-};
+    
+    // Set timeout to remove alert after the specified duration
+    setTimeout(() => {
+        wrapper.remove();
+    }, duration);
+}
 
 const alertTrigger = document.getElementById('liveAlertBtn');
 if (alertTrigger) {
     alertTrigger.addEventListener('click', () => {
         const appointmentDate = document.getElementById('appointmentDate').value;
         const appointmentTime = document.getElementById('appointmentTime').value;
-        const doctorName = document.querySelector('#doctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
+        const doctorName = document.querySelector('#appointmentDoctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
 
         const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime} con ${doctorName}.`;
-        appendAlert(message, 'success');
+        appendAlert(message, 'success', 10000);
     });
 }
