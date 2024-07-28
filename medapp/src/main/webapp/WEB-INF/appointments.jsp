@@ -34,6 +34,7 @@
                         <th class="text-center">Fecha</th>
                         <th class="text-center">Horario</th>
                         <th class="text-center">Paciente</th>
+                        <th class="text-center">Obra Social</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +43,8 @@
                             <td class="text-center">${appointment.appointmentDate}</td>
                             <td class="text-center">${appointment.appointmentTime}</td>
                             <td class="text-center">${appointment.patient.firstName} ${appointment.patient.lastName}
-                            </td>
+                            <td class="text-center">${appointment.appointmentInsurance}</td>
+                            
                         </tr>
                     </c:forEach>
                 </tbody>

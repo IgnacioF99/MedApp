@@ -46,6 +46,7 @@
                                 <th class="text-center">Día</th>
                                 <th class="text-center">Horario</th>
                                 <th class="text-center">Paciente</th>
+                                <th class="text-center">Obra Social</th>
                                 <th class="text-center">DNI</th>
 
                             </tr>
@@ -57,6 +58,7 @@
                                     <td>${appointment.appointmentTime}</td>
                                     <td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName}
                                             ${appointment.patient.lastName}</a></td>
+                                    <td>${appointment.appointmentInsurance}</td>
                                     <td>${appointment.patient.dni}</td>
                                     <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial
                                             medico</a></td>

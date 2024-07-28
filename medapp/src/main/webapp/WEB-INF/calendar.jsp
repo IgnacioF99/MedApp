@@ -25,31 +25,33 @@
 
 <body>
 	<div class="container-fluid d-flex flex-column">
-		<header class="d-flex justify-content-between align-items-center p-4 position-relative">
+		<header
+			class="d-flex justify-content-between align-items-center p-4 position-relative">
 			<div class="d-flex align-items-center">
 				<img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2"
 					width="50" height="50">
 				<div>
-					<p class="mb-0">${user.firstName} ${user.lastName}</p>
+					<p class="mb-0">${user.firstName}${user.lastName}</p>
 					<p class="mb-0">${doctor.doctorSpeciality}</p>
 					<p class="mb-0">${doctor.availability}</p>
-					<p class="mb-0">${doctor.startTime} - ${doctor.endTime}</p>
+					<p class="mb-0">${doctor.startTime}- ${doctor.endTime}</p>
 				</div>
 			</div>
 			<img src="/img/logo2.png" alt="logoprincipal"
 				class="logo position-absolute start-50 translate-middle-x p-2">
 			<div>
-				<a href="/logout" class="btn btn-custom">Cerrar Sesión</a>
-				<a href="/patient/${userInSession.id}" class="btn btn-custom">Ir a mi perfil</a>
+				<a href="/logout" class="btn btn-custom">Cerrar Sesion</a> <a
+					href="/patient/${userInSession.id}" class="btn btn-custom">Ir a
+					mi perfil</a>
 			</div>
 		</header>
 		<main class="flex-grow-1 p-4">
 			<div class="header-container mt-4 text-center">
-				<h1>Calendario de Citas Médicas</h1>
+				<h1>Calendario de Citas Medicas</h1>
 				<div class="d-flex justify-content-center align-items-center">
 					<div class="d-flex align-items-center me-3">
-						<label class="inputLabel me-2" for="monthSelect">Mes:</label>
-						<select id="monthSelect" class="form-control" onchange="updateCalendar()">
+						<label class="inputLabel me-2" for="monthSelect">Mes:</label> <select
+							id="monthSelect" class="form-control" onchange="updateCalendar()">
 							<c:forEach var="month" begin="1" end="12">
 								<c:set var="monthName">
 									<c:choose>
@@ -67,15 +69,17 @@
 										<c:when test="${month == 12}">Diciembre</c:when>
 									</c:choose>
 								</c:set>
-								<option value="${month}" <c:if test="${month eq currentMonth}">selected</c:if>>${monthName}</option>
+								<option value="${month}"
+									<c:if test="${month eq currentMonth}">selected</c:if>>${monthName}</option>
 							</c:forEach>
 						</select>
 					</div>
 					<div class="d-flex align-items-center">
-						<label class="inputLabel me-2" for="yearSelect">Año:</label>
-						<select id="yearSelect" class="form-control" onchange="updateCalendar()">
+						<label class="inputLabel me-2" for="yearSelect">Aï¿½o:</label> <select
+							id="yearSelect" class="form-control" onchange="updateCalendar()">
 							<c:forEach begin="2024" end="2030" var="year">
-								<option value="${year}" <c:if test="${year eq currentYear}">selected</c:if>>${year}</option>
+								<option value="${year}"
+									<c:if test="${year eq currentYear}">selected</c:if>>${year}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -88,20 +92,20 @@
 						<th>Dom</th>
 						<th>Lun</th>
 						<th>Mar</th>
-						<th>Mié</th>
+						<th>Miï¿½</th>
 						<th>Jue</th>
 						<th>Vie</th>
-						<th>Sáb</th>
+						<th>Sï¿½b</th>
 					</tr>
 				</thead>
 				<tbody id="calendarBody">
 					<c:forEach var="week" items="${calendar}">
 						<tr>
 							<c:forEach var="day" items="${week}">
-								<td class="${scheduledDates.contains(day.date) ? 'highlight' : ''}"
+								<td
+									class="${scheduledDates.contains(day.date) ? 'highlight' : ''}"
 									onclick="${day.hasAppointment ? 'showAppointments(\'' + day.date + '\')' : 'openAppointmentModal(\'' + day.date + '\')'}">
-									${day.date}
-								</td>
+									${day.date}</td>
 							</c:forEach>
 						</tr>
 					</c:forEach>
@@ -120,21 +124,28 @@
 			<div class="modal-content">
 				<div class="modal-header text-white">
 					<h5 class="modal-title" id="appointmentModalLabel">Nueva Cita</h5>
-					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true"></span>
+					<button type="button" class="btn-close btn-close-white "
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"> <!-- &times;- -->
+						</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form:form modelAttribute="newAppointment" action="/appointments/create" method="POST">
-						<input type="hidden" id="appointmentDate" name="appointmentDate" required>
-						<input type="hidden" id="doctor" name="doctor" value="${doctor.id}" required>
-						<input type="hidden" id="patient" name="patient" value="${userInSession.id}" required>
+					<form:form modelAttribute="newAppointment"
+						action="/appointments/create" method="POST">
+						<input type="hidden" id="appointmentDate" name="appointmentDate"
+							required>
+						<input type="hidden" id="doctor" name="doctor"
+							value="${doctor.id}" required>
+						<input type="hidden" id="patient" name="patient"
+							value="${userInSession.id}" required>
 						<input type="hidden" id="status" name="status" value="Scheduled">
 
 						<!-- Otros campos del formulario -->
 						<div class="form-group">
-							<label class="inputLabel" for="appointmentTime">Horario</label>
-							<select class="form-select" id="appointmentTime" name="appointmentTime" required>
+							<label class="inputLabel" for="appointmentTime">Horario</label> <select
+								class="form-select" id="appointmentTime" name="appointmentTime"
+								required>
 								<c:forEach items="${times}" var="time">
 									<option value="${time}">${time}</option>
 								</c:forEach>
@@ -142,24 +153,27 @@
 						</div>
 
 						<div class="form-group mt-3">
-							<label class="inputLabel" for="appointmentInsurance">Obra Social</label>
-							<select class="form-select" id="appointmentInsurance" name="appointmentInsurance" required>
+							<label class="inputLabel" for="appointmentInsurance">Obra
+								Social</label> <select class="form-select" id="appointmentInsurance"
+								name="appointmentInsurance" required>
 								<c:forEach items="${insurances}" var="insurance">
-									<option value="${insurance.id}">${insurance.name}</option>
+									<option value="${insurance.name}">${insurance.name}</option>
 								</c:forEach>
 							</select>
 						</div>
 
 						<div class="form-group mt-3">
 							<label class="inputLabel" for="appointmentSpeciality">Especialidad</label>
-							<select class="form-select" id="appointmentSpeciality" name="appointmentSpeciality" required>
-								<option value="${speciality.id}">${speciality.name}</option>
+							<select class="form-select" id="appointmentSpeciality"
+								name="appointmentSpeciality" required>
+								<option value="${speciality.name}">${speciality.name}</option>
 							</select>
 						</div>
 
 						<div id="liveAlertPlaceholder"></div>
 
-						<input type="submit" id="liveAlertBtn" class="btn btn-custom mt-3" value="Agendar cita">
+						<input type="submit" id="liveAlertBtn" class="btn btn-custom mt-3"
+							onclick="appendAlert()" value="Agendar cita">
 					</form:form>
 				</div>
 			</div>
@@ -167,7 +181,8 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 	<script src="/js/calendar.js"></script>
 
 </body>
