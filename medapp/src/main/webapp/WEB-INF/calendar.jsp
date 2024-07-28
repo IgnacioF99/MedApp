@@ -168,8 +168,8 @@
 									<option value="${speciality.id}">${speciality.name}</option>
 							</select>
 						</div>
-						<div id="liveAlertPlaceholder"></div>
 						<input type="submit" id="liveAlertBtn" class="btn btn-custom mt-3" value="Agendar cita">
+						
 					</form:form>
 				</div>
 			</div>

@@ -1,11 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     updateCalendar();
-
-    // Agregar eventos a los selectores de mes y año
-    document.getElementById('monthSelect').addEventListener('change', updateCalendar);
-    document.getElementById('yearSelect').addEventListener('change', updateCalendar);
 });
 
+// Función para actualizar el calendario
 function updateCalendar() {
     const monthSelect = document.getElementById('monthSelect');
     const yearSelect = document.getElementById('yearSelect');
@@ -48,10 +45,7 @@ function updateCalendar() {
                 cell.onclick = function() {
                     // Al hacer clic en un día, abrir el modal para agregar una cita
                     const selectedDate = `${year}-${String(month).padStart(2, '0')}-${String(currentDate).padStart(2, '0')}`;
-                    const appointmentDate = document.getElementById('appointmentDate');
-                    if (appointmentDate) {
-                        appointmentDate.value = selectedDate;
-                    }
+                    document.getElementById('appointmentDate').value = selectedDate;
                     $('#appointmentModal').modal('show');
 
                     // Agregar la clase 'clicked' para el efecto visual
@@ -106,6 +100,7 @@ function updateDoctors() {
     });
 }
 
+// Muestra las citas para una fecha específica
 function showAppointments(date) {
     $.ajax({
         url: "/appointments/" + date,
@@ -124,29 +119,33 @@ function showAppointments(date) {
     });
 }
 
-// Configuración de alertas
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+// Agregar un evento para actualizar el calendario cuando se cambie el mes o el año
+document.getElementById('monthSelect').addEventListener('change', updateCalendar);
+document.getElementById('yearSelect').addEventListener('change', updateCalendar);
+
+// Función para mostrar alertas
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 
 const appendAlert = (message, type) => {
-	const wrapper = document.createElement('div')
-	wrapper.innerHTML = [
-		`<div class="alert alert-${type} alert-dismissible" role="alert">`,
-		`   <div>${message}</div>`,
-		'   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-		'</div>'
-	].join('')
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('');
 
-	alertPlaceholder.append(wrapper)
-}
+    alertPlaceholder.append(wrapper);
+};
 
-const alertTrigger = document.getElementById('liveAlertBtn')
+const alertTrigger = document.getElementById('liveAlertBtn');
 if (alertTrigger) {
-	alertTrigger.addEventListener('click', () => {
-		const appointmentDate = document.getElementById('appointmentDate').value
-		const appointmentTime = document.getElementById('appointmentTime').value
-		const doctorName = document.querySelector('#doctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
+    alertTrigger.addEventListener('click', () => {
+        const appointmentDate = document.getElementById('appointmentDate').value;
+        const appointmentTime = document.getElementById('appointmentTime').value;
+        const doctorName = document.querySelector('#doctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
 
-		const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime} con ${doctorName}.`;
-		appendAlert(message, 'success');
-	})
+        const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime} con ${doctorName}.`;
+        appendAlert(message, 'success');
+    });
 }
