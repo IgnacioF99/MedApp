@@ -56,7 +56,7 @@
                     <thead>
                         <tr class="custom-tr">
                             <th class="text-center">Obras Sociales</th>
-                            <th class="text-center">Acciones</th>
+                            <th class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>

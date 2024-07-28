@@ -141,12 +141,12 @@ const appendAlert = (message, type) => {
 
 const alertTrigger = document.getElementById('liveAlertBtn')
 if (alertTrigger) {
-	alertTrigger.addEventListener('click', () => {
+	alertTrigger.addEventListener('click', (event) => {
+		event.preventDefault()
 		const appointmentDate = document.getElementById('appointmentDate').value
 		const appointmentTime = document.getElementById('appointmentTime').value
-		const doctorName = document.querySelector('#doctor option:checked').textContent; // Obtener el nombre del doctor seleccionado
-
-		const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime} con ${doctorName}.`;
+	
+		const message = `Agendaste tu cita con éxito para el ${appointmentDate} a las ${appointmentTime}.`;
 		appendAlert(message, 'success');
 	})
 }

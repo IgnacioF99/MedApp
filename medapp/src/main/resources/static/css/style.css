@@ -121,3 +121,10 @@ a:hover {
 .form-inline {
     gap: 5px;
 }
+
+.table-container {
+    max-width: 100%;
+    overflow-x: auto; /* Para manejar tablas anchas en dispositivos pequeños */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 0 15px; /* Agrega un poco de espacio a los lados */
+}

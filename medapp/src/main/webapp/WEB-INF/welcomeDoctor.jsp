@@ -34,43 +34,50 @@
                         class="rounded-circle" width="50" height="50"></a>
             </div>
         </header>
-        <main class="p-4">
-            <h1 class="text-center mt-3">Gestion de turnos</h1>
-            <div>
-                        <h3 class="pb-3">Citas Médicas asociadas</h3>
-                        <table class="table table-bordered">
-                            <thead>
+        <main>
+            <div class="container">
+                <h1 class="text-center mt-4 mb-4">Gestion de turnos</h1>
+                <h4 class="mb-4">Citas médicas de hoy:</h4>
+
+                <div class="table-container mb-4">
+                    <table class="table table-striped table-bordered w-auto">
+                        <thead>
+                            <tr class="custom-tr">
+                                <th class="text-center">Día</th>
+                                <th class="text-center">Horario</th>
+                                <th class="text-center">Paciente</th>
+                                <th class="text-center">DNI</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="appointment" items="${appointments}">
                                 <tr>
-                                    <th>Día</th>
-                                    <th>Horario</th>
-                                    <th>Paciente</th>
-                                    <th>DNI</th>
-                                    <th>Acciones</th>
+                                    <td>${appointment.appointmentDate}</td>
+                                    <td>${appointment.appointmentTime}</td>
+                                    <td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName}
+                                            ${appointment.patient.lastName}</a></td>
+                                    <td>${appointment.patient.dni}</td>
+                                    <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial
+                                            medico</a></td>
+                                    <td><a href="/doctor/createMedicalHistory/${appointment.patient.id}">Generar
+                                            historial medico</a></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="appointment" items="${appointments}">
-                                    <tr>
-                                        <td>${appointment.appointmentDate}</td>
-                                        <td>${appointment.appointmentTime}</td>
-                                      	<td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName} ${appointment.patient.lastName}</a></td>
-                                        <td>${appointment.patient.dni}</td>
-                                        <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial medico</a></td>
-                                        <td><a href="/doctor/createMedicalHistory/${appointment.patient.id}">Generar historial medico</a></td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mb-5">
+                    <span><a href="/doctor/nextAppointments">Ver próximos turnos</a></span>
+                </div>
+            </div>
+
         </main>
-        <h1 class="pb-3 text-center mt-3"><a href="/doctor/nextAppointments">Ver proximos turnos</a></h1>
         <footer class="text-center mt-auto">
             <p class="text-muted">&copy; 2024</p>
         </footer>
     </div>
-</body>
 
-</html>
 </body>
 
 </html>
