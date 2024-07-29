@@ -1,8 +1,7 @@
 package com.coding.medapp.models;
 
-import java.sql.Time;
+
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;

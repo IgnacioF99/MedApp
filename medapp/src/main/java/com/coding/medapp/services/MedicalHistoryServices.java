@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 import com.coding.medapp.models.Content;
 import com.coding.medapp.models.MedicalHistory;
 import com.coding.medapp.models.Speciality;
-import com.coding.medapp.models.User;
 import com.coding.medapp.repository.ContentRepository;
 import com.coding.medapp.repository.MedicalHistoryRepository;
-import com.coding.medapp.repository.UserRepository;
 
 @Service
 public class MedicalHistoryServices {

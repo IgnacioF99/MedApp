@@ -23,7 +23,6 @@ import com.coding.medapp.services.DoctorServices;
 import com.coding.medapp.services.HealthInsuranceServices;
 import com.coding.medapp.services.SpecialityServices;
 import com.coding.medapp.services.UserServices;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
