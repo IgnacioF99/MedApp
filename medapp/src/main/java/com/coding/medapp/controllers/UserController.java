@@ -274,12 +274,25 @@ public class UserController {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
             LocalTime startTime = myDoctor.getStartTime();
             LocalTime endTime = myDoctor.getEndTime();
-
             for (LocalTime time = startTime; time.isBefore(endTime) || time.equals(endTime); time = time.plusMinutes(15)) {
                 times.add(time.format(formatter));
             }
             
-            model.addAttribute("times", times);
+            if (!myDoctor.getMedicalAppointments().isEmpty()) {
+                List<MedicalAppointment> appointmentUse = myDoctor.getMedicalAppointments();
+                List<String> timeUses = new ArrayList<>();
+    
+                for (MedicalAppointment medicalAppointment : appointmentUse) {
+                    timeUses.add(medicalAppointment.getAppointmentTime().format(formatter));
+                }
+    
+                List<String> availableTimes = new ArrayList<>(times);
+                for (String time : timeUses) {
+                    availableTimes.remove(time);
+                }
+    
+                model.addAttribute("times", availableTimes);
+            }
             return "calendar.jsp";
         } else {
             // Redirige a la página de inicio si el rol no coincide
