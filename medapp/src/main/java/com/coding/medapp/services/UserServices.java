@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
 import com.coding.medapp.repository.UserRepository;
@@ -141,15 +142,19 @@ public class UserServices {
         return userdni;
     }
     
+  
     public void deleteUser(Long id) {
     	userRepository.deleteById(id);
     }
     
-    public List<User> findAllUsersAlphabetically() {
-        List<User> users = userRepository.findAll();
-        Collections.sort(users, Comparator.comparing(User::getFirstName)); // Suponiendo que el método getName() obtiene el nombre del usuario
+    public List<User> findAllUsersAlphabetically(String role) {
+        // Filtrar usuarios por rol
+        List<User> users = userRepository.findByRoleLike(role);
+        // Ordenar alfabéticamente por nombre
+        Collections.sort(users, Comparator.comparing(User::getFirstName));
         return users;
     }
+    
     
     
     

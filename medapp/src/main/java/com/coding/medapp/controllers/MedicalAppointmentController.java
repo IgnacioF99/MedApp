@@ -61,7 +61,7 @@ public class MedicalAppointmentController {
         // Verifica si hay errores de validación
         if (result.hasErrors()) {
             model.addAttribute("doctors", userServices.findAllUsers());
-            return "newAppointment.jsp"; // Regresa al formulario con errores
+            return "redirect:/patient/calendar/{id}"; // Regresa al formulario con errores
         }
 
         // Verifica el rol del usuario

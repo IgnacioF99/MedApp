@@ -78,8 +78,8 @@ public class DoctorController {
 
             // Agrega las citas al modelo para que se muestren en la vista
             model.addAttribute("appointments", appointments);
-            
-            return "welcomeDoctor.jsp"; // 
+
+            return "welcomeDoctor.jsp";
         } else {
             return "redirect:/"; // Redirige si el rol no es el esperado
         }
@@ -315,7 +315,7 @@ public class DoctorController {
         contentServices.updateContent(existingContent);
         return "redirect:/doctor"; // Redirige al historial del paciente
     }
-
+ 
     @GetMapping("/doctor/nextAppointments")
     public String nextAppointments(Model model, HttpSession session) {
         User userTemp = (User) session.getAttribute("userInSession");
@@ -324,15 +324,10 @@ public class DoctorController {
         }
 
         Doctor doctor = userTemp.getDoctor2();
-
-        // Llama al servicio para obtener las citas de la semana para el doctor
-        List<MedicalAppointment> appointments = appointmentServices.getAppointmentsForWeek(doctor.getId());
-
-        // Agrega las citas al modelo para que se muestren en la vista
+        List<MedicalAppointment> appointments = appointmentServices.getAppointmentsForDoctor(doctor.getId());
         model.addAttribute("appointments", appointments);
         return "appointments.jsp";
     }
-
 }
 
    

@@ -1,20 +1,21 @@
 package com.coding.medapp.services;
 
+import com.coding.medapp.models.MedicalAppointment;
+import com.coding.medapp.models.User;
+import com.coding.medapp.repository.MedicalAppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.coding.medapp.models.MedicalAppointment;
-import com.coding.medapp.models.User;
-import com.coding.medapp.repository.MedicalAppointmentRepository;
+import java.util.stream.Collectors;
 
 @Service
 public class MedicalAppointmentService {
+
     @Autowired
     private MedicalAppointmentRepository appointmentRepository;
 
@@ -59,12 +60,9 @@ public class MedicalAppointmentService {
     }
 
     public List<MedicalAppointment> getAppointmentsByMonth(int year, int month) {
-        // Obtener el primer y último día del mes
         YearMonth yearMonth = YearMonth.of(year, month);
         LocalDate startDate = yearMonth.atDay(1);
         LocalDate endDate = yearMonth.atEndOfMonth();
-
-        // Buscar citas entre el primer y último día del mes
         return appointmentRepository.findByAppointmentDateBetween(startDate, endDate);
     }
 
@@ -74,21 +72,11 @@ public class MedicalAppointmentService {
 
     public List<MedicalAppointment> getAppointmentsForToday(Long doctorId) {
         LocalDate today = LocalDate.now();
-        return appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, today);
+        List<MedicalAppointment> appointments = appointmentRepository.findByDoctorIdAndAppointmentDate(doctorId, today);
+        return appointments.stream()
+                           .sorted((a1, a2) -> a1.getAppointmentTime().compareTo(a2.getAppointmentTime()))
+                           .collect(Collectors.toList());
     }
 
-    
-    public List<MedicalAppointment> getAppointmentsForWeek(Long doctorId) {
-        LocalDate today = LocalDate.now();
-        LocalDate startOfWeek = today.with(DayOfWeek.MONDAY);
-        LocalDate endOfWeek = today.with(DayOfWeek.SUNDAY);
-        
-        return appointmentRepository.findByDoctorIdAndAppointmentDateBetween(doctorId, startOfWeek, endOfWeek);
-    }
 
-    
-    
-}
-
-
-
+}	

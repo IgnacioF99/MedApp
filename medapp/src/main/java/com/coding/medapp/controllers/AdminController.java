@@ -68,7 +68,7 @@ public class AdminController {
         // =====REVISAMOS SU ROL========
         if (userTemp.getRole().equals(Rol.Roles[0])) {
             // Obtener Lista de usuarios ordenados alfabéticamente
-            List<User> userList = userServices.findAllUsersAlphabetically();
+            List<User> userList = userServices.findAllUsersAlphabetically(Rol.Roles[1]);
             model.addAttribute("patients", userList); 
             model.addAttribute("roles", Rol.Roles);
             return "infoPatients.jsp";
@@ -354,4 +354,33 @@ public class AdminController {
         }  
     }
     
+    @GetMapping("/admin/doctor")
+    public String adminDoctor(HttpSession session, @RequestParam(value = "dni", required = false) String dni, Model model) {
+        User userTemp = (User) session.getAttribute("userInSession");
+        if (userTemp == null) {
+            return "redirect:/login";
+        }
+
+        // Verificar el rol del usuario
+        if (userTemp.getRole().equals(Rol.Roles[0])) { // Asegúrate de que Rol.Roles[0] sea el rol admin correcto
+            // Verificar si el DNI es válido
+            if (dni == null || dni.trim().isEmpty()) {
+                return "redirect:/admin/doctorList"; // Redirige si el DNI es nulo o vacío
+            }
+
+            // Obtener la lista de doctores según el DNI
+            List<Doctor> doctorList = doctorServices.doctorDni(dni);
+            if (!doctorList.isEmpty()) {
+                model.addAttribute("doctors", doctorList);
+                model.addAttribute("roles", Rol.Roles);
+                return "infoDoctors.jsp"; // 
+            } else {
+                return "redirect:/admin/doctorList"; // Nombre del archivo JSP sin .jsp
+            }
+        } else {
+            return "redirect:/";
+        }
+    }
+	
 }
+
