@@ -50,7 +50,7 @@ public class DoctorServices {
         Doctor newDoctor = new Doctor();
         newDoctor.setDoctor(doctor);
         newDoctor.setLicense(num);
-        newDoctor.setAvailability("");
+        newDoctor.setAvailability("A");
         newDoctor.setEndTime(LocalTime.of(00,00));
         newDoctor.setStartTime(LocalTime.of(00, 00));
         return doctorRepository.save(newDoctor);
