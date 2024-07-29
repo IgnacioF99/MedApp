@@ -39,18 +39,13 @@ public class Speciality {
     // Constructor vacío
     public Speciality() {}
     
-    
-    
+    // Constructor con nombre
+    public Speciality(String name) {
+        this.name = formatName(name);
+    }
 
-    @Override
-	public String toString() {
-		return name ;
-	}
+    // Métodos Getter y Setter
 
-
-
-
-	// Getters y Setters
     public Long getId() {
         return id;
     }
@@ -64,7 +59,7 @@ public class Speciality {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = formatName(name);
     }
 
     public Date getCreatedAt() {
@@ -99,5 +94,18 @@ public class Speciality {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = new Date();
+    }
+
+    // Método para formatear el nombre
+    private String formatName(String name) {
+        if (name == null || name.isEmpty()) {
+            return name;
+        }
+        return Character.toUpperCase(name.charAt(0)) + name.substring(1).toLowerCase();
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
