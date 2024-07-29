@@ -62,7 +62,7 @@
 							</div>
 							<input type="submit" class="btn btn-custom mt-4" value="Registrarme">
 						</form:form>
-						<a href="/" class="d-block mt-3 text-center">Volver a Pagina de Inicio</a>
+						<a href="/" class="d-block mt-3 text-center">Volver a Página de Inicio</a>
 					</div>
 				</div>
 			</div>

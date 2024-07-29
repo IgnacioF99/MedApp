@@ -20,7 +20,7 @@
             <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2" />
             <span>Bienvenidx ${userInSession.firstName}!</span>
             <div>
-                <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+                <a href="/logout" class="btn btn-custom">Cerrar Sesión</a>
                 <a href="/patient/${userInSession.id}" class="p-4">
                     <img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50">
                 </a>
@@ -28,7 +28,7 @@
         </header>
         <main class="p-4">
             <div class="container">
-                <h1 class="text-center mt-3">Agenda tu cita medica</h1>
+                <h1 class="text-center mt-3">Agenda tu cita médica</h1>
                 <form action="/patient/search" method="get">
                     <div class="form-group mt-5">
                         <label for="speciality" class="form-label">Selecciona una especialidad:</label>

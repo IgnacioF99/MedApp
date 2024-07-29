@@ -29,14 +29,14 @@
             <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2" />
             <span>Bienvenidx ${userInSession.firstName}!</span>
             <div>
-                <a href="/logout" class="btn btn-custom">Cerrar Sesion</a>
+                <a href="/logout" class="btn btn-custom">Cerrar Sesión</a>
                 <a href="/doctor/${userInSession.doctor2.id}" class="p-4"><img src="/img/profile.png" alt="Perfil"
                         class="rounded-circle" width="50" height="50"></a>
             </div>
         </header>
         <main>
             <div class="container">
-                <h1 class="text-center mt-4 mb-4">Gestion de turnos</h1>
+                <h1 class="text-center mt-4 mb-4">Gestión de turnos</h1>
                 <h4 class="mb-4">Citas médicas de hoy:</h4>
 
                 <div class="table-container mb-4 col-md-12">
@@ -61,9 +61,9 @@
                                     <td>${appointment.appointmentInsurance}</td>
                                     <td>${appointment.patient.dni}</td>
                                     <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial
-                                            medico</a></td>
+                                            médico</a></td>
                                     <td><a href="/doctor/createMedicalHistory/${appointment.patient.id}">Generar
-                                            historial de cita medica</a></td>
+                                            historial de cita médica</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

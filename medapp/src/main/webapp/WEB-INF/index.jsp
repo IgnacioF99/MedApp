@@ -34,7 +34,7 @@ pageEncoding="ISO-8859-1"%>
     </header>
     <main class="p-4">
       <section class="mb-4">
-        <h1 class="mb-4 mt-3">Quienes somos?</h1>
+        <h1 class="mb-4 mt-3">¿Quiénes somos?</h1>
         <p class="m-2">
           Med App facilita la programación de citas en línea, optimiza la administración de turnos y centraliza los
           historiales médicos, permitiendo una experiencia más rápida y sencilla tanto para pacientes como para el

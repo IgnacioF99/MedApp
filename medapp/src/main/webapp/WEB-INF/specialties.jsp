@@ -30,7 +30,7 @@
             <img src="/img/logo2.png" alt="logoPrincipal" class="logo p-2" />
             <span>Bienvenidx Admin ${userInSession.firstName}!</span>
             <div>
-                <a href="/admin" class="btn btn-custom">Gestion De Usuarios</a>
+                <a href="/admin" class="btn btn-custom">Administración</a>
             </div>
         </header>
         <main class="d-flex flex-column align-items-center main-custom">
@@ -44,7 +44,7 @@
 			            <input type="text" id="name" name="name" class="form-control" style="width: 250px;" />
 			        </div>
 			        <div class="col-auto">
-			            <input type="submit" class="btn btn-custom btn-sm p-1" value="Agregar">
+			            <input type="submit" class="btn btn-custom  p-1" value="Agregar">
 			        </div>
 			    </div>
 			</form:form>

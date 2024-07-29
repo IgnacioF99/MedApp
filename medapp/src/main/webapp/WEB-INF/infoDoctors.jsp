@@ -25,7 +25,7 @@
             <img src="/img/logo2.png" alt="logoPrincipal" class="logo p-2" />
             <span>Bienvenidx Admin ${userInSession.firstName}!</span>
             <div>
-                <a href="/admin" class="btn btn-custom">Gestion De Usuarios</a>
+                <a href="/admin" class="btn btn-custom">Administración</a>
             </div>
         </header>
         <main class="d-flex flex-column align-items-center main-custom">

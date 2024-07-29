@@ -12,7 +12,7 @@ pageEncoding="ISO-8859-1"%>
 
 <head>
   <meta charset="UTF-8" />
-  <title>Inicio de Sesion</title>
+  <title>Inicio de Sesión</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="stylesheet" href="/css/style.css" />
@@ -28,7 +28,7 @@ pageEncoding="ISO-8859-1"%>
       <div class="col-md-8">
         <div class="card shadow">
           <div class="card-body">
-            <h2 class="text-center mb-4">Inicio de sesion</h2>
+            <h2 class="text-center mb-4">Inicio de sesión</h2>
             <p class="text-danger">${errorLogin}</p>
             <form action="/login" method="POST">
               <div>
@@ -39,11 +39,11 @@ pageEncoding="ISO-8859-1"%>
                 <label class="inputLabel">Contraseña:</label>
                 <input type="password" class="form-control" name="password" />
               </div>
-              <input type="submit" class="btn btn-custom mt-4" value="Iniciar Sesion" />
+              <input type="submit" class="btn btn-custom mt-4" value="Iniciar Sesión" />
             </form>
-            <span class="d-block mt-3 text-center">Aun no tenes una cuenta?</span>
+            <span class="d-block mt-3 text-center">¿Aún no tienes una cuenta?</span>
             <a href="/register" class="d-block mt-3 text-center">Registrarme</a>
-            <a href="/" class="d-block mt-3 text-center">Volver a Pagina de Inicio</a>
+            <a href="/" class="d-block mt-3 text-center">Volver a Página de Inicio</a>
           </div>
         </div>
       </div>
