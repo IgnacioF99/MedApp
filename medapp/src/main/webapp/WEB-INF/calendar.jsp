@@ -92,10 +92,10 @@
 						<th>Dom</th>
 						<th>Lun</th>
 						<th>Mar</th>
-						<th>Mi�</th>
+						<th>Mie</th>
 						<th>Jue</th>
 						<th>Vie</th>
-						<th>S�b</th>
+						<th>Sab</th>
 					</tr>
 				</thead>
 				<tbody id="calendarBody">
