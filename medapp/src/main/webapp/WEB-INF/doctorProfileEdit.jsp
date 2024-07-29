@@ -59,34 +59,9 @@
                                         <option value="${insurance.id}">${insurance.name}</option>
                                     </c:forEach>
                                 </select>
-                            </div>
+                            </div>                         
                             <div class="form-group">
-                                <label class="inputLabel" for="startTime">Hora de Entrada:</label>
-                                <form:input type="time" path="startTime" id="startTime" class="form-control" />
-                                <form:errors path="startTime" class="text-danger" />
-                            </div>
-                            <div class="form-group">
-                            	<label class="inputLabel" for="startTime">Lunes</label>
-                            	<form:input type="time" path="startTime" id="startTime" class="form-control" />
-                                <form:errors path="startTime" class="text-danger" />
-                            </div>
-                            <div class="form-group">
-                            	<label class="inputLabel" for="startTime">Martes</label>
-                            	<form:input type="time" path="startTime" id="startTime" class="form-control" />
-                                <form:errors path="startTime" class="text-danger" />
-                            </div>
-                            <div class="form-group">
-                            	<label class="inputLabel" for="startTime">Miercoles</label>
-                            	<form:input type="time" path="startTime" id="startTime" class="form-control" />
-                                <form:errors path="startTime" class="text-danger" />
-                            </div>
-                            <div class="form-group">
-                            	<label class="inputLabel" for="startTime">Jueves</label>
-                            	<form:input type="time" path="startTime" id="startTime" class="form-control" />
-                                <form:errors path="startTime" class="text-danger" />
-                            </div>
-                            <div class="form-group">
-                            	<label class="inputLabel" for="startTime">Viernes</label>
+                            	<label class="inputLabel" for="startTime">Hora de entrada</label>
                             	<form:input type="time" path="startTime" id="startTime" class="form-control" />
                                 <form:errors path="startTime" class="text-danger" />
                             </div>

@@ -5,17 +5,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coding.medapp.models.Doctor;
+import com.coding.medapp.models.MedicalAppointment;
 import com.coding.medapp.models.Speciality;
 import com.coding.medapp.models.User;
 import com.coding.medapp.repository.DoctorRepository;
+import com.coding.medapp.repository.MedicalAppointmentRepository;
 import com.coding.medapp.repository.UserRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class DoctorServices {
@@ -31,7 +37,11 @@ public class DoctorServices {
     @Lazy
     private SpecialityServices specialityServices;
     
+    @Autowired
+    private MedicalAppointmentRepository medicalAppointmentRepository;
     
+    
+   
     
 
     public Doctor newDoctor(Long id){
@@ -40,7 +50,7 @@ public class DoctorServices {
         Doctor newDoctor = new Doctor();
         newDoctor.setDoctor(doctor);
         newDoctor.setLicense(num);
-        newDoctor.setAvailability("A");
+        newDoctor.setAvailability("");
         newDoctor.setEndTime(LocalTime.of(00,00));
         newDoctor.setStartTime(LocalTime.of(00, 00));
         return doctorRepository.save(newDoctor);
@@ -97,6 +107,56 @@ public class DoctorServices {
             .sorted(Comparator.comparing(doctor -> doctor.getDoctor().getFirstName()))
             .collect(Collectors.toList());
         return doctors;
+    }
+    
+    @Transactional
+    public void unlinkAndDeleteDoctor(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        if (user.getDoctor2() != null) {
+            Doctor doctor = user.getDoctor2();
+            user.setDoctor2(null);
+            userRepository.save(user); // Guardar los cambios en el usuario
+
+            deleteDoctor(doctor.getId()); // Llamar al método para eliminar el doctor
+        }
+    }
+
+    @Transactional
+    public void deleteDoctor(Long doctorId) {
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
+
+        for (MedicalAppointment appointment : doctor.getMedicalAppointments()) {
+            medicalAppointmentRepository.delete(appointment);
+        }
+
+        doctorRepository.delete(doctor);
+    }
+  
+    @Transactional
+    public void changeDoctorRole(Long userId, String newRole) {
+        // Obtener el usuario por ID
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        // Verificar si el usuario tiene un doctor asociado
+        if (user.getDoctor2() != null) {
+            Doctor doctor = user.getDoctor2();
+
+            // Desvincular el doctor del usuario
+            user.setDoctor2(null);
+            userRepository.save(user); // Guardar los cambios en el usuario
+
+            // Opcional: Eliminar el doctor si es necesario
+            // Puedes agregar una lógica para verificar si el doctor debe ser eliminado o no
+            deleteDoctor(doctor.getId());
+        }
+
+        // Actualizar el rol del usuario
+        user.setRole(newRole);
+        userRepository.save(user);
     }
     
     

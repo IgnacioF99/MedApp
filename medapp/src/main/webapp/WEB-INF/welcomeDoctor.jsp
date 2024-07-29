@@ -63,7 +63,7 @@
                                     <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial
                                             medico</a></td>
                                     <td><a href="/doctor/createMedicalHistory/${appointment.patient.id}">Generar
-                                            historial medico</a></td>
+                                            historial de cita medica</a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

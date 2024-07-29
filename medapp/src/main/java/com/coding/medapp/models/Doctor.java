@@ -70,7 +70,7 @@ public class Doctor {
     @JoinColumn(name = "speciality_id")
     private Speciality doctorSpeciality;
 
-	@OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
 	private List<MedicalAppointment> medicalAppointments;
 
 	@ManyToMany(fetch = FetchType.LAZY)

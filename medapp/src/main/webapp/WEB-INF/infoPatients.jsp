@@ -65,7 +65,7 @@
 						<c:forEach items="${patients}" var="patient">
 							<tr>
 								<td class="text-center">${patient.dni}</td>
-								<td class="text-center"><a href="/doctor/medicalHistory/${patient.id}">${patient.firstName}${patient.lastName}</a></td>
+								<td class="text-center"><a href="/doctor/medicalHistory/${patient.id}">${patient.firstName} ${patient.lastName}</a></td>
 								<td class="text-center">${patient.insurance.name}</td>
 								<td class="text-center">${patient.email}</td>
 								<td class="text-center">
