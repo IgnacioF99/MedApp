@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.coding.medapp.models.Doctor;
 import com.coding.medapp.models.Rol;
 import com.coding.medapp.models.User;
 import com.coding.medapp.repository.UserRepository;

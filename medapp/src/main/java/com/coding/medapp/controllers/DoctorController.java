@@ -1,11 +1,8 @@
 package com.coding.medapp.controllers;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +29,7 @@ import com.coding.medapp.services.UserServices;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
-import java.util.List;
+
 
 @Controller
 public class DoctorController {
