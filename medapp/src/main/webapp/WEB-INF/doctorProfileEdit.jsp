@@ -72,8 +72,10 @@
                             </div>
                             
                             <input type="hidden" name="doctor" value="${doctor.doctor.id}" >
-                            <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3">
-                             <a href="/doctor" class="m-2">Volver</a>
+                            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center">
+                                <input type="submit" value="Guardar Cambios" class="btn btn-custom mt-3 me-md-2 mb-2 mb-md-0">
+                                <a href="/doctor" class="btn btn-secondary mt-3 mb-2 mb-md-0">Volver</a>
+                            </div>
                         </form:form>
                     </div>
                 </div>
