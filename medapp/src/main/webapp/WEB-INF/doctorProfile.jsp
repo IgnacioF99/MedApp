@@ -33,7 +33,7 @@
                         </div>
                         <p class="card-text"><span>Hora de Inicio:</span> ${doctor.startTime}</p>
                         <p class="card-text"><span>Hora de Salida:</span> ${doctor.endTime}</p>
-                        <p class="card-text"><span>Especialidad:</span> ${doctor.doctorSpeciality}</p>
+                        <p class="card-text"><span>Especialidad:</span> ${doctor.getSpecialityName()}</p>
                         <p class="card-text"><span>Obra Social:</span> ${doctor.getInsurancesDoctor()}</p>
                     </div>
                     <div class="card-footer text-center">

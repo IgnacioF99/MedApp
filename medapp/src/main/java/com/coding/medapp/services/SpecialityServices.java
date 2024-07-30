@@ -32,19 +32,17 @@ public class SpecialityServices {
     	return specialityRepository.findById(id).orElse(null);
     }
     	
-    public  void addSpeciality(Long doctorId, Long specialityId) {
-    	Doctor myDoctor = doctorServices.getDoctor(doctorId);
-    	Speciality mySpeciality = getSpeciality(specialityId);
-    	
-    	// Verifica si la especialidad ya está presente
-        if (myDoctor.getDoctorSpeciality() == mySpeciality) {
-            // Si ya la tiene, no la agrega
-            return;
-        }
-    	
-    	
-    	doctorServices.saveDoctor(myDoctor);
+    public void addSpeciality(Long doctorId, Long specialityId) {
+        Doctor myDoctor = doctorServices.getDoctor(doctorId);
+        Speciality mySpeciality = getSpeciality(specialityId);
+
+        // Asigna la nueva especialidad al doctor
+        myDoctor.setDoctorSpeciality(mySpeciality);
+
+        // Guarda los cambios en la base de datos
+        doctorServices.saveDoctor(myDoctor);
     }
+
     
     public void deleteSpeciality(Long id) {
         specialityRepository.deleteById(id);

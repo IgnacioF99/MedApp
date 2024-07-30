@@ -101,6 +101,14 @@ public class Doctor {
 		            .collect(Collectors.joining(", ")); // Unir los nombres con una coma y espacio
 		}
 	 
+	 public String getSpecialityName() {
+		    if (doctorSpeciality == null) {
+		        return "Ninguna especialidad";
+		    }
+		    return doctorSpeciality.getName(); // 
+		}
+
+	 
 	 
 	
 	

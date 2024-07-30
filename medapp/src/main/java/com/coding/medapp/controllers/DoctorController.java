@@ -122,7 +122,7 @@ public class DoctorController {
         }
         return "redirect:/login";
     }
-
+    
     @PutMapping("/doctor/update/{id}")
     public String updateProfile(@Valid @ModelAttribute("doctor") Doctor doctorUpdated, BindingResult result, HttpSession session, Model model,
                                 @RequestParam(value = "doctorSpeciality", required = false) Long specialityId,
@@ -131,6 +131,7 @@ public class DoctorController {
         if (userTemp == null) {
             return "redirect:/login";
         }
+        
         if (result.hasErrors()) {
             List<Speciality> specialties = specialityServices.findAllSpecialties();
             List<HealthInsurance> healthInsurances = insuranceServices.findAllHealthInsurances(); 
@@ -138,28 +139,38 @@ public class DoctorController {
             model.addAttribute("healthInsurances", healthInsurances);
             return "doctorProfileEdit.jsp";
         }
+
         if (userTemp.getRole().equals(Rol.Roles[2])) {
-        	//Obtenemos el doctor
+            // Obtener el doctor existente
             Doctor existingDoctor = doctorServices.getDoctor(doctorUpdated.getId());
-          	//Si selecciono alguna especialidad en el form usa el metodo de AddSpeciality
-            if (specialityId != null) { 
-                specialityServices.addSpeciality(existingDoctor.getId(), specialityId);
+
+            // Solo actualiza la especialidad si se proporciona una nueva
+            if (specialityId != null) {
+                specialityServices.addSpeciality(doctorUpdated.getId(), specialityId);
+            } else {
+                // Conservar la especialidad existente si no se proporciona una nueva
+                doctorUpdated.setDoctorSpeciality(existingDoctor.getDoctorSpeciality());
             }
-            //Si selecciono alguna obra social - se la agrega
-            if(insuranceId != null) {
-            	insuranceServices.addInsurance(existingDoctor.getId(), insuranceId);
-       	
+
+            // Actualizar el seguro si se selecciona uno nuevo
+            if (insuranceId != null) {
+                insuranceServices.addInsurance(doctorUpdated.getId(), insuranceId);
             }
-            //Setea las obras sociales al doc- recibiendo las que tiene el existing doctor
+
+            // Establecer los seguros existentes y la especialidad actualizada
             doctorUpdated.setInsurance(existingDoctor.getInsurance());
-            // Setea las especialidades existentes en el doctor actualizado
+
+            // Guardar el doctor actualizado
             doctorServices.saveDoctor(doctorUpdated);
-            System.out.println(doctorUpdated.getId());
+
+            System.out.println("Updated Doctor ID: " + doctorUpdated.getId());
             return "redirect:/doctor/" + doctorUpdated.getId();
         } else {
             return "redirect:/";
         }
     }
+
+
     
 
     
