@@ -60,7 +60,7 @@
                                     </c:forEach>
                                 </form:select>
                             </div>
-                            <div class="mt-3">
+                            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center mt-3">
                                 <input type="submit" value="Guardar cambios" class="btn btn-custom">
                                 <a href="/patient" class="m-2">Volver</a>
                             </div>
