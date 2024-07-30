@@ -18,7 +18,7 @@
     <div class="container-fluid d-flex flex-column min-vh-100">
         <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-3">
             <div class="d-flex align-items-center">
-                <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2" />
+                <img src="/img/logo2.png" alt="logoprincipal" class="logo img-fluid p-2" />
                 <span class="ms-3">Bienvenidx ${userInSession.firstName}!</span>
             </div>
             <div class="d-flex align-items-center">

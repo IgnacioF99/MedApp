@@ -26,7 +26,7 @@
 <body>
     <div class="container-fluid">
         <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
-            <img src="/img/logo2.png" alt="logoprincipal" class="logo p-2" />
+            <img src="/img/logo2.png" alt="logoprincipal" class="logo img-fluid p-2" />
             <span>Bienvenidx ${userInSession.firstName}!</span>
             <div>
                 <a href="/logout" class="btn btn-custom">Cerrar Sesión</a>
@@ -38,37 +38,40 @@
             <div class="container">
                 <h1 class="text-center mt-4 mb-4">Gestión de turnos</h1>
                 <h4 class="mb-4">Citas médicas de hoy:</h4>
-
-                <div class="table-container mb-4 col-md-12">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                            <tr class="custom-tr">
-                                <th class="text-center">Día</th>
-                                <th class="text-center">Horario</th>
-                                <th class="text-center">Paciente</th>
-                                <th class="text-center">Obra Social</th>
-                                <th class="text-center">DNI</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="appointment" items="${appointments}">
-                                <tr>
-                                    <td>${appointment.appointmentDate}</td>
-                                    <td>${appointment.appointmentTime}</td>
-                                    <td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName}
-                                            ${appointment.patient.lastName}</a></td>
-                                    <td>${appointment.appointmentInsurance}</td>
-                                    <td>${appointment.patient.dni}</td>
-                                    <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial
-                                            médico</a></td>
-                                    <td><a href="/doctor/createMedicalHistory/${appointment.patient.id}">Generar
-                                            historial de cita médica</a></td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
+				
+				<div class="col-12 mb-4">
+					<div class="table-responsive mb-4 col-md-12">
+	                    <table class="table table-striped table-bordered">
+	                        <thead>
+	                            <tr class="custom-tr">
+	                                <th class="text-center">Día</th>
+	                                <th class="text-center">Horario</th>
+	                                <th class="text-center">Paciente</th>
+	                                <th class="text-center">Obra Social</th>
+	                                <th class="text-center">DNI</th>
+	
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <c:forEach var="appointment" items="${appointments}">
+	                                <tr>
+	                                    <td>${appointment.appointmentDate}</td>
+	                                    <td>${appointment.appointmentTime}</td>
+	                                    <td><a href="/doctor/medicalHistory/${appointment.patient.id}">${appointment.patient.firstName}
+	                                            ${appointment.patient.lastName}</a></td>
+	                                    <td>${appointment.appointmentInsurance}</td>
+	                                    <td>${appointment.patient.dni}</td>
+	                                    <td><a href="/doctor/medicalHistory/${appointment.patient.id}">Ver historial
+	                                            médico</a></td>
+	                                    <td><a href="/doctor/createMedicalHistory/${appointment.patient.id}">Generar
+	                                            historial de cita médica</a></td>
+	                                </tr>
+	                            </c:forEach>
+	                        </tbody>
+	                    </table>
+	                </div>
+				</div>
+                
                 <div class="mb-5">
                     <span><a href="/doctor/nextAppointments">Ver próximos turnos</a></span>
                 </div>
