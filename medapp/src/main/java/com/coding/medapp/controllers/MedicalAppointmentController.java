@@ -61,7 +61,7 @@ public class MedicalAppointmentController {
         // Verifica si hay errores de validación
         if (result.hasErrors()) {
             model.addAttribute("doctors", userServices.findAllUsers());
-            return "redirect:/patient/calendar/{id}"; // Regresa al formulario con errores
+            return "newAppointment.jsp"; // Regresa al formulario con errores
         }
 
         // Verifica el rol del usuario
@@ -87,12 +87,16 @@ public class MedicalAppointmentController {
         }
     }
 
+    /*
+    
     @GetMapping("/newAppointment")
     public String newAppointment(@ModelAttribute("appointment") MedicalAppointment appointment, Model model, HttpSession session) {
         User userInSession = (User) session.getAttribute("userInSession");
         model.addAttribute("doctors", userServices.findAllUsers());
         return "newAppointment.jsp";
     }
+    
+    */
 
     @GetMapping("/appointment/edit/{id}")
     public String editAppointment(@PathVariable("id") Long id, Model model) {

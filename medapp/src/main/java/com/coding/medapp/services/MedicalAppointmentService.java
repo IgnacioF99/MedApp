@@ -1,16 +1,17 @@
 package com.coding.medapp.services;
 
-import com.coding.medapp.models.MedicalAppointment;
-import com.coding.medapp.models.User;
-import com.coding.medapp.repository.MedicalAppointmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.coding.medapp.models.MedicalAppointment;
+import com.coding.medapp.models.User;
+import com.coding.medapp.repository.MedicalAppointmentRepository;
 
 @Service
 public class MedicalAppointmentService {
@@ -19,8 +20,15 @@ public class MedicalAppointmentService {
     private MedicalAppointmentRepository appointmentRepository;
 
     public boolean isAppointmentAvailable(LocalDate date, LocalTime time) {
-        return appointmentRepository.findByAppointmentDateAndAppointmentTime(date, time).isEmpty();
+        List<MedicalAppointment> appointments = getAppointmentsByDate(date);
+        for (MedicalAppointment appointment : appointments) {
+            if (appointment.getAppointmentTime().equals(time)) {
+                return false; // El horario ya está ocupado
+            }
+        }
+        return true; // El horario está disponible
     }
+
 
     public MedicalAppointment createAppointment(MedicalAppointment appointment) {
         if (!isAppointmentAvailable(appointment.getAppointmentDate(), appointment.getAppointmentTime())) {

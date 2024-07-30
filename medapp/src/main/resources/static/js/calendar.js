@@ -53,6 +53,10 @@ function updateCalendar() {
                         appointmentDate.value = selectedDate;
                     }
                     $('#appointmentModal').modal('show');
+                    if (selectedDate <= currentDate) {
+					    alert("La fecha seleccionada debe ser posterior a la fecha actual.");
+					    return;
+					}
 
                     // Agregar la clase 'clicked' para el efecto visual
                     cell.classList.add('clicked');

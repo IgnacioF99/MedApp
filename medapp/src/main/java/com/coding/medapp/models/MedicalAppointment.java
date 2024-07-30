@@ -71,20 +71,11 @@ public class MedicalAppointment {
     
     //----------------------------------
     
-    
-
-   
-    
-    
-
-
 
 	public Long getId() {
         return id;
     }
    
-
-
 
 	@Override
 	public String toString() {

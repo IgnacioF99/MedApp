@@ -117,6 +117,13 @@
 			<p class="text-muted">&copy; 2024</p>
 		</footer>
 	</div>
+	
+	<c:if test="${not empty errorMessage}">
+	    <div class="alert alert-danger" role="alert">
+	        ${errorMessage}
+	    </div>
+	</c:if>
+	
 	<div class="modal fade" id="appointmentModal" tabindex="-1"
 		role="dialog" aria-labelledby="appointmentModalLabel"
 		aria-hidden="true">
