@@ -75,7 +75,7 @@
 						</select>
 					</div>
 					<div class="d-flex align-items-center">
-						<label class="inputLabel me-2" for="yearSelect">Aï¿½o:</label> <select
+						<label class="inputLabel me-2" for="yearSelect">Año:</label> <select
 							id="yearSelect" class="form-control" onchange="updateCalendar()">
 							<c:forEach begin="2024" end="2030" var="year">
 								<option value="${year}"
