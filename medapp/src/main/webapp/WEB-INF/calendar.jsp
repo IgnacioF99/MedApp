@@ -24,31 +24,29 @@
 </head>
 
 <body>
-	<div class="container-fluid d-flex flex-column">
-		<header
-			class="d-flex justify-content-between align-items-center p-4 position-relative">
-			<div class="d-flex align-items-center">
-				<img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2"
-					width="50" height="50">
-				<div>
-					<p class="mb-0">${user.firstName}${user.lastName}</p>
-					<p class="mb-0">${doctor.doctorSpeciality}</p>
-					<p class="mb-0">${doctor.availability}</p>
-					<p class="mb-0">${doctor.startTime}- ${doctor.endTime}</p>
-				</div>
-			</div>
-			<img src="/img/logo2.png" alt="logoprincipal"
-				class="logo position-absolute start-50 translate-middle-x p-2">
-			<div>
-				<a href="/logout" class="btn btn-custom">Cerrar Sesion</a> <a
-					href="/patient/${userInSession.id}" class="btn btn-custom">Ir a
-					mi perfil</a>
-			</div>
-		</header>
+	<div class="container-fluid d-flex flex-column min-vh-100">
+		<header class="d-flex justify-content-between align-items-center flex-wrap p-3">
+            <div class="d-flex align-items-center">
+                <img src="/img/profile.png" alt="Perfil" class="rounded-circle me-2" width="50" height="50">
+                <div>
+                    <p class="mb-0">${user.firstName} ${user.lastName}</p>
+                    <p class="mb-0">${doctor.doctorSpeciality}</p>
+                    <p class="mb-0">${doctor.availability}</p>
+                    <p class="mb-0">${doctor.startTime} - ${doctor.endTime}</p>
+                </div>
+            </div>
+            <img src="/img/logo2.png" alt="logoprincipal" class="logo img-fluid p-2" style="max-width: 150px;">
+            <div class="d-flex align-items-center">
+                <a href="/logout" class="btn btn-custom me-2">Cerrar Sesión</a>
+                <a href="/patient/${userInSession.id}">
+                    <img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50">
+                </a>
+            </div>
+        </header>
 		<main class="flex-grow-1 p-4">
 			<div class="header-container mt-4 text-center">
 				<h1>Calendario de Citas Medicas</h1>
-				<div class="d-flex justify-content-center align-items-center">
+				<div class="d-flex justify-content-center align-items-center flex-wrap p-3">
 					<div class="d-flex align-items-center me-3">
 						<label class="inputLabel me-2" for="monthSelect">Mes:</label> <select
 							id="monthSelect" class="form-control" onchange="updateCalendar()">
