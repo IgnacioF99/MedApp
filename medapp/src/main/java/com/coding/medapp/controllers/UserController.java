@@ -292,7 +292,9 @@ public class UserController {
                 }
     
                 model.addAttribute("times", availableTimes);
+                return "calendar.jsp";
             }
+            model.addAttribute("times", times);
             return "calendar.jsp";
         } else {
             // Redirige a la página de inicio si el rol no coincide
