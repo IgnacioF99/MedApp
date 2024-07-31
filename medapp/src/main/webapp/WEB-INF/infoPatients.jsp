@@ -27,8 +27,8 @@
 	rel="stylesheet" />
 </head>
 
-<body class="bg-light">
-	<div class="container-custom d-flex flex-column container-fluid">
+<body>
+	<div class="container-custom d-flex flex-wrap flex-column container-fluid">
 		<header
 			class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
 			<img src="/img/logo2.png" alt="logoPrincipal" class="logo p-2" /> <span>Bienvenidx
@@ -51,49 +51,51 @@
 				
 			</div>
 			<div class="d-flex justify-content-center w-100 mt-2">
-				<table class="table table-hover w-75">
-					<thead>
-						<tr class="custom-tr">
-							<th class="text-center">DNI</th>
-							<th class="text-center">Nombre</th>
-							<th class="text-center">Obra Social</th>
-							<th class="text-center">E-mail</th>
-							<th class="text-center"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${patients}" var="patient">
-							<tr>
-								<td class="text-center">${patient.dni}</td>
-								<td class="text-center"><a href="/doctor/medicalHistory/${patient.id}">${patient.firstName} ${patient.lastName}</a></td>
-								<td class="text-center">${patient.insurance.name}</td>
-								<td class="text-center">${patient.email}</td>
-								<td class="text-center">
-									<div class="d-inline-flex align-items-center">
-
-										<form action="/patient/editRole/${patient.id}" method="POST" class="d-inline-flex align-items-center me-2">
-											
-											<input type="hidden" name="_method" value="PUT"> 
-											<select class="form-select form-select-sm me-1" name="role" id="roleid">
-												<c:forEach items="${roles}" var="role">
-													<option value="${role}">${role}</option>
-												</c:forEach>
-											</select> <input type="submit" class="btn btn-custom btn-sm" value="Guardar">
-										</form>
-
-										<form action="/patientDelete/${patient.id}" method="POST"
-											class="d-inline-flex align-items-center">
-											<input type="hidden" name="_method" value="DELETE"> 
-											<input type="submit" class="btn btn-custom btn-sm" value="Dar de baja">
-										</form>
-									</div>
-
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+    <div class="table-responsive w-75">
+        <table class="table table-hover">
+            <thead>
+                <tr class="custom-tr">
+                    <th class="text-center">DNI</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Obra Social</th>
+                    <th class="text-center">E-mail</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${patients}" var="patient">
+                    <tr>
+                        <td class="text-center">${patient.dni}</td>
+                        <td class="text-center">
+                            <a href="/doctor/medicalHistory/${patient.id}">
+                                ${patient.firstName} ${patient.lastName}
+                            </a>
+                        </td>
+                        <td class="text-center">${patient.insurance.name}</td>
+                        <td class="text-center">${patient.email}</td>
+                        <td class="text-center">
+                            <div class="d-inline-flex align-items-center">
+                                <form action="/patient/editRole/${patient.id}" method="POST" class="d-inline-flex align-items-center me-2">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <select class="form-select form-select-sm me-1" name="role" id="roleid">
+                                        <c:forEach items="${roles}" var="role">
+                                            <option value="${role}">${role}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <input type="submit" class="btn btn-custom btn-sm" value="Guardar">
+                                </form>
+                                <form action="/patientDelete/${patient.id}" method="POST" class="d-inline-flex align-items-center">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="submit" class="btn btn-custom btn-sm" value="Dar de baja">
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 		</main>
 		<footer class="text-center mt-auto">
 			<p class="text-muted">&copy; 2024</p>
