@@ -38,9 +38,8 @@
             <img src="/img/logo2.png" alt="logoprincipal" class="logo img-fluid p-2" style="max-width: 150px;">
             <div class="d-flex align-items-center">
                 <a href="/logout" class="btn btn-custom me-2">Cerrar Sesión</a>
-                <a href="/patient/${userInSession.id}">
-                    <img src="/img/profile.png" alt="Perfil" class="rounded-circle" width="50" height="50">
-                </a>
+                <a href="/patient/${userInSession.id}" class="btn btn-custom">Ir a
+					mi perfil</a>
             </div>
         </header>
 		<main class="flex-grow-1 p-4">
