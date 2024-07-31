@@ -26,7 +26,7 @@
 <body class="bg-light">
     <div class="container-custom d-flex flex-column container-fluid">
         <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-4">
-            <img src="/img/logo2.png" alt="logoPrincipal" class="logo p-2" />
+            <img src="/img/logo2.png" alt="logoPrincipal" class="logo img-fluid p-2" />
             <span>Bienvenidx Admin ${userInSession.firstName}!</span>
             <div>
                 <a href="/admin" class="btn btn-custom">Administración</a>

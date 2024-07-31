@@ -19,12 +19,19 @@
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-column min-vh-100">
-        <header class="d-flex justify-content-between align-items-center">
-            <img src="img/logo2.png" alt="logoPrincipal" class="logo img-fluid p-2" />
-            <span class="text-center">Bienvenidx Admin ${userInSession.firstName}!</span>
-            <a href="/logout" class="btn btn-custom m-4">Cerrar Sesión</a>
-        </header>
+   <div class="container-fluid d-flex flex-column flex-wrap">
+    <header class="d-flex justify-content-between align-items-center pb-0 pt-0 p-3 ">
+        <div class="d-flex align-items-center">
+            <img src="/img/logo2.png" alt="logoPrincipal" class="logo img-fluid p-2" />
+        </div>
+        <div class="align-items-center">
+        <span>Bienvenidx Admin ${userInSession.firstName}!</span>
+        </div>
+        <div  class="align-items-center">
+         <a href="/logout" class="btn btn-custom mt-2 mt-md-0">Cerrar Sesión</a>
+        </div>
+       
+    </header>
 
         <main class="flex-grow-1 p-4">
             <div class="container">
