@@ -222,7 +222,6 @@ public class DoctorController {
     }
 
 
-
     @PostMapping("/createMedicalHistory/{id}")
     public String createMedicalHistoryPatient(@Valid @ModelAttribute("newContent") Content newContent,
                                               @PathVariable("id") Long id,
@@ -247,20 +246,29 @@ public class DoctorController {
             medicalHistoryServices.saveMedicalHistory(medicalHistory);
         }
 
-        // Asociar el contenido con el historial médico
-        newContent.setContentSpeciality(speciality);
-        newContent.setDate(LocalDate.now());
-        newContent.setMedHistory(medicalHistory);
-        newContent.setPatient(myPatient);
+        // Crear una nueva instancia de Content para evitar reutilizar la misma referencia
+        Content newContentInstance = new Content();
+        newContentInstance.setContentSpeciality(speciality);
+        newContentInstance.setDate(LocalDate.now());
+        newContentInstance.setMedHistory(medicalHistory);
+        newContentInstance.setPatient(myPatient);
+        newContentInstance.setTreatment(newContent.getTreatment());
+        newContentInstance.setObservations(newContent.getObservations());
+        newContentInstance.setFamilyHistory(newContent.getFamilyHistory());
+        newContentInstance.setAllergies(newContent.getAllergies());
 
         // Guardar el contenido
-        contentServices.saveContent(newContent);
+        contentServices.saveContent(newContentInstance);
 
         // Agregar el contenido a la lista de contenidos del historial médico
-        medicalHistory.getContents().add(newContent);
+        medicalHistory.getContents().add(newContentInstance);
+
+        // Guardar el historial médico actualizado
+        medicalHistoryServices.saveMedicalHistory(medicalHistory);
 
         return "redirect:/doctor";
     }
+
 
     
     @GetMapping("/doctor/medicalHistory/{patientId}/edit/{contentId}")
