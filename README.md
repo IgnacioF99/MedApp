@@ -119,7 +119,7 @@ Vista general:
 - [Paloma Jellinek](www.linkedin.com/in/palomajellinek)
 - [Martin Pereira](https://www.linkedin.com/in/martin-pereira-39009b227/)
 - [Ignacio Flores]
-- [Facundo Carrizo]
+- [Facundo Carrizo](https://www.linkedin.com/in/facu14carrizo/)
 - [Facundo Torres]
 - [Fabrizio Tabares]
   
