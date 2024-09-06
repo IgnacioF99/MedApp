@@ -1,8 +1,4 @@
 # MedApp - Medical App Manager
-
-## Funcionamiento
-[![Alt text](https://img.youtube.com/vi/7cMbAvS-Y0A/0.jpg)](https://www.youtube.com/watch?v=7cMbAvS-Y0A)
-
 ## Tabla de contenidos
 
 - [Descripcion del proyecto](#descripcion)
@@ -16,6 +12,8 @@
   - [Funcionalidades futuras a desarrollar](#funcionalidadesFuturas)
 - [Autores](#autores)
 
+## Funcionamiento
+[![Alt text](https://img.youtube.com/vi/7cMbAvS-Y0A/0.jpg)](https://www.youtube.com/watch?v=7cMbAvS-Y0A)
 ## Descripción del proyecto
 
 MedApp es una aplicación web diseñada para mejorar la organización de gestión de citas y expedientes médicos en instituciones como clínicas, hospitales y consultorios de doctores particulares.
