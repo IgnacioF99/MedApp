@@ -1,6 +1,7 @@
 # MedApp - Medical App Manager
 
-
+## Funcionamiento
+[![Alt text](https://img.youtube.com/vi/7cMbAvS-Y0A/0.jpg)](https://www.youtube.com/watch?v=7cMbAvS-Y0A)
 
 ## Tabla de contenidos
 
