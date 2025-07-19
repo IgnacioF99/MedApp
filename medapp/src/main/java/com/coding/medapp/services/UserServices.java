@@ -109,10 +109,21 @@ public class UserServices {
     }
 
     public String saveProfileImage(MultipartFile profileImage) throws IOException {
-        String fileName = UUID.randomUUID().toString() + profileImage.getOriginalFilename();
-        Path filePath = Paths.get(uploadDirectory, fileName);
+        String originalFileName = profileImage.getOriginalFilename();
+        if (originalFileName == null || originalFileName.contains("..") || originalFileName.contains("/") || originalFileName.contains("\\")) {
+            throw new IllegalArgumentException("Invalid filename");
+        }
+        
+        String sanitizedFileName = UUID.randomUUID().toString() + "_" + originalFileName.replaceAll("[^a-zA-Z0-9._-]", "");
+        Path filePath = Paths.get(uploadDirectory, sanitizedFileName).normalize();
+        Path uploadDirPath = Paths.get(uploadDirectory).normalize();
+        
+        if (!filePath.startsWith(uploadDirPath)) {
+            throw new IllegalArgumentException("File path traversal detected");
+        }
+        
         Files.copy(profileImage.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-        return "/images/" + fileName;
+        return "/images/" + sanitizedFileName;
     }
 
     public void updateUser(User user) {
